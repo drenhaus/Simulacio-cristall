@@ -19,11 +19,8 @@ namespace WpfApplication1
         public void SetVida(bool vida)
         {this.viva = vida;}
 
-
         public bool GetVida()
         {return (this.viva);}
-
-
 
         public void SetVecinosVivos(int num)
         { this.vecinos_vivos = num; }

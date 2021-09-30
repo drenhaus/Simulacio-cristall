@@ -36,7 +36,6 @@ namespace WpfApplication2
             return y;
         }
 
-
         public void ClonarMatrix()
         {
             matriz_malla_Clone=new Celda[y,x];
@@ -58,21 +57,17 @@ namespace WpfApplication2
 
         public void SetNumeroDeFilasYColumnas(int fila, int columna)
         {
-            this.y = fila;
-            this.x = columna;
+            this.y = fila+2;
+            this.x = columna+2;
             
             this.matriz_malla = new Celda [y,x];
             this.matriz_malla_Clone = new Celda[y,x];
-
-           
-           // fill.SetVida(false);  // mitrara treure esta a celda
 
             for (int i = 0; i < y; i++)
                 for (int j = 0; j < x; j++)
                 {{
                     Celda fill = new Celda(); // rellenamos la matriz con celdas
                     Celda fill_clone = new Celda(); // rellenamos la matriz con celdas
-
 
                     matriz_malla[i,j] = fill;
                     matriz_malla_Clone[i,j] = fill_clone;
@@ -88,13 +83,11 @@ namespace WpfApplication2
         
         }
 
-
         public bool DameElEstadoDe(int posFILAS, int posCOLUMNAS)
         {
 
             return (this.matriz_malla[posFILAS, posCOLUMNAS].GetVida());
         }
-
 
         public int GetNumeroDeVivosDeLaMatriz()
         {
@@ -109,7 +102,6 @@ namespace WpfApplication2
             }
             return numeroTotalDeVivos;
         }
-
 
         public int NumeroDeVecinosVivos(int Fila, int Columna)
         {
@@ -214,16 +206,14 @@ namespace WpfApplication2
             
 
         }
-
-
-
+        
         public void MallaFutura()
         {
             ClonarMatrix();
 
-            for (int i = 0; i < y; i++)
+            for (int i = 1; i < y-1; i++)
             {
-                for (int j = 0; j < x; j++)
+                for (int j = 1; j < x-1; j++)
                 {
 
                     matriz_malla_Clone[i, j].SetVecinosVivos(NumeroDeVecinosVivos(i, j));  // gusrada # de veisn en el clone  
