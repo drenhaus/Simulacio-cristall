@@ -233,3 +233,6 @@ C:\Users\Dren\Documents\SIM\JdlV\WpfApplication1\obj\x86\Debug\WpfApplication1.F
 C:\Users\Dren\Documents\SIM\cristall\WpfApplication1\bin\Debug\WpfApplication1.exe.config
 C:\Users\Dren\Documents\SIM\cristall\WpfApplication1\obj\x86\Debug\WpfApplication1.exe
 C:\Users\Dren\Documents\SIM\cristall\WpfApplication1\obj\x86\Debug\WpfApplication1.pdb
+C:\Users\olgac\OneDrive\Documents\UNI\4A\SIMULACIO\CRISTAL\Simulacio-cristall\WpfApplication1\bin\Debug\WpfApplication1.exe.config
+C:\Users\olgac\OneDrive\Documents\UNI\4A\SIMULACIO\CRISTAL\Simulacio-cristall\WpfApplication1\obj\x86\Debug\WpfApplication1.exe
+C:\Users\olgac\OneDrive\Documents\UNI\4A\SIMULACIO\CRISTAL\Simulacio-cristall\WpfApplication1\obj\x86\Debug\WpfApplication1.pdb
