@@ -125,7 +125,7 @@ namespace WpfApplication2
 
             catch
             { }
-
+//patata
             try
             {
                 if (matriz_malla_Clone[Fila + 1, Columna].GetVida() == true)
