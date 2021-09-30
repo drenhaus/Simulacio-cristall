@@ -96,7 +96,6 @@ namespace WpfApplication1
 
         } // pintar de negro las seleccionadas
 
-
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
             button1.IsEnabled = true;
@@ -143,7 +142,7 @@ namespace WpfApplication1
                     canvas1.Children.Add(b);
 
                     // Posicion del cuadrado
-                    Canvas.SetTop(b, (i - 1) * 15);
+                    Canvas.SetTop(b, (i -1) * 15);
                     Canvas.SetLeft(b, (j - 1) * 15);
                     b.Tag = new Point(j, i);
 
