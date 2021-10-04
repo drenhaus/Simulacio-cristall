@@ -183,8 +183,8 @@ namespace WpfApplication1
                     string filename = ofd.FileName;
                     Malla matriz = matriz_celdas.CargarSimulacion(filename);
                     matriz_celdas = matriz;
-                    x = matriz_celdas.getX();
-                    y = matriz_celdas.getY();
+                    x = matriz_celdas.getX()-2;
+                    y = matriz_celdas.getY()-2;
 
                     generarMallaEnCARGA();
 
@@ -213,9 +213,9 @@ namespace WpfApplication1
 
 
             // Bucle para crear los rectangulos
-            for (int i = 1; i < y-1; i++)
+            for (int i = 0; i < y; i++)
             {
-                for (int j = 1; j < x-1; j++)
+                for (int j = 0; j < x; j++)
                 {
                     Rectangle b = new Rectangle();
                     b.Width = 15;
@@ -236,18 +236,19 @@ namespace WpfApplication1
                 }
             }
 
-            for (int i = 1; i < y-1 ; i++)
+            for (int i = 0; i < y; i++)
             {
-                for (int j = 1; j < x-1; j++)
+                for (int j = 0; j < x; j++)
                 {
 
-                    if (matriz_celdas.DameElEstadoDe(i, j) == false)
+                    if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (matriz_celdas.DameElEstadoDe(i, j) == true)
+                    if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
             }
+            
         }
 
 
@@ -262,9 +263,9 @@ namespace WpfApplication1
 
 
             // volvemos a pintar los rectangulos
-            for (int i = 1; i < y; i++)
+            for (int i = 0; i < y; i++)
             {
-                for (int j = 1; j < x; j++)
+                for (int j = 0; j < x; j++)
                 {
 
                     if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
