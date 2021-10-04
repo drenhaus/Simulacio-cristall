@@ -170,8 +170,8 @@ namespace WpfApplication1
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
         {
-          //  try
-          //  {
+            try
+            {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Multiselect = true;
                 ofd.Filter = "Text documents (.txt)|*.txt";
@@ -186,22 +186,68 @@ namespace WpfApplication1
                     x = matriz_celdas.getX();
                     y = matriz_celdas.getY();
 
-                    generarMalla();
+                    generarMallaEnCARGA();
 
                     MessageBox.Show("Fichero cargado con éxito!");
                 }
                 else
                 { MessageBox.Show("No ha sido posible cargar la simulación"); }
-          //  }
+            }
 
-          //  catch (Exception ex)
-          //  {
-           //     MessageBox.Show(ex.Message);
-          //  }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
                 button1.IsEnabled = true;
                 button2.IsEnabled = true;
                 button4.IsEnabled = true;
                 button5.IsEnabled = true;
+        }
+
+        private void generarMallaEnCARGA()
+        {
+            casillas = new Rectangle[y, x];
+
+            canvas1.Height = y * 15;
+            canvas1.Width = x * 15;
+
+
+            // Bucle para crear los rectangulos
+            for (int i = 1; i < y-1; i++)
+            {
+                for (int j = 1; j < x-1; j++)
+                {
+                    Rectangle b = new Rectangle();
+                    b.Width = 15;
+                    b.Height = 15;
+                    b.Fill = new SolidColorBrush(Colors.Gray);
+                    b.StrokeThickness = 0.5;
+                    b.Stroke = Brushes.Black;
+                    canvas1.Children.Add(b);
+
+                    // Posicion del cuadrado
+                    Canvas.SetTop(b, (i - 1) * 15);
+                    Canvas.SetLeft(b, (j - 1) * 15);
+                    b.Tag = new Point(j, i);
+
+                    b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+
+                    casillas[i, j] = b;
+                }
+            }
+
+            for (int i = 1; i < y-1 ; i++)
+            {
+                for (int j = 1; j < x-1; j++)
+                {
+
+                    if (matriz_celdas.DameElEstadoDe(i, j) == false)
+                    { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
+                    if (matriz_celdas.DameElEstadoDe(i, j) == true)
+                    { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
+
+                }
+            }
         }
 
 
@@ -216,9 +262,9 @@ namespace WpfApplication1
 
 
             // volvemos a pintar los rectangulos
-            for (int i = 0; i < y; i++)
+            for (int i = 1; i < y; i++)
             {
-                for (int j = 0; j < x; j++)
+                for (int j = 1; j < x; j++)
                 {
 
                     if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
