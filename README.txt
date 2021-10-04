@@ -1,12 +1,12 @@
 # Simulacio-cristall
 
 
-# PROBLEMAS DETECTADOS  (poner al lado si lo arreglais, no borrar 1.)
+# PROBLEMAS DETECTADOS  (poner al lado si esta arreglado (yes,no), no borrar)
 
 1. Error a la hora de hacer los calculos en los bordes // NO
 2. Error al hacer restar y hacer una nueva malla // YES
 3. Error en boton crear si quieres hacer una malla más pequeña // NO
-
+4. Error a en la carga ficheros gusrads 2x2 carga un 6x6 // NO
 
 # COSAS A HACER
 
