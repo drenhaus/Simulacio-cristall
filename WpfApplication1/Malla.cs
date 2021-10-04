@@ -55,6 +55,7 @@ namespace WpfApplication2
         public Celda[,] GetClon()
         { return this.matriz_malla_Clone; }
 
+      
         public void SetNumeroDeFilasYColumnas(int fila, int columna)
         {
             this.y = fila+2;
@@ -74,6 +75,22 @@ namespace WpfApplication2
                 }}
  
         }
+
+        public void SetCondicionesContorno(bool VidaSuperior, bool VidaInferior, bool VidaDerecha, bool vidaIzquierda)
+        {
+            for (int i = 1; i < y; i++)
+            {
+                this.matriz_malla[0, i].SetVida(VidaSuperior);
+                this.matriz_malla[y - 1, i].SetVida(VidaInferior);
+            }
+
+            for (int j = 0; j < x; j++)
+            {
+                this.matriz_malla[j, 0].SetVida(vidaIzquierda);
+                this.matriz_malla[j, x - 1].SetVida(VidaDerecha);
+            }
+        }
+
 
         public void SetVidaDeCelda(int fila, int columna, bool vida) // ERRORSS
         {

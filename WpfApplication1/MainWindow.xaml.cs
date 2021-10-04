@@ -83,14 +83,12 @@ namespace WpfApplication1
 
         }
 
-
-
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Rectangle a = (Rectangle)sender;
             a.Fill = new SolidColorBrush(Colors.Black);
             Point p = (Point)a.Tag;
-            matriz_celdas.SetVidaDeCelda(Convert.ToInt32(p.Y), Convert.ToInt32(p.X), true);
+            matriz_celdas.SetVidaDeCelda(Convert.ToInt32(p.Y)+1, Convert.ToInt32(p.X)+1, true);
 
                      
 
@@ -118,6 +116,8 @@ namespace WpfApplication1
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
             }
 
+            matriz_celdas.SetCondicionesContorno(false, false, false, false);
+
             generarMalla();
             
         }
@@ -128,6 +128,7 @@ namespace WpfApplication1
 
             canvas1.Height = y * 15;
             canvas1.Width = x * 15;
+            
 
             // Bucle para crear los rectangulos
             for (int i = 0; i < y; i++)
@@ -156,9 +157,9 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-                    if (matriz_celdas.DameElEstadoDe(i,j) == false)
+                    if (matriz_celdas.DameElEstadoDe(i+1,j+1) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (matriz_celdas.DameElEstadoDe(i, j) == true)
+                    if (matriz_celdas.DameElEstadoDe(i+1, j+1) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
@@ -215,9 +216,9 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-                    if (historial.Last().DameElEstadoDe(i, j) == false)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (historial.Last().DameElEstadoDe(i, j) == true)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
@@ -239,9 +240,9 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-                    if (historial.Last().DameElEstadoDe(i, j) == false)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (historial.Last().DameElEstadoDe(i, j) == true)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
