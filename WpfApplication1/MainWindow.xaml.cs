@@ -272,9 +272,10 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-
+                    matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+                    matriz_celdas.SetVidaDeCelda(i, j, false);
                     casillas[i, j].Fill = new SolidColorBrush(Colors.Gray);
-
+                    
                 }
             }
         }
