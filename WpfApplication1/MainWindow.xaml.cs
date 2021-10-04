@@ -216,9 +216,9 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-                    if (historial.Last().DameElEstadoDe(i, j) == false)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (historial.Last().DameElEstadoDe(i, j) == true)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
@@ -240,9 +240,9 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-                    if (historial.Last().DameElEstadoDe(i, j) == false)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (historial.Last().DameElEstadoDe(i, j) == true)
+                    if (historial.Last().DameElEstadoDe(i+1, j+1) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
