@@ -6,7 +6,9 @@
 1. Error a la hora de hacer los calculos en los bordes // YES
 2. Error al hacer restar y hacer una nueva malla // YES
 3. Error en boton crear si quieres hacer una malla más pequeña // NO
-4. Error a en la carga ficheros guarda 2x2 carga un 6x6 // NO
+4. Error a en la carga ficheros  // NO
+5. Deja guaradar sin haver malla // NO
+
 
 # COSAS A HACER
 
