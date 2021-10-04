@@ -132,6 +132,7 @@ namespace WpfApplication1
 
             // Bucle para crear los rectangulos
             for (int i = 0; i < y; i++)
+            {
                 for (int j = 0; j < x; j++)
                 {
                     Rectangle b = new Rectangle();
@@ -143,7 +144,7 @@ namespace WpfApplication1
                     canvas1.Children.Add(b);
 
                     // Posicion del cuadrado
-                    Canvas.SetTop(b, (i -1) * 15);
+                    Canvas.SetTop(b, (i - 1) * 15);
                     Canvas.SetLeft(b, (j - 1) * 15);
                     b.Tag = new Point(j, i);
 
@@ -151,15 +152,16 @@ namespace WpfApplication1
 
                     casillas[i, j] = b;
                 }
+            }
 
-            for (int i = 0; i < y; i++)
+            for (int i = 1; i < y-1; i++)
             {
-                for (int j = 0; j < x; j++)
+                for (int j = 1; j < x-1; j++)
                 {
 
-                    if (matriz_celdas.DameElEstadoDe(i+1,j+1) == false)
+                    if (matriz_celdas.DameElEstadoDe(i,j) == false)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (matriz_celdas.DameElEstadoDe(i+1, j+1) == true)
+                    if (matriz_celdas.DameElEstadoDe(i, j) == true)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
                 }
@@ -183,7 +185,9 @@ namespace WpfApplication1
                     matriz_celdas = matriz;
                     x = matriz_celdas.getX();
                     y = matriz_celdas.getY();
+
                     generarMalla();
+
                     MessageBox.Show("Fichero cargado con éxito!");
                 }
                 else
@@ -198,9 +202,10 @@ namespace WpfApplication1
                 button2.IsEnabled = true;
                 button4.IsEnabled = true;
                 button5.IsEnabled = true;
-
-
         }
+
+
+
 
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {

@@ -95,7 +95,7 @@ namespace WpfApplication2
         public void SetVidaDeCelda(int fila, int columna, bool vida) // ERRORSS
         {
             //this.matriz_malla[1, 1].SetVida(vida);
-            
+
             matriz_malla[fila, columna].SetVida(vida);
         
         }
@@ -260,7 +260,7 @@ namespace WpfApplication2
             }
             sr.Close();
 
-            matriz_celdas.SetNumeroDeFilasYColumnas(i, trozos.Length);
+            matriz_celdas.SetNumeroDeFilasYColumnas(i-2, trozos.Length-2);
 
             StreamReader f = new StreamReader(name);
             
