@@ -29,9 +29,8 @@ namespace WpfApplication1
         int x;  //columnas
         int y;  //filas
         Malla matriz_celdas= new Malla();
-      // Malla matriz_espejo = new Malla();
 
-        List<Malla> historial = new List<Malla>();
+        List<Malla> historial= new List<Malla>();
         DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
 
@@ -101,16 +100,24 @@ namespace WpfApplication1
             button4.IsEnabled = true;
             button5.IsEnabled = true;
             botonCARGAR.IsEnabled = true;
+
+            canvas1.Children.Clear();
+
             try
             {
                 x = Convert.ToInt32(TextBoxX.Text);
                 y = Convert.ToInt32(TextBoxY.Text);
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);  // es crea matriu i somple de cell
-
+                if ((x <= 0) || (y <= 0))
+                {
+                    x = 10;
+                    y = 10;
+                    matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+                }
+                
             }
             catch
             {
-
                 x = 10;
                 y = 10;
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
@@ -172,6 +179,7 @@ namespace WpfApplication1
         {
             try
             {
+                canvas1.Children.Clear();
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Multiselect = true;
                 ofd.Filter = "Text documents (.txt)|*.txt";
