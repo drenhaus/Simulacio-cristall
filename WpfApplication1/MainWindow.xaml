@@ -10,7 +10,7 @@
                 </MenuItem>
                 <MenuItem Header="Archivo" Height=" 50" Width="143" >
 
-                    <MenuItem Header="Guardar estado actual" Click="MenuItem_Click_2" >
+                    <MenuItem Header="Guardar estado actual" Click="MenuItem_Click_2" IsEnabled="False" Name="botonCARGAR">
                         <MenuItem.Icon>
                             <Image Source="/icons/save.png" />
                         </MenuItem.Icon>

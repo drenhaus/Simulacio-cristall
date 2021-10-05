@@ -55,7 +55,6 @@ namespace WpfApplication2
         public Celda[,] GetClon()
         { return this.matriz_malla_Clone; }
 
-      
         public void SetNumeroDeFilasYColumnas(int fila, int columna)
         {
             this.y = fila+2;
@@ -90,7 +89,6 @@ namespace WpfApplication2
                 this.matriz_malla[j, x - 1].SetVida(VidaDerecha);
             }
         }
-
 
         public void SetVidaDeCelda(int fila, int columna, bool vida) // ERRORSS
         {

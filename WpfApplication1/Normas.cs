@@ -34,7 +34,5 @@ namespace NormasJuego
             return this.estado_futuro_viva;
         }
 
-
-
     }
 }
