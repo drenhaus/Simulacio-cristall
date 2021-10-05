@@ -100,7 +100,7 @@ namespace WpfApplication1
             button2.IsEnabled = true;
             button4.IsEnabled = true;
             button5.IsEnabled = true;
-
+            botonCARGAR.IsEnabled = true;
             try
             {
                 x = Convert.ToInt32(TextBoxX.Text);
@@ -189,6 +189,15 @@ namespace WpfApplication1
                     generarMallaEnCARGA();
 
                     MessageBox.Show("Fichero cargado con éxito!");
+
+                    button1.IsEnabled = true;
+                    button2.IsEnabled = true;
+                    button4.IsEnabled = true;
+                    button5.IsEnabled = true;
+                    botonCARGAR.IsEnabled = true;
+
+                    
+
                 }
                 else
                 { MessageBox.Show("No ha sido posible cargar la simulación"); }
@@ -198,10 +207,7 @@ namespace WpfApplication1
             {
                 MessageBox.Show(ex.Message);
             }
-                button1.IsEnabled = true;
-                button2.IsEnabled = true;
-                button4.IsEnabled = true;
-                button5.IsEnabled = true;
+
         }
 
         private void generarMallaEnCARGA()
@@ -251,9 +257,6 @@ namespace WpfApplication1
             
         }
 
-
-
-
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
 
@@ -279,7 +282,6 @@ namespace WpfApplication1
 
         }
 
-
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             historial.Add(matriz_celdas);
@@ -300,7 +302,6 @@ namespace WpfApplication1
                 }
             }
         }
-        
         
         private void button2_Click(object sender, RoutedEventArgs e) // simulación automatica
         {
