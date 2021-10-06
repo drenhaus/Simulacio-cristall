@@ -67,6 +67,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Celda.cs" />
+    <Compile Include="Graficas.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
