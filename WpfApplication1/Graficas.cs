@@ -25,7 +25,8 @@ namespace WpfApplication1
         Malla matriz_celdas = new Malla();
         List<Malla> historial = new List<Malla>();
         int Lenght_lista;
-
+        int[] vectorFase;
+        int[] vectorIteraciones;
 
         public void SetLista(List<Malla> H)
         {
@@ -42,8 +43,17 @@ namespace WpfApplication1
         {
             Lenght_lista = historial.Count;
 
+           vectorFase = new int[Lenght_lista];
+           vectorIteraciones = new int[Lenght_lista];
+
             for (int l = 0; l <= Lenght_lista; l++)
-            {int c = historial[l].GetNumeroDeVivosDeLaMatriz();}
+            {
+                int c = historial[l].GetNumeroDeVivosDeLaMatriz();
+                vectorFase[l] = c;
+                vectorIteraciones[l] = l;
+            }
+
+            
 
         }
 
