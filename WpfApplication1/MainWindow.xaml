@@ -26,7 +26,7 @@
 
                 <MenuItem Header="Crear Graficas" Height=" 50" Width="143" >
 
-                    <MenuItem Header="graf1" IsEnabled="False" Name="graf1" Click="graf1_Click">
+                    <MenuItem Header="graf1" IsEnabled="True" Name="graf1" Click="graf1_Click">
                         <MenuItem.Icon>
                             <Image Source="/icons/save.png" /> 
                         </MenuItem.Icon>

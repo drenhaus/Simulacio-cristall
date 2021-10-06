@@ -344,7 +344,8 @@ namespace WpfApplication1
 
         private void graf1_Click(object sender, RoutedEventArgs e) // click en el primer graff
         {
-
+            Window1 lc = new Window1();
+            lc.ShowDialog();
         }
 
         
