@@ -15,3 +15,4 @@
 1. Añadir las ecuaciones diferenciales
 2. Añadir la capacidad de pintar en distintas tonalidades
 3. 
+5. 
