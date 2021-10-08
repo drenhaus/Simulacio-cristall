@@ -197,11 +197,16 @@ namespace WpfApplication2
                     matriz_malla_Clone[i, j].SetVecinosVivos(NumeroDeVecinosVivos(i, j));  // gusrada # de veisn en el clone  
                     // origin te valor viu mort // clone te vius i veins
                     
-                    // hem de posar lestat dels de les faese
+                    // hem de posar l'estat dels de les fases i temperatura
                     matriz_malla_Clone[i, j].SetFaseDerecha(DameFASEde(i+1,j));
                     matriz_malla_Clone[i, j].SetFaseIzquierda(DameFASEde(i-1,j));
                     matriz_malla_Clone[i, j].SetFaseAbajo(DameFASEde(i,j+1));   // es -1 xq la malla empiza por fila 0 i ma augmentando el valor a medida que baja
                     matriz_malla_Clone[i, j].SetFaseArriba(DameFASEde(i,j-1));
+
+                    matriz_malla_Clone[i, j].SetTemperaturaDerecha(DameTEMPERATURAde(i + 1, j));
+                    matriz_malla_Clone[i, j].SetTemperaturaIzquierda(DameTEMPERATURAde(i - 1, j));
+                    matriz_malla_Clone[i, j].SetTemperaturaAbajo(DameTEMPERATURAde(i, j+1));
+                    matriz_malla_Clone[i, j].SetTemperaturaArriba(DameTEMPERATURAde(i, j-1));
 
 
 
@@ -209,9 +214,7 @@ namespace WpfApplication2
 
                     matriz_malla[i, j].ActualizarCelda(matriz_malla_Clone[i, j].GetVida(), matriz_malla_Clone[i, j].GetVecinosVivos()); //need clonar
 
-                    matriz_malla[i, j].ActualizarFASEdeCelda(matriz_malla_Clone[i, j].GetFase(), matriz_malla_Clone[i, j].GetTemperatura(),matriz_malla_Clone[i, j].GetFaseIzquierda(),
-                        matriz_malla_Clone[i, j].GetFaseDerecha(), matriz_malla_Clone[i, j].GetFaseArriba(), matriz_malla_Clone[i, j].GetFaseAbajo(), matriz_malla_Clone[i, j].GetTemperaturaArriba(),
-                        matriz_malla_Clone[i, j].GetTemperaturaAbajo(), matriz_malla_Clone[i, j].GetTemperaturaDerecha(), matriz_malla_Clone[i, j].GetTemperaturaIzquierda());
+                    matriz_malla[i, j].ActualizarFASEdeCelda();
 
                 }
             }
