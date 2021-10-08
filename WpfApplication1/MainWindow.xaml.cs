@@ -24,7 +24,7 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
 
-
+        Normas norm = new Normas();
         Rectangle[,] casillas; // Matriz donde guardaremos todos los rectangulos para poder recorrerlos
         int x;  //columnas
         int y;  //filas
@@ -339,6 +339,74 @@ namespace WpfApplication1
                     casillas[i, j].Fill = new SolidColorBrush(Colors.Gray);
                     
                 }
+            }
+        }
+
+        private void Parametros_Click(object sender, RoutedEventArgs e)
+        {
+            norm.SetDxDy(Convert.ToDouble(dxdy.Text));
+            norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
+            norm.SetBetta(Convert.ToDouble(betta.Text));
+            norm.SetDelta(Convert.ToDouble(delta.Text));
+            norm.SetM(Convert.ToDouble(M.Text));
+            norm.SetDT(Convert.ToDouble(dt.Text));
+            
+            if (ParametrosA.IsChecked == true)
+            { 
+
+            norm.SetDxDy(0.005);
+            norm.SetEpsilon(0.005);
+            norm.SetBetta(400);
+            norm.SetDelta(0.5);
+            norm.SetM(20);
+            norm.SetDT(5*Math.Pow(10,-6));
+            
+            }
+
+            if (ParametrosB.IsChecked == true)
+            { 
+            norm.SetDxDy(0.005);
+            norm.SetEpsilon(0.005);
+            norm.SetBetta(300);
+            norm.SetDelta(0.7);
+            norm.SetM(30);
+            norm.SetDT(5 * Math.Pow(10, -6));
+                      
+            }
+
+            MessageBox.Show("Datos cargados");
+        }
+
+        private void ParametrosB_Checked(object sender, RoutedEventArgs e)
+        {
+            if (ParametrosB.IsChecked == true)
+            {
+                ParametrosA.IsChecked = false;
+
+                dxdy.Text = Convert.ToString(0.005);
+                epsilon.Text = Convert.ToString(0.005);
+                betta.Text = Convert.ToString(300);
+                delta.Text = Convert.ToString(0.7);
+                M.Text = Convert.ToString(30);
+                double c = 5 * Math.Pow(10, -6);
+                dt.Text = Convert.ToString(c);
+
+            }
+        }
+
+        private void ParametrosA_Checked(object sender, RoutedEventArgs e)
+        {
+            if (ParametrosA.IsChecked == true)
+            {
+                ParametrosB.IsChecked = false;
+
+                dxdy.Text = Convert.ToString(0.005);
+                epsilon.Text = Convert.ToString(0.005);
+                betta.Text = Convert.ToString(400);
+                delta.Text = Convert.ToString(0.5);
+                M.Text = Convert.ToString(20);
+                double c = 5 * Math.Pow(10, -6);
+                dt.Text = Convert.ToString(c);
             }
         }
 

@@ -1,10 +1,10 @@
 ﻿<Window x:Class="WpfApplication1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="426" Width="577">
+        Title="MainWindow" Height="591" Width="1076">
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Left"  Width="143" Height="388">
+            <Menu DockPanel.Dock="Left"  Width="142" Height="550">
                 <MenuItem Header="Mostrar reglas del juego" Height=" 50" Width="143" Click="MenuItem_Click_1">
                     
                 </MenuItem>
@@ -26,17 +26,32 @@
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>
-        <Canvas Height="388" HorizontalAlignment="Left" Margin="143,0,0,0" Name="canvas12" VerticalAlignment="Top" Width="412">
-            <TextBox Canvas.Left="101" Canvas.Top="13" Height="23" Name="TextBoxY" Width="38" />
-            <Label Canvas.Left="6" Canvas.Top="9" Content="Nº filas" Height="28" Name="label1" />
-            <TextBox Canvas.Left="101" Canvas.Top="47" Height="23" Name="TextBoxX" Width="38" />
-            <Label Canvas.Left="6" Canvas.Top="42" Content="Nº columnas" Height="28" Name="label2" />
-            <Button Canvas.Left="6" Canvas.Top="76" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
-            <Canvas Height="252" Name="canvas1" Width="305" Canvas.Left="62" Canvas.Top="135" />
-            <Button Canvas.Left="234" Canvas.Top="13" Content="Simular paso a paso" Height="23" Name="button1" Width="133" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
-            <Button Canvas.Left="234" Canvas.Top="47" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
-            <Button Canvas.Left="234" Canvas.Top="85" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
-            <Button Canvas.Left="296" Canvas.Top="85" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
+        <Canvas Height="552" HorizontalAlignment="Left" Margin="143,0,0,0" Name="canvas12" VerticalAlignment="Top" Width="911">
+            <TextBox Canvas.Left="152" Canvas.Top="22" Height="23" Name="TextBoxY" Width="38" />
+            <Label Canvas.Left="57" Canvas.Top="18" Content="Nº filas" Height="28" Name="label1" />
+            <TextBox Canvas.Left="152" Canvas.Top="56" Height="23" Name="TextBoxX" Width="38" />
+            <Label Canvas.Left="57" Canvas.Top="51" Content="Nº columnas" Height="28" Name="label2" />
+            <Button Canvas.Left="70" Canvas.Top="93" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
+            <Canvas Height="252" Name="canvas1" Width="305" Canvas.Left="574" Canvas.Top="13" />
+            <Button Canvas.Left="407" Canvas.Top="22" Content="Simular paso a paso" Height="23" Name="button1" Width="133" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
+            <Button Canvas.Left="407" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
+            <Button Canvas.Left="407" Canvas.Top="94" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
+            <Button Canvas.Left="469" Canvas.Top="94" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
+            <CheckBox Canvas.Left="44" Canvas.Top="457" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" />
+            <CheckBox Canvas.Left="152" Canvas.Top="457" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" />
+            <TextBox Canvas.Left="130" Canvas.Top="309" Height="23" Name="betta" Width="73" />
+            <TextBox Canvas.Left="130" Canvas.Top="280" Height="23" Name="epsilon" Width="73" />
+            <TextBox Canvas.Left="130" Canvas.Top="251" Height="23" Name="dxdy" Width="73" />
+            <TextBox Canvas.Left="130" Canvas.Top="338" Height="23" Name="delta" Width="73" />
+            <TextBox Canvas.Left="130" Canvas.Top="367" Height="23" Name="M" Width="73" />
+            <TextBox Canvas.Left="130" Canvas.Top="396" Height="23" Name="dt" Width="73" />
+            <Label Canvas.Left="70" Canvas.Top="251" Content="dx,dy" Height="28" Name="label3" />
+            <Label Canvas.Left="70" Canvas.Top="280" Content="Epsilon" Height="28" Name="label4" />
+            <Label Canvas.Left="70" Canvas.Top="309" Content="Betta" Height="28" Name="label5" />
+            <Label Canvas.Left="70" Canvas.Top="338" Content="Delta" Height="28" Name="label6" />
+            <Label Canvas.Left="84" Canvas.Top="367" Content="M" Height="28" Name="label7" />
+            <Label Canvas.Left="84" Canvas.Top="396" Content="dt" Height="28" Name="label8" />
+            <Button Canvas.Left="84" Canvas.Top="491" Content="Cargar parametros " Height="21" Name="Parametros" Width="133" Click="Parametros_Click" />
         </Canvas>
     </Grid>
     
