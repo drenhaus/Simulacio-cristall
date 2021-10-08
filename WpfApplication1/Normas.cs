@@ -7,15 +7,42 @@ namespace NormasJuego
 {
     class Normas
     {
-        //int vecinos_vivos;
-        //bool estado_actual_viva;
+
         bool estado_futuro_viva=false; // definimos que en un inicio estara muerta
+        double estado_futuro_fase = 1; // por defecto esta liquida
+        double estado_futuro_temperatura = -1;
 
-        //public void SetVecinosVivos(int num)
-        //{ this.vecinos_vivos = num; }
+        double m = 20;
+        double delta = 0.5;
+        double dt = 10e-5;
+        double betta = 400;
+        double epsilon = 0.005;
+        double dx = 0.005;
+        double dy = 0.005;
 
-        //public void SetEstadoVida(bool vida)
-        //{ this.estado_actual_viva = vida; }
+
+        public double ActualizarFASE(double estado_actual_fase, double estado_actual_temperatura, double estado_actual_fase_izquierda,
+            double estado_actual_fase_derecha, double estado_actual_fase_arriva, double estado_actual_fase_abajo)
+        {
+
+
+            double dFase_dY_quadrat = (estado_actual_fase_arriva - 2 * estado_actual_fase + estado_actual_fase_abajo) / (dy * dy); //derivada segona Y
+            double dFase_dX_quadrat = (estado_actual_fase_derecha - 2 * estado_actual_fase + estado_actual_fase_izquierda) / (dx * dx); //derivada segona X
+            double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENT^2
+
+            double A = ((1/(epsilon*epsilon*m))*(estado_actual_fase*(1-estado_actual_fase)*(estado_actual_fase-0.5+30*epsilon*betta*delta*estado_actual_temperatura*estado_actual_fase*(1-estado_actual_fase))));//Primera parte
+            double B = epsilon * epsilon * gradient_gradeint; //segona part
+            double d_fase_d_t = A+B;
+
+            this.estado_futuro_fase = estado_actual_fase + dt * d_fase_d_t;
+
+
+            A = 0;
+            B = 0;
+            d_fase_d_t = 0;
+
+            return this.estado_futuro_fase;
+        }
 
         public bool ActualizarVida(bool estado_actual_viva, int vecinosVIUS)
         {

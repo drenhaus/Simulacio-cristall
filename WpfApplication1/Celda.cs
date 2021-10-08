@@ -12,10 +12,30 @@ namespace WpfApplication1
        
         bool viva = false;  // PODRIEM TREURE
         int vecinos_vivos;
+        double fase = 1;
+        double temperatura = -1;
 
         Normas norma1= new Normas();
-        
-       
+
+        public double GetFase()
+        { return (this.fase); }
+
+         public double GetTemperatura()
+        { return (this.fase); }
+
+
+         public void SetFase(double fase)
+         { this.fase = fase; }
+
+         public void SetTemperatura(double temperatura)
+         { this.temperatura = temperatura; }
+
+
+
+
+
+
+
         public void SetVida(bool vida)
         {this.viva = vida;}
 
@@ -36,6 +56,9 @@ namespace WpfApplication1
 
 
         }
+
+
+
 
     }
 }
