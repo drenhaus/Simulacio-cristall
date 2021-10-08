@@ -45,8 +45,10 @@ namespace WpfApplication2
                        {
                            Celda fill_clone = new Celda(); // rellenamos la matriz con celdas
                            matriz_malla_Clone[i, j] = fill_clone;
-                           matriz_malla_Clone[i, j].SetVida(matriz_malla[i, j].GetVida());
-                          // matriz_malla_Clone[j, i].SetVecinosVivos(matriz_malla[j, i].GetVecinosVivos()); // clonem 0 ja que no hem contat els veins encara
+                           matriz_malla_Clone[i, j].SetVida(matriz_malla[i, j].GetVida());//
+                           matriz_malla_Clone[i, j].SetFase(matriz_malla[i, j].GetFase());
+                           matriz_malla_Clone[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
+                          
                        }
                    }
 
@@ -103,6 +105,20 @@ namespace WpfApplication2
 
             return (this.matriz_malla[posFILAS, posCOLUMNAS].GetVida());
         }
+
+        public double DameFASEde(int posFILAS, int posCOLUMNAS)
+
+        {
+            return (this.matriz_malla[posFILAS, posCOLUMNAS].GetFase());
+        }
+
+        public double DameTEMPERATURAde(int posFILAS, int posCOLUMNAS)
+        {
+            return (this.matriz_malla[posFILAS, posCOLUMNAS].GetTemperatura());
+        }
+
+
+
 
         public int GetNumeroDeVivosDeLaMatriz()
         {
@@ -179,11 +195,23 @@ namespace WpfApplication2
                 {
 
                     matriz_malla_Clone[i, j].SetVecinosVivos(NumeroDeVecinosVivos(i, j));  // gusrada # de veisn en el clone  
-                
                     // origin te valor viu mort // clone te vius i veins
+                    
+                    // hem de posar lestat dels de les faese
+                    matriz_malla_Clone[i, j].SetFaseDerecha(DameFASEde(i+1,j));
+                    matriz_malla_Clone[i, j].SetFaseIzquierda(DameFASEde(i-1,j));
+                    matriz_malla_Clone[i, j].SetFaseAbajo(DameFASEde(i,j+1));   // es -1 xq la malla empiza por fila 0 i ma augmentando el valor a medida que baja
+                    matriz_malla_Clone[i, j].SetFaseArriba(DameFASEde(i,j-1);
+
+
+
+                    //ACTUALIZAMOS LA CELDA
 
                     matriz_malla[i, j].ActualizarCelda(matriz_malla_Clone[i, j].GetVida(), matriz_malla_Clone[i, j].GetVecinosVivos()); //need clonar
-                    
+
+                    matriz_malla[i, j].ActualizarFASEdeCelda(matriz_malla_Clone[i, j].GetFase(), matriz_malla_Clone[i, j].GetTemperatura(),matriz_malla_Clone[i, j].GetFaseIzquierda(),
+                        matriz_malla_Clone[i, j].GetFaseDerecha(), matriz_malla_Clone[i, j].GetFaseArriba(), matriz_malla_Clone[i, j].GetFaseAbajo());
+
                 }
             }
             
