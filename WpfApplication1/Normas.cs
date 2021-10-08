@@ -20,13 +20,15 @@ namespace NormasJuego
         double dx = 0.005;
         double dy = 0.005;
 
+        // CREO que si mas a delante anadimos un get/set de los parametros sera la forma de poder modificar los parametros de arriba a traves del window
+
 
         public double ActualizarFASE(double estado_actual_fase, double estado_actual_temperatura, double estado_actual_fase_izquierda,
-            double estado_actual_fase_derecha, double estado_actual_fase_arriva, double estado_actual_fase_abajo)
+            double estado_actual_fase_derecha, double estado_actual_fase_arriba, double estado_actual_fase_abajo)
         {
 
 
-            double dFase_dY_quadrat = (estado_actual_fase_arriva - 2 * estado_actual_fase + estado_actual_fase_abajo) / (dy * dy); //derivada segona Y
+            double dFase_dY_quadrat = (estado_actual_fase_arriba - 2 * estado_actual_fase + estado_actual_fase_abajo) / (dy * dy); //derivada segona Y
             double dFase_dX_quadrat = (estado_actual_fase_derecha - 2 * estado_actual_fase + estado_actual_fase_izquierda) / (dx * dx); //derivada segona X
             double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENT^2
 
@@ -40,6 +42,9 @@ namespace NormasJuego
             A = 0;
             B = 0;
             d_fase_d_t = 0;
+            dFase_dY_quadrat = 0;
+            dFase_dX_quadrat = 0;
+            gradient_gradeint = 0;
 
             return this.estado_futuro_fase;
         }
