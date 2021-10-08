@@ -12,7 +12,14 @@
 
 # COSAS A HACER
 
-1. Añadir las ecuaciones diferenciales
-2. Añadir la capacidad de pintar en distintas tonalidades
-3. 
-5. 
+1.  Mirar y entender como hacer los graficos
+2.  Añadir la capacidad de pintar en distintas tonalidades
+3.  Cambiar a class celda las equaciones que estan en normas
+4.  Introducir parametros a traves de windows from (detta betta dx, dy, dt...)
+5.  Hacer 3 opciones: A i B (los que estan en ATENEA con ejemplos) y un tercero que puedas poner tu los parametros
+6.  Poder definir distintos condiciones de contorno (espejo/fijado)
+7.  Representar valores en casillas via colores
+8.  Poder ver los datos de cada celda al pasar el raton por encima (fase i temperatura)
+9.  Buscar manera de como gusradr los nuevos datos (fase/temperatura) i la configuracion de contorno que se ha hecho
+10. Poder cargar los datos anteriormente gusrados.
+11. Boton retroceder
