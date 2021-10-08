@@ -21,6 +21,11 @@ namespace WpfApplication1
         double F_abajo;
         double F_arriba; // COMO LA URRS
 
+        double T_derecha;
+        double T_izquierda;
+        double T_abajo;
+        double T_arriba; // COMO LA URRS
+
         Normas norma1= new Normas();
 
 
@@ -41,15 +46,21 @@ namespace WpfApplication1
 
             //temperatura
          public double GetTemperatura()
-         { return (this.fase); }
-
+         { return (this.temperatura); }
+         public double GetTemperaturaDerecha()
+         { return (this.T_derecha); }
+         public double GetTemperaturaIzquierda()
+         { return (this.T_izquierda); }
+         public double GetTemperaturaAbajo()
+         { return (this.T_abajo); }
+         public double GetTemperaturaArriba()
+         { return (this.T_arriba); }
 
 
          // LOS SET
             //fase
          public void SetFase(double fase)
          { this.fase = fase; }
-
          public void SetFaseDerecha(double fase)
          { this.F_derecha = fase; }
          public void SetFaseIzquierda(double fase)
@@ -62,7 +73,14 @@ namespace WpfApplication1
             //temperatura
          public void SetTemperatura(double temperatura)
          { this.temperatura = temperatura; }
-
+         public void SetTemperaturaDerecha(double temperatura)
+         { this.T_derecha = temperatura; }
+         public void SetTemperaturaIzquierda(double temperatura)
+         { this.T_izquierda = temperatura; }
+         public void SetTemperaturaAbajo(double temperatura)
+         { this.T_abajo = temperatura; }
+         public void SetTemperaturaArriba(double temperatura)
+         { this.T_arriba = temperatura; }
 
 
 
@@ -85,11 +103,13 @@ namespace WpfApplication1
 
 
         public void ActualizarFASEdeCelda(double estado_actual_fase, double estado_actual_temperatura, double estado_actual_fase_izquierda,
-            double estado_actual_fase_derecha, double estado_actual_fase_arriba, double estado_actual_fase_abajo)
+            double estado_actual_fase_derecha, double estado_actual_fase_arriba, double estado_actual_fase_abajo, double estado_actual_temperatura_arriba, double estado_actual_temperatura_abajo,
+            double estado_actual_temperatura_derecha,double estado_actual_temperatura_izquierda)
         {
 
             this.fase = norma1.ActualizarFASE(estado_actual_fase, estado_actual_temperatura, estado_actual_fase_izquierda,
-            estado_actual_fase_derecha, estado_actual_fase_arriba, estado_actual_fase_abajo);
+            estado_actual_fase_derecha, estado_actual_fase_arriba, estado_actual_fase_abajo, estado_actual_temperatura_arriba, estado_actual_temperatura_abajo,
+            estado_actual_temperatura_derecha, estado_actual_temperatura_izquierda);
         }
 
 

@@ -24,7 +24,8 @@ namespace NormasJuego
 
 
         public double ActualizarFASE(double estado_actual_fase, double estado_actual_temperatura, double estado_actual_fase_izquierda,
-            double estado_actual_fase_derecha, double estado_actual_fase_arriba, double estado_actual_fase_abajo)
+            double estado_actual_fase_derecha, double estado_actual_fase_arriba, double estado_actual_fase_abajo, double estado_actual_temperatura_arriba, double estado_actual_temperatura_abajo,
+            double estado_actual_temperatura_derecha,double estado_actual_temperatura_izquierda)
         {
 
 
@@ -33,18 +34,33 @@ namespace NormasJuego
             double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENT^2
 
             double A = ((1/(epsilon*epsilon*m))*(estado_actual_fase*(1-estado_actual_fase)*(estado_actual_fase-0.5+30*epsilon*betta*delta*estado_actual_temperatura*estado_actual_fase*(1-estado_actual_fase))));//Primera parte
-            double B = epsilon * epsilon * gradient_gradeint; //segona part
+            double B = epsilon * epsilon * gradient_gradeint * (1/(epsilon*epsilon*m)); //segona part
             double d_fase_d_t = A+B;
 
             this.estado_futuro_fase = estado_actual_fase + dt * d_fase_d_t;
 
+            double dTemperatura_dY_quadrat = (estado_actual_temperatura_arriba - 2 * estado_actual_temperatura + estado_actual_temperatura_abajo) / (dy * dy);
+            double dTemperatura_dX_quadrat = (estado_actual_temperatura_derecha - 2 * estado_actual_temperatura + estado_actual_temperatura_izquierda) / (dx * dx); //derivada segona X
+            double gradient_gradeint_TEMP = dTemperatura_dX_quadrat + dTemperatura_dY_quadrat;
+            
+            double C = gradient_gradeint_TEMP;
+            double D = (1/delta)*(30*estado_actual_fase*estado_actual_fase - 60*estado_actual_fase*estado_actual_fase*estado_actual_fase + 30*estado_actual_fase*estado_actual_fase*estado_actual_fase*estado_actual_fase)*d_fase_d_t;
+            double d_temperatura_d_t = C-D;
+            
+            this.estado_futuro_temperatura = estado_actual_temperatura + dt*d_temperatura_d_t;
+
 
             A = 0;
             B = 0;
+            C = 0;
+            D = 0;
             d_fase_d_t = 0;
             dFase_dY_quadrat = 0;
             dFase_dX_quadrat = 0;
             gradient_gradeint = 0;
+            dTemperatura_dY_quadrat = 0;
+            dTemperatura_dX_quadrat = 0;
+            gradient_gradeint_TEMP = 0;
 
             return this.estado_futuro_fase;
         }
