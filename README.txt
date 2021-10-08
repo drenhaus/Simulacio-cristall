@@ -13,10 +13,9 @@
 # COSAS A HACER
 
 1.  Mirar y entender como hacer los graficos
-6.  Poder definir distintos condiciones de contorno (espejo/fijado)
-7.  Representar valores en casillas via colores (distintas tonalidades)
-8.  Poder ver los datos de cada celda al pasar el raton por encima (fase i temperatura)
-9.  Buscar manera de como gusradr los nuevos datos (fase/temperatura) i la configuracion de contorno que se ha hecho
-10. Poder cargar los datos anteriormente gusrados.
-11. Boton retroceder
+2.  Representar valores en casillas via colores (distintas tonalidades)
+3.  Poder ver los datos de cada celda al pasar el raton por encima (fase i temperatura)
+4.  Buscar manera de como gusradr los nuevos datos (fase/temperatura) i la configuracion de contorno que se ha hecho
+5.  Poder cargar los datos anteriormente gusrados.
+6.  Boton retroceder
 

@@ -410,6 +410,17 @@ namespace WpfApplication1
             }
         }
 
+        private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
+        {
+         
+            matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+            MessageBox.Show("Se han establecido las condiciones de contorno");
+
+        }
+
+       
+
+
         
     }
 }

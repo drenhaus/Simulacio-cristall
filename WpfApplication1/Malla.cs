@@ -77,7 +77,7 @@ namespace WpfApplication2
  
         }
 
-        public void SetCondicionesContorno(bool VidaSuperior, bool VidaInferior, bool VidaDerecha, bool vidaIzquierda)
+        public void SetCondicionesContorno(bool VidaSuperior, bool VidaInferior, bool VidaDerecha, bool vidaIzquierda) // ELIMINAR
         {
             for (int i = 1; i < y; i++)
             {
@@ -91,6 +91,53 @@ namespace WpfApplication2
                 this.matriz_malla[j, x - 1].SetVida(VidaDerecha);
             }
         }
+
+        public void SetCondicionsContornoFaseTemperatura(string condicion)
+        {
+            if (condicion == "fixed")
+            {
+
+                for (int i = 1; i < y; i++)
+                {
+                    this.matriz_malla[0, i].SetFase(1);
+                    this.matriz_malla[0, i].SetTemperatura(-1);
+                    this.matriz_malla[y - 1, i].SetFase(1);
+                    this.matriz_malla[y - 1, i].SetTemperatura(-1);
+                }
+
+                for (int j = 0; j < x; j++)
+                {
+                    this.matriz_malla[j, 0].SetFase(1);
+                    this.matriz_malla[j, 0].SetTemperatura(-1);
+                    this.matriz_malla[j, x - 1].SetFase(1);
+                    this.matriz_malla[j, x - 1].SetTemperatura(-1);
+
+                }
+                if (condicion == "espejo")
+                {
+
+                    for (int i = 1; i < y; i++)
+                    {
+                        this.matriz_malla[0, i].SetFase(matriz_malla[1,i].GetFase());
+                        this.matriz_malla[0, i].SetTemperatura(matriz_malla[1, i].GetTemperatura());
+                        this.matriz_malla[y - 1, i].SetFase(matriz_malla[y-2, i].GetFase());
+                        this.matriz_malla[y - 1, i].SetTemperatura(matriz_malla[y-2, i].GetTemperatura());
+                    }
+
+                    for (int j = 0; j < x; j++)
+                    {
+                        this.matriz_malla[j, 0].SetFase(matriz_malla[j, 1].GetFase());
+                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla[j, 1].GetFase());
+                        this.matriz_malla[j, x - 1].SetFase(matriz_malla[j, x-2].GetFase());
+                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla[j, x - 2].GetFase());
+
+                    }
+
+                }
+
+            }
+        }
+
 
         public void SetVidaDeCelda(int fila, int columna, bool vida) // ERRORSS
         {
