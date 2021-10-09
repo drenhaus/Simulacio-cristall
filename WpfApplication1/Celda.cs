@@ -26,7 +26,10 @@ namespace WpfApplication1
         double T_abajo;
         double T_arriba; // COMO LA URRS
 
-        Normas norma1= new Normas();
+        double estado_futuro_fase;
+        double estado_futuro_temperatura;
+
+        Normas n= new Normas();
 
 
         // LOS GET
@@ -34,14 +37,13 @@ namespace WpfApplication1
 
         public double GetFase()
         { return (this.fase); }
-
-         public double GetFaseDerecha()
+        public double GetFaseDerecha()
          { return (this.F_derecha); }
-         public double GetFaseIzquierda()
+        public double GetFaseIzquierda()
          { return (this.F_izquierda); }
-         public double GetFaseAbajo()
+        public double GetFaseAbajo()
          { return (this.F_abajo); }
-         public double GetFaseArriba()
+        public double GetFaseArriba()
          { return (this.F_arriba); }
 
             //temperatura
@@ -85,31 +87,65 @@ namespace WpfApplication1
 
 
         public void SetVida(bool vida)
-        {this.viva = vida;}
+        {this.viva = vida;} //TREURE
 
         public bool GetVida()
-        {return (this.viva);}
+        {return (this.viva);} //TREURE
 
         public void SetVecinosVivos(int num)
-        { this.vecinos_vivos = num; }
+        { this.vecinos_vivos = num; } //TREURE
 
         public int GetVecinosVivos()
-        { return (this.vecinos_vivos); }
+        { return (this.vecinos_vivos); } //TREURE
 
         public void ActualizarCelda(bool Viva, int numVecinosVivos)
         {
-            this.viva = norma1.ActualizarVida(Viva, numVecinosVivos);
-        }
+            this.viva = n.ActualizarVida(Viva, numVecinosVivos);
+        } //TREURE
 
 
-        public void ActualizarFASEdeCelda(double estado_actual_fase, double estado_actual_temperatura, double estado_actual_fase_izquierda,
-            double estado_actual_fase_derecha, double estado_actual_fase_arriba, double estado_actual_fase_abajo, double estado_actual_temperatura_arriba, double estado_actual_temperatura_abajo,
-            double estado_actual_temperatura_derecha,double estado_actual_temperatura_izquierda)
+        public void ActualizarFASEdeCelda()
         {
+            double dy = n.GetDxDy();
+            double dx = n.GetDxDy();
+            double epsilon = n.GetEpsilon();
+            double m = n.GetM();
+            double betta = n.GetBetta();
+            double delta = n.GetDelta();
+            double dt = n.GetDT();
 
-            this.fase = norma1.ActualizarFASE(estado_actual_fase, estado_actual_temperatura, estado_actual_fase_izquierda,
-            estado_actual_fase_derecha, estado_actual_fase_arriba, estado_actual_fase_abajo, estado_actual_temperatura_arriba, estado_actual_temperatura_abajo,
-            estado_actual_temperatura_derecha, estado_actual_temperatura_izquierda);
+            double dFase_dY_quadrat = (F_arriba - 2 * fase + F_abajo) / (dy * dy); //derivada segona Y
+            double dFase_dX_quadrat = (F_derecha - 2 * fase + F_izquierda) / (dx * dx); //derivada segona X
+            double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENT^2
+
+            double A = ((1 / (epsilon * epsilon * m)) * (fase * (1 - fase) * (fase - 0.5 + 30 * epsilon * betta * delta * temperatura * fase * (1 - fase))));//Primera parte
+            double B = epsilon * epsilon * gradient_gradeint * (1 / (epsilon * epsilon * m)); //segona part
+            double d_fase_d_t = A + B;
+
+            this.estado_futuro_fase = fase + dt * d_fase_d_t;
+
+            double dTemperatura_dY_quadrat = (T_arriba - 2 * temperatura + T_abajo) / (dy * dy);
+            double dTemperatura_dX_quadrat = (T_derecha - 2 * temperatura + T_izquierda) / (dx * dx); //derivada segona X
+            double gradient_gradeint_TEMP = dTemperatura_dX_quadrat + dTemperatura_dY_quadrat;
+
+            double C = gradient_gradeint_TEMP;
+            double D = (1 / delta) * (30 * fase * fase - 60 * fase * fase * fase + 30 * fase * fase * fase * fase) * d_fase_d_t;
+            double d_temperatura_d_t = C - D;
+
+            this.estado_futuro_temperatura = temperatura + dt * d_temperatura_d_t;
+
+
+            A = 0;
+            B = 0;
+            C = 0;
+            D = 0;
+            d_fase_d_t = 0;
+            dFase_dY_quadrat = 0;
+            dFase_dX_quadrat = 0;
+            gradient_gradeint = 0;
+            dTemperatura_dY_quadrat = 0;
+            dTemperatura_dX_quadrat = 0;
+            gradient_gradeint_TEMP = 0;
         }
 
 
