@@ -45,8 +45,10 @@ namespace WpfApplication2
                        {
                            Celda fill_clone = new Celda(); // rellenamos la matriz con celdas
                            matriz_malla_Clone[i, j] = fill_clone;
-                           matriz_malla_Clone[i, j].SetVida(matriz_malla[i, j].GetVida());
-                          // matriz_malla_Clone[j, i].SetVecinosVivos(matriz_malla[j, i].GetVecinosVivos()); // clonem 0 ja que no hem contat els veins encara
+                           matriz_malla_Clone[i, j].SetVida(matriz_malla[i, j].GetVida());//
+                           matriz_malla_Clone[i, j].SetFase(matriz_malla[i, j].GetFase());
+                           matriz_malla_Clone[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
+                          
                        }
                    }
 
@@ -75,7 +77,7 @@ namespace WpfApplication2
  
         }
 
-        public void SetCondicionesContorno(bool VidaSuperior, bool VidaInferior, bool VidaDerecha, bool vidaIzquierda)
+        public void SetCondicionesContorno(bool VidaSuperior, bool VidaInferior, bool VidaDerecha, bool vidaIzquierda) // ELIMINAR
         {
             for (int i = 1; i < y; i++)
             {
@@ -90,6 +92,53 @@ namespace WpfApplication2
             }
         }
 
+        public void SetCondicionsContornoFaseTemperatura(string condicion)
+        {
+            if (condicion == "fixed")
+            {
+
+                for (int i = 1; i < y; i++)
+                {
+                    this.matriz_malla[0, i].SetFase(1);
+                    this.matriz_malla[0, i].SetTemperatura(-1);
+                    this.matriz_malla[y - 1, i].SetFase(1);
+                    this.matriz_malla[y - 1, i].SetTemperatura(-1);
+                }
+
+                for (int j = 0; j < x; j++)
+                {
+                    this.matriz_malla[j, 0].SetFase(1);
+                    this.matriz_malla[j, 0].SetTemperatura(-1);
+                    this.matriz_malla[j, x - 1].SetFase(1);
+                    this.matriz_malla[j, x - 1].SetTemperatura(-1);
+
+                }
+                if (condicion == "espejo")
+                {
+
+                    for (int i = 1; i < y; i++)
+                    {
+                        this.matriz_malla[0, i].SetFase(matriz_malla[1,i].GetFase());
+                        this.matriz_malla[0, i].SetTemperatura(matriz_malla[1, i].GetTemperatura());
+                        this.matriz_malla[y - 1, i].SetFase(matriz_malla[y-2, i].GetFase());
+                        this.matriz_malla[y - 1, i].SetTemperatura(matriz_malla[y-2, i].GetTemperatura());
+                    }
+
+                    for (int j = 0; j < x; j++)
+                    {
+                        this.matriz_malla[j, 0].SetFase(matriz_malla[j, 1].GetFase());
+                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla[j, 1].GetFase());
+                        this.matriz_malla[j, x - 1].SetFase(matriz_malla[j, x-2].GetFase());
+                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla[j, x - 2].GetFase());
+
+                    }
+
+                }
+
+            }
+        }
+
+
         public void SetVidaDeCelda(int fila, int columna, bool vida) // ERRORSS
         {
             //this.matriz_malla[1, 1].SetVida(vida);
@@ -103,6 +152,20 @@ namespace WpfApplication2
 
             return (this.matriz_malla[posFILAS, posCOLUMNAS].GetVida());
         }
+
+        public double DameFASEde(int posFILAS, int posCOLUMNAS)
+
+        {
+            return (this.matriz_malla[posFILAS, posCOLUMNAS].GetFase());
+        }
+
+        public double DameTEMPERATURAde(int posFILAS, int posCOLUMNAS)
+        {
+            return (this.matriz_malla[posFILAS, posCOLUMNAS].GetTemperatura());
+        }
+
+
+
 
         public int GetNumeroDeVivosDeLaMatriz()
         {
@@ -179,11 +242,27 @@ namespace WpfApplication2
                 {
 
                     matriz_malla_Clone[i, j].SetVecinosVivos(NumeroDeVecinosVivos(i, j));  // gusrada # de veisn en el clone  
-                
                     // origin te valor viu mort // clone te vius i veins
+                    
+                    // hem de posar l'estat dels de les fases i temperatura
+                    matriz_malla_Clone[i, j].SetFaseDerecha(DameFASEde(i+1,j));
+                    matriz_malla_Clone[i, j].SetFaseIzquierda(DameFASEde(i-1,j));
+                    matriz_malla_Clone[i, j].SetFaseAbajo(DameFASEde(i,j+1));   // es -1 xq la malla empiza por fila 0 i ma augmentando el valor a medida que baja
+                    matriz_malla_Clone[i, j].SetFaseArriba(DameFASEde(i,j-1));
+
+                    matriz_malla_Clone[i, j].SetTemperaturaDerecha(DameTEMPERATURAde(i + 1, j));
+                    matriz_malla_Clone[i, j].SetTemperaturaIzquierda(DameTEMPERATURAde(i - 1, j));
+                    matriz_malla_Clone[i, j].SetTemperaturaAbajo(DameTEMPERATURAde(i, j+1));
+                    matriz_malla_Clone[i, j].SetTemperaturaArriba(DameTEMPERATURAde(i, j-1));
+
+
+
+                    //ACTUALIZAMOS LA CELDA
 
                     matriz_malla[i, j].ActualizarCelda(matriz_malla_Clone[i, j].GetVida(), matriz_malla_Clone[i, j].GetVecinosVivos()); //need clonar
-                    
+
+                    matriz_malla[i, j].ActualizarFASEdeCelda();
+
                 }
             }
             
