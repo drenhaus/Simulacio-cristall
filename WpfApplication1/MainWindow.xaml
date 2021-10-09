@@ -58,6 +58,7 @@
             </ComboBox>
             <Label Canvas.Left="46" Canvas.Top="407" Content="Condiciones de contorno" Height="28" Name="label9" />
             <Button Canvas.Left="95" Canvas.Top="451" Content="Cargar condiciones contorno " Height="23" Name="button6" Width="172" Click="button6_Click" />
+            <Button Canvas.Left="433" Canvas.Top="125" Content="Retroceder" Height="23" Name="Boton_Retroceder" Width="75" Click="Boton_Retroceder" IsEnabled="False" />
         </Canvas>
     </Grid>
     
