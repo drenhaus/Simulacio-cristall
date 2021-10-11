@@ -79,13 +79,13 @@ namespace WpfApplication2
 
         public void SetCondicionesContorno(bool VidaSuperior, bool VidaInferior, bool VidaDerecha, bool vidaIzquierda) // ELIMINAR
         {
-            for (int i = 1; i < y; i++)
+            for (int i = 0; i < x; i++)
             {
                 this.matriz_malla[0, i].SetVida(VidaSuperior);
                 this.matriz_malla[y - 1, i].SetVida(VidaInferior);
             }
 
-            for (int j = 0; j < x; j++)
+            for (int j = 1; j < y-1; j++)
             {
                 this.matriz_malla[j, 0].SetVida(vidaIzquierda);
                 this.matriz_malla[j, x - 1].SetVida(VidaDerecha);
