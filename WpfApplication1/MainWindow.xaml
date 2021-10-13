@@ -32,7 +32,7 @@
             <TextBox Canvas.Left="152" Canvas.Top="56" Height="23" Name="TextBoxX" Width="38" />
             <Label Canvas.Left="57" Canvas.Top="51" Content="Nº columnas" Height="28" Name="label2" />
             <Button Canvas.Left="70" Canvas.Top="93" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
-            <Canvas Height="252" Name="canvas1" Width="305" Canvas.Left="564" Canvas.Top="56" />
+            <Canvas Height="252" Name="canvas1" Width="305" Canvas.Left="564" Canvas.Top="22"></Canvas>
             <Button Canvas.Left="407" Canvas.Top="22" Content="Simular paso a paso" Height="23" Name="button1" Width="133" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
             <Button Canvas.Left="407" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
             <Button Canvas.Left="407" Canvas.Top="94" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
@@ -58,6 +58,7 @@
             </ComboBox>
             <Label Canvas.Left="46" Canvas.Top="407" Content="Condiciones de contorno" Height="28" Name="label9" />
             <Button Canvas.Left="95" Canvas.Top="451" Content="Cargar condiciones contorno " Height="23" Name="button6" Width="172" Click="button6_Click" />
+            <Canvas Canvas.Left="564" Canvas.Top="280" Height="252" Name="canvas2" Width="305" />
         </Canvas>
     </Grid>
     
