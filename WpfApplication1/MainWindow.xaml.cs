@@ -287,6 +287,7 @@ namespace WpfApplication1
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            matriz_celdas.SetNormas(norm);
             historial.Add(matriz_celdas);
             historial.Last().MallaFutura(); // actualizamos
 
@@ -297,10 +298,19 @@ namespace WpfApplication1
                 for (int j = 0; j < x; j++)
                 {
 
-                    if (historial.Last().DameElEstadoDe(i+1, j+1) == false)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (historial.Last().DameElEstadoDe(i+1, j+1) == true)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
+
+                    double fase = historial.Last().DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+
+                    if (fase == 1)
+                    { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                    else
+                    {
+                        byte alpha = Convert.ToByte((-255 + 60) * (fase - 1) + 60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                        casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
+                    }
+
+
 
                 }
             }
@@ -330,8 +340,10 @@ namespace WpfApplication1
                 {
 
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+                    matriz_celdas.SetFaseDeCelda(i, j, 1);
+                    matriz_celdas.SetTemperaturaDeCelda(i, j, -1);
                     matriz_celdas.SetVidaDeCelda(i, j, false);
-                    casillas[i, j].Fill = new SolidColorBrush(Colors.Gray);
+                    casillas[i, j].Fill = new SolidColorBrush(Colors.White);
                     
                 }
             }
