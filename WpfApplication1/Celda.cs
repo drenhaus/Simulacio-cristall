@@ -16,15 +16,15 @@ namespace WpfApplication1
         double temperatura = -1;
 
         // F mayuscuara referncia a FASE
-        double F_derecha;
-        double F_izquierda;
-        double F_abajo;
-        double F_arriba; // COMO LA URRS
+        double F_derecha=1;
+        double F_izquierda=1;
+        double F_abajo=1;
+        double F_arriba=1; // COMO LA URRS
 
-        double T_derecha;
-        double T_izquierda;
-        double T_abajo;
-        double T_arriba; // COMO LA URRS
+        double T_derecha=-1;
+        double T_izquierda=-1;
+        double T_abajo=-1;
+        double T_arriba=-1; // COMO LA URRS
 
         double estado_futuro_fase;
         double estado_futuro_temperatura;
@@ -84,7 +84,11 @@ namespace WpfApplication1
          public void SetTemperaturaArriba(double temperatura)
          { this.T_arriba = temperatura; }
 
+         public double GetTemperaturaFutura()
+         { return (this.estado_futuro_temperatura); }
 
+         public double GetFaseFutura()
+         { return (this.estado_futuro_fase); }
 
         public void SetVida(bool vida)
         {this.viva = vida;} //TREURE
@@ -103,6 +107,11 @@ namespace WpfApplication1
             this.viva = n.ActualizarVida(Viva, numVecinosVivos);
         } //TREURE
 
+        public void SetNorma(Normas norm)
+        {
+            this.n = norm;
+        }
+
 
         public void ActualizarFASEdeCelda()
         {
@@ -114,38 +123,30 @@ namespace WpfApplication1
             double delta = n.GetDelta();
             double dt = n.GetDT();
 
-            double dFase_dY_quadrat = (F_arriba - 2 * fase + F_abajo) / (dy * dy); //derivada segona Y
-            double dFase_dX_quadrat = (F_derecha - 2 * fase + F_izquierda) / (dx * dx); //derivada segona X
+            double dFase_dY_quadrat = (F_arriba - 2.0 * fase + F_abajo) / (dy * dy); //derivada segona Y
+            double dFase_dX_quadrat = (F_derecha - 2.0 * fase + F_izquierda) / (dx * dx); //derivada segona X
             double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENT^2
 
-            double A = ((1 / (epsilon * epsilon * m)) * (fase * (1 - fase) * (fase - 0.5 + 30 * epsilon * betta * delta * temperatura * fase * (1 - fase))));//Primera parte
-            double B = epsilon * epsilon * gradient_gradeint * (1 / (epsilon * epsilon * m)); //segona part
+            double A = ((1.0 / (epsilon * epsilon * m)) * (fase * (1.0 - fase) * (fase - 0.5 + 30.0 * epsilon * betta * delta * temperatura * fase * (1.0 - fase))));//Primera parte
+            double B = epsilon * epsilon * gradient_gradeint * (1.0 / (epsilon * epsilon * m)); //segona part
             double d_fase_d_t = A + B;
 
             this.estado_futuro_fase = fase + dt * d_fase_d_t;
 
-            double dTemperatura_dY_quadrat = (T_arriba - 2 * temperatura + T_abajo) / (dy * dy);
-            double dTemperatura_dX_quadrat = (T_derecha - 2 * temperatura + T_izquierda) / (dx * dx); //derivada segona X
+            double dTemperatura_dY_quadrat = (T_arriba - 2.0 * temperatura + T_abajo) / (dy * dy);
+            double dTemperatura_dX_quadrat = (T_derecha - 2.0 * temperatura + T_izquierda) / (dx * dx); //derivada segona X
             double gradient_gradeint_TEMP = dTemperatura_dX_quadrat + dTemperatura_dY_quadrat;
 
             double C = gradient_gradeint_TEMP;
-            double D = (1 / delta) * (30 * fase * fase - 60 * fase * fase * fase + 30 * fase * fase * fase * fase) * d_fase_d_t;
+            double D = (1.0 / delta) * (30.0 * fase * fase - 60.0 * fase * fase * fase + 30.0 * fase * fase * fase * fase) * d_fase_d_t;
             double d_temperatura_d_t = C - D;
 
             this.estado_futuro_temperatura = temperatura + dt * d_temperatura_d_t;
 
+            // actualizamos la celda
+            fase = estado_futuro_fase;
+            temperatura = estado_futuro_temperatura;
 
-            A = 0;
-            B = 0;
-            C = 0;
-            D = 0;
-            d_fase_d_t = 0;
-            dFase_dY_quadrat = 0;
-            dFase_dX_quadrat = 0;
-            gradient_gradeint = 0;
-            dTemperatura_dY_quadrat = 0;
-            dTemperatura_dX_quadrat = 0;
-            gradient_gradeint_TEMP = 0;
         }
 
 

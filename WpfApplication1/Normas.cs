@@ -53,14 +53,6 @@ namespace NormasJuego
 
 
 
-
-        // CREO que si mas a delante anadimos un get/set de los parametros sera la forma de poder modificar los parametros de arriba a traves del window
-
-
-
-
-       
-        
         
         public bool ActualizarVida(bool estado_actual_viva, int vecinosVIUS)
         {
