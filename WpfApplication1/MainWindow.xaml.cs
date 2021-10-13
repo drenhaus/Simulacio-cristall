@@ -85,7 +85,7 @@ namespace WpfApplication1
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Rectangle a = (Rectangle)sender;
-            a.Fill = new SolidColorBrush(Colors.Black);
+            a.Fill = new SolidColorBrush(Colors.Black); // Color.FromRgb(0, 255, 0)
             Point p = (Point)a.Tag;
             matriz_celdas.SetVidaDeCelda(Convert.ToInt32(p.Y)+1, Convert.ToInt32(p.X)+1, true);
 
