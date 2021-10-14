@@ -306,25 +306,24 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < x; j++)
                 {
-
-                   
                         double fase = historial.Last().DameFASEde(i+1,j+1); // estará entre 1 y 0
                         double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                         if (fase == 1)
-                        { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0,0,0,0)); }
-                        if (fase !=1)
+                        { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+
+                        if ((fase != 0) && (fase!=1))
                         {
-                         byte alpha = Convert.ToByte((-255+60)*(fase-1)+60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                         byte alpha = Convert.ToByte(255-Math.Round(fase * 10)*23); // truncamos los valores y en funcion de esto establecemos una alpha
 
                         casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));  
                         }
-
+                        
                         if (temperatura == -1)
-                        { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
-                        if (temperatura != -1)
+                        { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                        if ((temperatura != 0) && (temperatura  != -1))
                         {
-                            byte alpha = Convert.ToByte((255-100)*(temperatura+1)+100); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                            byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23); 
 
                             casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                         }
@@ -349,28 +348,28 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < x; j++)
                 {
-
-
                     double fase = historial.Last().DameFASEde(i + 1, j + 1); // estará entre 1 y 0
                     double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                     if (fase == 1)
-                    { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
-                    if (fase != 1)
+                    { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+
+                    if ((fase != 0) && (fase != 1))
                     {
-                        byte alpha = Convert.ToByte((-255 + 60) * (fase - 1) + 60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); // truncamos los valores y en funcion de esto establecemos una alpha
 
                         casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
                     }
 
                     if (temperatura == -1)
-                    { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
-                    if (temperatura != -1)
+                    { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    if ((temperatura != 0) && (temperatura != -1))
                     {
-                        byte alpha = Convert.ToByte((255 - 40) * (temperatura + 1) + 40); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                        byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23);
 
                         casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                     }
+
 
 
                 }
