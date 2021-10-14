@@ -37,6 +37,7 @@
             <Button Canvas.Left="407" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
             <Button Canvas.Left="407" Canvas.Top="94" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
             <Button Canvas.Left="469" Canvas.Top="94" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
+            <Button Canvas.Left="433" Canvas.Top="125" Content="Retroceder" Height="23" Name="Boton_Retroceder" Width="75" Click="Boton_Retroceder" IsEnabled="False" />
             <CheckBox Canvas.Left="44" Canvas.Top="338" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" />
             <CheckBox Canvas.Left="162" Canvas.Top="338" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" />
             <TextBox Canvas.Left="116" Canvas.Top="210" Height="23" Name="betta" Width="73" />
