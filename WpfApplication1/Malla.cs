@@ -19,7 +19,7 @@ namespace WpfApplication2
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
 
-        Normas norma1 = new Normas(); //   MIRAR
+        Normas norma1; //   MIRAR
 
         public Celda[,] GetMatriz()
         {
@@ -36,6 +36,11 @@ namespace WpfApplication2
             return y;
         }
 
+        public void SetNormas(Normas n)
+        { 
+        this.norma1=n;
+        }
+        
         public void ClonarMatrix()
         {
             matriz_malla_Clone=new Celda[y,x];
@@ -147,6 +152,18 @@ namespace WpfApplication2
         
         }
 
+        public void SetFaseDeCelda(int fila, int columna, double fase)
+        {
+
+            matriz_malla[fila, columna].SetFase(fase);
+        }
+        public void SetTemperaturaDeCelda(int fila, int columna, double T)
+        {
+
+            matriz_malla[fila, columna].SetTemperatura(T);
+        }
+
+
         public bool DameElEstadoDe(int posFILAS, int posCOLUMNAS)
         {
 
@@ -158,14 +175,21 @@ namespace WpfApplication2
         {
             return (this.matriz_malla[posFILAS, posCOLUMNAS].GetFase());
         }
+       
+        public double DameFASEdeClon(int posFILAS, int posCOLUMNAS)
+        {
+            return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetFase());
+        }
 
         public double DameTEMPERATURAde(int posFILAS, int posCOLUMNAS)
         {
             return (this.matriz_malla[posFILAS, posCOLUMNAS].GetTemperatura());
         }
 
-
-
+        public double DameTEMPERATURAdeClon(int posFILAS, int posCOLUMNAS)
+        {
+            return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetTemperatura());
+        }
 
         public int GetNumeroDeVivosDeLaMatriz()
         {
@@ -241,27 +265,28 @@ namespace WpfApplication2
                 for (int j = 1; j < x-1; j++)
                 {
 
-                    matriz_malla_Clone[i, j].SetVecinosVivos(NumeroDeVecinosVivos(i, j));  // gusrada # de veisn en el clone  
-                    // origin te valor viu mort // clone te vius i veins
-                    
+                   
                     // hem de posar l'estat dels de les fases i temperatura
-                    matriz_malla_Clone[i, j].SetFaseDerecha(DameFASEde(i+1,j));
-                    matriz_malla_Clone[i, j].SetFaseIzquierda(DameFASEde(i-1,j));
-                    matriz_malla_Clone[i, j].SetFaseAbajo(DameFASEde(i,j+1));   // es -1 xq la malla empiza por fila 0 i ma augmentando el valor a medida que baja
-                    matriz_malla_Clone[i, j].SetFaseArriba(DameFASEde(i,j-1));
+                    matriz_malla[i, j].SetFaseDerecha(DameFASEdeClon(i,j+1));
+                    matriz_malla[i, j].SetFaseIzquierda(DameFASEdeClon(i, j - 1));
+                    matriz_malla[i, j].SetFaseAbajo(DameFASEdeClon(i + 1, j));   // es -1 xq la malla empiza por fila 0 i ma augmentando el valor a medida que baja
+                    matriz_malla[i, j].SetFaseArriba(DameFASEdeClon(i - 1, j));
 
-                    matriz_malla_Clone[i, j].SetTemperaturaDerecha(DameTEMPERATURAde(i + 1, j));
-                    matriz_malla_Clone[i, j].SetTemperaturaIzquierda(DameTEMPERATURAde(i - 1, j));
-                    matriz_malla_Clone[i, j].SetTemperaturaAbajo(DameTEMPERATURAde(i, j+1));
-                    matriz_malla_Clone[i, j].SetTemperaturaArriba(DameTEMPERATURAde(i, j-1));
+                    matriz_malla[i, j].SetTemperaturaDerecha(DameTEMPERATURAdeClon(i, j + 1));
+                    matriz_malla[i, j].SetTemperaturaIzquierda(DameTEMPERATURAdeClon(i, j - 1));
+                    matriz_malla[i, j].SetTemperaturaAbajo(DameTEMPERATURAdeClon(i + 1, j));
+                    matriz_malla[i, j].SetTemperaturaArriba(DameTEMPERATURAdeClon(i - 1, j));
 
 
 
                     //ACTUALIZAMOS LA CELDA
 
-                    matriz_malla[i, j].ActualizarCelda(matriz_malla_Clone[i, j].GetVida(), matriz_malla_Clone[i, j].GetVecinosVivos()); //need clonar
 
+                    matriz_malla[i, j].SetNorma(norma1);
                     matriz_malla[i, j].ActualizarFASEdeCelda();
+
+
+
 
                 }
             }
