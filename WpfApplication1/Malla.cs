@@ -329,7 +329,7 @@ namespace WpfApplication2
             StreamReader sr = new StreamReader(name);
             string linea = sr.ReadLine();
             string[] trozos = linea.Split(' ');
-            matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0]), Convert.ToInt32(trozos[1]));
+            matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0])-2, Convert.ToInt32(trozos[1])-2);
 
 
             string line = sr.ReadLine();
@@ -337,12 +337,11 @@ namespace WpfApplication2
             while (line != null)
             {
                 string[] traces = line.Split(' ');
-                for (int j = 0; j < traces.Length; j++)
+                for (int j = 0; j < traces.Length - 1; j++)
                 {
-                    if (Convert.ToInt32(traces[j]) == 0)
-                    { matriz_celdas.SetVidaDeCelda(i, j, false); }
-                    else
-                    { matriz_celdas.SetVidaDeCelda(i, j, true); }
+                    string[] data = traces[j].Split('&');
+                    matriz_celdas.SetFaseDeCelda(i, j, Convert.ToDouble(data[0]));
+                    matriz_celdas.SetTemperaturaDeCelda(i, j, Convert.ToDouble(data[1]));
                 }
                 line = sr.ReadLine();
 
