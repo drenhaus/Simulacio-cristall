@@ -299,42 +299,18 @@ namespace WpfApplication2
             try
             {
                 StreamWriter w = new StreamWriter(nombre);
+
+                w.Write(this.y + " " + this.x);
+                w.Write('\n');
+
                 for (int j = 0; j < y; j++)
                 {
                     for (int i = 0; i < x; i++)
                     {
-
-                        if (i == x - 1)
-                        {
-                            if (DameElEstadoDe(j, i) == true)
-                            {
-                                w.Write(1);
-                            }
-                            else
-                            {
-                                w.Write(0);
-                            }
-                        }
-                        else
-                        {
-                            if (DameElEstadoDe(j, i) == true)
-                            {
-                                w.Write(1 + " ");
-                            }
-                            else
-                            {
-                                w.Write(0 + " ");
-                            }
-                        }
-
-
+                        w.Write(this.DameFASEde(j, i) + "&" + this.DameTEMPERATURAde(j, i) + " ");
                     }
-                    if (j == y - 1)
-                    { }
-                    else
-                    {
-                        w.Write('\n');
-                    }
+
+                    w.Write('\n');
 
                 }
                 w.Close();
@@ -344,50 +320,39 @@ namespace WpfApplication2
             {
                 return -1;
             }
-
         }
-        
+
         public Malla CargarSimulacion(string name)
         {
             Malla matriz_celdas = new Malla();
 
             StreamReader sr = new StreamReader(name);
-            int i = 0;
             string linea = sr.ReadLine();
             string[] trozos = linea.Split(' ');
-            while (linea != null)
-            {
-                i++;
-                linea = sr.ReadLine();
-            }
-            sr.Close();
+            matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0]), Convert.ToInt32(trozos[1]));
 
-            matriz_celdas.SetNumeroDeFilasYColumnas(i-2, trozos.Length-2);
 
-            StreamReader f = new StreamReader(name);
-            
-            string line = f.ReadLine();    // 1 0
-            int h = 0;                     // 0 1
+            string line = sr.ReadLine();
+            int i = 0;                     
             while (line != null)
             {
-                
                 string[] traces = line.Split(' ');
                 for (int j = 0; j < traces.Length; j++)
                 {
                     if (Convert.ToInt32(traces[j]) == 0)
-                    { matriz_celdas.SetVidaDeCelda(h, j, false); }
+                    { matriz_celdas.SetVidaDeCelda(i, j, false); }
                     else
-                    { matriz_celdas.SetVidaDeCelda(h, j, true); }
+                    { matriz_celdas.SetVidaDeCelda(i, j, true); }
                 }
-                line = f.ReadLine();
+                line = sr.ReadLine();
 
-             h++;
+                i++;
             }
-            f.Close();
+            sr.Close();
             return matriz_celdas;
         }
 
-    
+
     }
 
 }
