@@ -143,7 +143,6 @@ namespace WpfApplication2
             }
         }
 
-
         public void SetVidaDeCelda(int fila, int columna, bool vida) // ERRORSS
         {
             //this.matriz_malla[1, 1].SetVida(vida);
@@ -157,12 +156,12 @@ namespace WpfApplication2
 
             matriz_malla[fila, columna].SetFase(fase);
         }
+
         public void SetTemperaturaDeCelda(int fila, int columna, double T)
         {
 
             matriz_malla[fila, columna].SetTemperatura(T);
         }
-
 
         public bool DameElEstadoDe(int posFILAS, int posCOLUMNAS)
         {
