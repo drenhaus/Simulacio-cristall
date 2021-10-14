@@ -5,7 +5,7 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Left"  Width="142" Height="550">
-                <MenuItem Header="Mostrar reglas del juego" Height=" 50" Width="143" Click="MenuItem_Click_1">
+                <MenuItem Header="Mostrar reglas del juego" Height=" 50" Width="143">
                     
                 </MenuItem>
                 <MenuItem Header="Archivo" Height=" 50" Width="143" >
@@ -32,11 +32,10 @@
             <TextBox Canvas.Left="152" Canvas.Top="56" Height="23" Name="TextBoxX" Width="38" />
             <Label Canvas.Left="57" Canvas.Top="51" Content="Nº columnas" Height="28" Name="label2" />
             <Button Canvas.Left="70" Canvas.Top="93" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
-            <Canvas Height="182" Name="canvas1" Width="216" Canvas.Left="564" Canvas.Top="22"></Canvas>
-            <Button Canvas.Left="407" Canvas.Top="22" Content="Simular paso a paso" Height="23" Name="button1" Width="133" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
-            <Button Canvas.Left="407" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
-            <Button Canvas.Left="407" Canvas.Top="94" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
-            <Button Canvas.Left="469" Canvas.Top="94" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
+            <Button Canvas.Left="259" Canvas.Top="22" Content="Simular paso a paso" Height="23" Name="button1" Width="133" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
+            <Button Canvas.Left="259" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
+            <Button Canvas.Left="259" Canvas.Top="94" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
+            <Button Canvas.Left="320" Canvas.Top="94" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
             <CheckBox Canvas.Left="44" Canvas.Top="338" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" />
             <CheckBox Canvas.Left="162" Canvas.Top="338" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" />
             <TextBox Canvas.Left="116" Canvas.Top="210" Height="23" Name="betta" Width="73" />
@@ -58,10 +57,25 @@
             </ComboBox>
             <Label Canvas.Left="46" Canvas.Top="407" Content="Condiciones de contorno" Height="28" Name="label9" />
             <Button Canvas.Left="95" Canvas.Top="451" Content="Cargar condiciones contorno " Height="23" Name="button6" Width="172" Click="button6_Click" />
-            <Canvas Canvas.Left="564" Canvas.Top="236" Height="155" Name="canvas2" Width="216" />
             <Button Canvas.Left="813" Canvas.Top="20" Content="Mostrar datos" Height="22" Name="button7" Width="104" Click="button7_Click" />
-            <Grid Canvas.Left="796" Canvas.Top="66" Height="153" Name="grid1" Width="298"></Grid>
-            <Grid Height="153" Name="grid2" Width="298" Canvas.Left="796" Canvas.Top="254" />
+            <ScrollViewer Canvas.Left="416" Canvas.Top="288" Height="239" Name="scrollViewer1" Width="339" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility= "Visible">
+                <Canvas Height="220" Name="canvas2" Width="305"></Canvas>
+            </ScrollViewer>
+            <ScrollViewer Canvas.Left="427" Canvas.Top="16" Height="239" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Name="scrollViewer2" Width="339">
+                <Canvas Height="192" Name="canvas1" Width="314"></Canvas>
+            </ScrollViewer>
+            <ScrollViewer Height="182" Name="scrollViewer3" Width="289" VerticalScrollBarVisibility="Hidden" Canvas.Left="793" Canvas.Top="56">
+                <Grid Height="179" Name="grid1" Width="263">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Panel}">
+                            <Setter Property="Margin" Value="0,0,0,6" />
+                        </Style>
+                    </Grid.Resources>
+                </Grid>
+            </ScrollViewer>
+            <ScrollViewer Canvas.Left="801" Canvas.Top="297" VerticalScrollBarVisibility="Hidden" Height="230" Name="scrollViewer4" Width="281">
+                <Grid Height="212" Name="grid2" Width="269" />
+            </ScrollViewer>
         </Canvas>
     </Grid>
     

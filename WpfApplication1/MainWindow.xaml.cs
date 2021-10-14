@@ -34,24 +34,13 @@ namespace WpfApplication1
         List<Malla> historial= new List<Malla>();
         DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
-
-
+        
         public MainWindow()
         {
             InitializeComponent();
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e) // mostrar reglas
-        {
-            Form1 lc = new Form1();
-            lc.ShowDialog();
-        }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) // guardar fichero
         {
@@ -95,7 +84,6 @@ namespace WpfApplication1
             casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // FromArgb(alpha, red, green, blue)
 
         } // pintar rojo --> fase 0
-
 
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
