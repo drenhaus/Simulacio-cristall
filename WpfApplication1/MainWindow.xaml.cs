@@ -486,6 +486,25 @@ namespace WpfApplication1
 
         }
 
+        private void button7_Click(object sender, RoutedEventArgs e) // creo que no hace nada
+        {
+
+        }
+
+        private void Boton_Retroceder(object sender, RoutedEventArgs e)
+        {
+            int maxPos = historial.Count;
+
+            int minPos = 0;
+
+            int currPos = maxPos -1;
+
+            while ()
+
+            historial[numero_iteraciones].GetMatriz();
+
+
+        }
        
 
 
