@@ -431,7 +431,7 @@ namespace WpfApplication1
 
             int currPos = maxPos -1;
 
-            while ()
+            while (patata)
 
             historial[numero_iteraciones].GetMatriz();
 
