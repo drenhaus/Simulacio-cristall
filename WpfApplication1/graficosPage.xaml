@@ -11,5 +11,6 @@
         <oxyPlot:PlotView x:Name="Grafica" >
             
         </oxyPlot:PlotView>
+        <Button x:Name="BtnCalcular" Content="Calcular" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75" Click="BtnCalcular_Click"/>
     </Grid>
 </Window>

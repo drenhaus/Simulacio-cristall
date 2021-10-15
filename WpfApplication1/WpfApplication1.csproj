@@ -67,6 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Generadora.cs" />
+    <Compile Include="Punto.cs" />
     <Page Include="graficosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,7 +88,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="graficoClasse.cs" />
     <Compile Include="graficosPage.xaml.cs">
       <DependentUpon>graficosPage.xaml</DependentUpon>
     </Compile>
