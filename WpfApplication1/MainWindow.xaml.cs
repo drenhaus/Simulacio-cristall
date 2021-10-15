@@ -29,18 +29,22 @@ namespace WpfApplication1
         Rectangle[,] casillas2;
         int x;  //columnas
         int y;  //filas
+        
         Malla matriz_celdas = new Malla();
 
         List<Malla> historial = new List<Malla>();
+
+
+
         DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
-        private List<Malla> listaa = new List<Malla>();
+/*        private List<Malla> listaa = new List<Malla>();
 
-        public List<Malla> GetList()
+        public void GetList()
         {
-            return listaa;
+            this.historial=listaa;
         }
-
+*/
         public MainWindow()
         {
             InitializeComponent();
@@ -493,9 +497,26 @@ namespace WpfApplication1
 
         private void graf1_Click(object sender, RoutedEventArgs e) // click en el primer graff
         {
-            double contador = historial.Count;
+
+            int contadorHISTORIAL = historial.Count;
+
+            List<double> listaFasexIteracion = new List<double>();
+
+            for (int k = 0; k < contadorHISTORIAL; k++)
+            {
+                listaFasexIteracion.Add(historial[k].GetcantidadFase());
+            }
+
             graficosPage lc = new graficosPage();
+
+
+            lc.SetcontadorHIST(contadorHISTORIAL);
+            lc.SetListaFASExIteracion(listaFasexIteracion);
+            // hem de anar ageneradora
+
             lc.ShowDialog();
+
+
         }
 
         private void button7_Click(object sender, RoutedEventArgs e) // mostrar datos

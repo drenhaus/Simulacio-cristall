@@ -25,32 +25,40 @@ namespace WpfApplication1
     public partial class graficosPage : Window
     {
         Generadora generador;
+        int contadorHISTORIAL;
+        List<double> listaFasexIteracion = new List<double>();
         public graficosPage()
         {
             InitializeComponent();
             BtnCalcular.Click += BtnCalcular_Click;
             generador = new Generadora();
-            //generador = new Generadora();
-
         }
+
+        public void SetListaFASExIteracion(List<double> A)
+        {
+            this.listaFasexIteracion = A;
+        }
+        public void SetcontadorHIST(int count)
+        {
+            this.contadorHISTORIAL = count;
+        }
+
 
         private void BtnCalcular_Click(object sender, RoutedEventArgs e)
         {
-
-            generador.GenerarDatos(0, 20, 1);
-
-            
+            generador.SetListaFASExIteracion(listaFasexIteracion);
+            generador.GenerarDatos(Convert.ToDouble(contadorHISTORIAL));
 
             PlotModel model = new PlotModel();
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = 20;  //numero de iteraciones
+            ejeX.Maximum = contadorHISTORIAL;  //numero de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = generador.Puntos.Min(p => p.Y);
-            ejeY.Maximum = generador.Puntos.Max(p => p.Y);
+            ejeY.Minimum = 0;//generador.Puntos.Min(p => p.Y);
+            ejeY.Maximum = 1;//generador.Puntos.Max(p => p.Y);
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);

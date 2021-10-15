@@ -16,7 +16,7 @@ namespace WpfApplication2
 
         int numeroTotalDeVivos;
         int contadorVecinosVivos;
-        double cantidadDeFASE;
+        double cantidadDeFASE; // es la media de la fase en una matriz
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
 
@@ -196,7 +196,7 @@ namespace WpfApplication2
             numeroTotalDeVivos = 0;
             for (int i = 0; i < y; i++)
             {
-                for (int j = 0; i < x; j++)
+                for (int j = 0; j < x; j++)
                 {
                     if (matriz_malla[i, j].GetVida() == true)
                     numeroTotalDeVivos++;
@@ -209,9 +209,9 @@ namespace WpfApplication2
         {
             cantidadDeFASE = 0;
             int celdasrecorridas = 0;
-            for (int i = 0; i < y; i++)
+            for (int i = 1; i < y-1; i++)
             {
-                for (int j = 0; i < x; j++)
+                for (int j = 1; j < x-1; j++)
                 {
                     cantidadDeFASE = cantidadDeFASE + matriz_malla[i, j].GetFase();
                     celdasrecorridas ++;

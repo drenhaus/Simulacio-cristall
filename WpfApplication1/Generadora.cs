@@ -12,18 +12,18 @@ namespace WpfApplication1
     {
         public List<Punto> Puntos { get; set; }
 
-        
+        List<double> listaFasexIteracion = new List<double>();
 
-/*        public List<Malla> GetList();
+        public void SetListaFASExIteracion(List<double> A)
+        {
+            this.listaFasexIteracion = A;
+        }
+        public List<Punto> GenerarDatos(double limiteSuperior)
         {
             
-        }*/
-    public List<Punto> GenerarDatos(double limiteInferior, double limiteSuperior, double incremento)
-        {
-            
-            limiteInferior = 0;
-            limiteSuperior = 20; //numero iteraciones
-            incremento = 1;
+            double limiteInferior = 0;
+            // limiteSuperior = 20; //numero iteraciones
+            double incremento = 1;
 
             Puntos = new List<Punto>();
             for (double x = limiteInferior; x < limiteSuperior; x+=incremento)
@@ -35,16 +35,12 @@ namespace WpfApplication1
             return Puntos;
         }
 
-        private double Imagen(double x)
-        {
-            
-            
-            return laYdeX;
 
-        }
         private double Evaluar(double x)
         {
-            return Math.Sin(x);
+
+            return listaFasexIteracion[Convert.ToInt32(x)];
+            //return Math.Sin(x);
 
         }
     }
