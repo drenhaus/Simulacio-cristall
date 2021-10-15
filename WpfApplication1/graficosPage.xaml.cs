@@ -74,7 +74,7 @@ namespace WpfApplication1
                                               new DataPoint(50, 12)
                                           };*/
 
-            linea.Points.Add
+           // linea.Points.Add
         }
 
 

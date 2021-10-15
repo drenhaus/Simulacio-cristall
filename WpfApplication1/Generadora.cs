@@ -11,7 +11,7 @@ namespace WpfApplication1
         public List<Punto> GenerarDatos(double limiteInferior, double limiteSuperior, double incremento)
         {
             limiteInferior = 0;
-            limiteInferior = 20;
+            limiteSuperior = 20;
             incremento = 1;
 
             Puntos = new List<Punto>();

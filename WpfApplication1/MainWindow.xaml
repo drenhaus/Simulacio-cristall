@@ -21,8 +21,30 @@
                             <Image Source="/icons/load.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    
+                   
+
+                    </MenuItem>
+
+
+                <MenuItem Header="Crear Graficas" Height=" 50" Width="143" >
+
+                    <MenuItem Header="graf1" IsEnabled="True" Name="graf1" Click="graf1_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/icons/save.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem Header="graf2" IsEnabled="False" Name="graf2">
+                        <MenuItem.Icon>
+                            <Image Source="/icons/load.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
                 </MenuItem>
+
+
+
+
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>
