@@ -16,6 +16,7 @@ namespace WpfApplication2
 
         int numeroTotalDeVivos;
         int contadorVecinosVivos;
+        double cantidadDeFASE;
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
 
@@ -202,6 +203,26 @@ namespace WpfApplication2
                 }
             }
             return numeroTotalDeVivos;
+        }
+
+        public double GetcantidadFase()
+        {
+            cantidadDeFASE = 0;
+            int celdasrecorridas = 0;
+            for (int i = 0; i < y; i++)
+            {
+                for (int j = 0; i < x; j++)
+                {
+                    cantidadDeFASE = cantidadDeFASE + matriz_malla[i, j].GetFase();
+                    celdasrecorridas ++;
+
+                }
+            }
+            cantidadDeFASE = cantidadDeFASE / celdasrecorridas; // asi normalizamos la cantidad de celdas
+
+            return cantidadDeFASE;
+
+
         }
 
         public int NumeroDeVecinosVivos(int Fila, int Columna)

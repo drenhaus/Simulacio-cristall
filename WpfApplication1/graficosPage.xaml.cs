@@ -39,12 +39,13 @@ namespace WpfApplication1
 
             generador.GenerarDatos(0, 20, 1);
 
+            
 
             PlotModel model = new PlotModel();
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = 20;
+            ejeX.Maximum = 20;  //numero de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
