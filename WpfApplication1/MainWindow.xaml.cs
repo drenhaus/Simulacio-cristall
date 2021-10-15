@@ -96,6 +96,7 @@ namespace WpfApplication1
 
         } // pintar rojo --> fase 0
 
+
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
             button1.IsEnabled = true;
@@ -159,7 +160,7 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-
+                                            
                     casillas[i, j] = b;
                 }
             }
@@ -323,7 +324,7 @@ namespace WpfApplication1
                         { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
                         if (temperatura != -1)
                         {
-                            byte alpha = Convert.ToByte((255-40)*(temperatura+1)+40); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                            byte alpha = Convert.ToByte((255-100)*(temperatura+1)+100); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
 
                             casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                         }
@@ -492,7 +493,6 @@ namespace WpfApplication1
             graficosPage lc = new graficosPage();
             lc.ShowDialog();
         }
-
 
 
 
