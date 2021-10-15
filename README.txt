@@ -15,6 +15,7 @@
 5.  Poder cargar los datos anteriormente gusrados.
 6.  Boton retroceder
 7.  Hacer que al clicar a la celda se ponga temperatura i fase a 0
+8. AL HACER CLICK QUE SE GUARDE EN LA LISTA EL PRIMER ESTADO
 
 
 
