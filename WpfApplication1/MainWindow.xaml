@@ -6,7 +6,7 @@
         <DockPanel>
             <Menu DockPanel.Dock="Left"  Width="142" Height="550">
                 <MenuItem Header="Mostrar reglas del juego" Height=" 50" Width="143">
-                    
+
                 </MenuItem>
                 <MenuItem Header="Archivo" Height=" 50" Width="143" >
 
@@ -14,17 +14,19 @@
                         <MenuItem.Icon>
                             <Image Source="/icons/save.png" />
                         </MenuItem.Icon>
-                       </MenuItem>
+                    </MenuItem>
 
                     <MenuItem Header="Cargar fixero" Click="MenuItem_Click_3">
                         <MenuItem.Icon>
                             <Image Source="/icons/load.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    
+
                 </MenuItem>
             </Menu>
             <TextBox AcceptsReturn="True" />
+           
+
         </DockPanel>
         <Canvas Height="552" HorizontalAlignment="Left" Margin="143,0,0,0" Name="canvas12" VerticalAlignment="Top" Width="1100">
             <TextBox Canvas.Left="152" Canvas.Top="22" Height="23" Name="TextBoxY" Width="38" />
@@ -34,8 +36,8 @@
             <Button Canvas.Left="70" Canvas.Top="93" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
             <Button Canvas.Left="259" Canvas.Top="22" Content="Simular paso a paso" Height="23" Name="button1" Width="133" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
             <Button Canvas.Left="259" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
-            <Button Canvas.Left="259" Canvas.Top="94" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
-            <Button Canvas.Left="320" Canvas.Top="94" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
+            <Button Canvas.Left="260" Canvas.Top="137" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
+            <Button Canvas.Left="321" Canvas.Top="137" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
             <CheckBox Canvas.Left="44" Canvas.Top="338" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" />
             <CheckBox Canvas.Left="162" Canvas.Top="338" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" />
             <TextBox Canvas.Left="116" Canvas.Top="210" Height="23" Name="betta" Width="73" />
@@ -76,8 +78,9 @@
             <ScrollViewer Canvas.Left="801" Canvas.Top="297" VerticalScrollBarVisibility="Hidden" Height="230" Name="scrollViewer4" Width="281">
                 <Grid Height="212" Name="grid2" Width="269" />
             </ScrollViewer>
+            <Slider Height="21" Canvas.Left="257" Canvas.Top="93" Width="135" Minimum="10" Maximum="2000" ValueChanged="Slider_ValueChanged"/>
         </Canvas>
     </Grid>
-    
-   
+
+
 </Window>
