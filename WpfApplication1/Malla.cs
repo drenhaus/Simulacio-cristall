@@ -19,7 +19,7 @@ namespace WpfApplication2
         double cantidadDeFASE; // es la media de la fase en una matriz
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
-        Celda[,] matriz_malla_Clone_LISTA;
+        
         Normas norma1; //   MIRAR
 
 
@@ -62,37 +62,7 @@ namespace WpfApplication2
                 }*/
         public Malla ClonarParaLISTA()
         {
-            /*Celda[,] malla_para_guardar;
-            malla_para_guardar = new Celda[y, x];*/
-
-
-            ClonarMatrix_LISTA();
-
-            for (int i = 0; i < y; i++)
-            {
-                for (int j = 0; j < x; j++)
-                {
-                    Celda fill_clone_lista = new Celda();
-                    matriz_malla_Clone_LISTA[i, j] = fill_clone_lista;
-                    matriz_malla_Clone_LISTA[i, j].SetVida(matriz_malla[i, j].GetVida());
-                    matriz_malla_Clone_LISTA[i, j].SetFase(matriz_malla[i, j].GetFase());
-                    matriz_malla_Clone_LISTA[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
-
-                }
-            }
-
-            Malla malla_para_guardar = new Malla();
-
-            malla_para_guardar.SetNumeroDeFilasYColumnas(getY()-2, getX()-2);
-            malla_para_guardar.SetNormas(norma1);
-            malla_para_guardar.SetMatriz(matriz_malla_Clone_LISTA);
-
-            return malla_para_guardar;
-        }
-
-        public void ClonarMatrix_LISTA()
-        {
-            matriz_malla_Clone_LISTA = new Celda[y, x];
+            Celda [,] matriz_malla_Clone_LISTA = new Celda[y, x];
             for (int i = 0; i < y; i++)
                 for (int j = 0; j < x; j++)
                 {
@@ -106,7 +76,16 @@ namespace WpfApplication2
                     }
                 }
 
+            Malla malla_para_guardar = new Malla();
+
+            malla_para_guardar.SetNumeroDeFilasYColumnas(getY()-2, getX()-2);
+            malla_para_guardar.SetNormas(norma1);
+            malla_para_guardar.SetMatriz(matriz_malla_Clone_LISTA);
+
+            return malla_para_guardar;
         }
+
+      
 
         public void ClonarMatrix()
         {

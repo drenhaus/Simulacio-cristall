@@ -34,25 +34,12 @@ namespace WpfApplication1
 
         List<Malla> historial = new List<Malla>();
 
-
-
         DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
-/*        private List<Malla> listaa = new List<Malla>();
 
-        public void GetList()
-        {
-            this.historial=listaa;
-        }
-*/
         public MainWindow()
         {
             InitializeComponent();
-
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
 
         }
 
@@ -304,27 +291,9 @@ namespace WpfApplication1
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
 
+            historial.Add(matriz_celdas.ClonarParaLISTA()); 
 
-            /*            for (int l = 1; l < y - 1; l++) // i = l    j = k
-                        {
-                            for (int k = 1; k < x - 1; k++)
-                            {
-                                matriz_celdas.MallaGuardar(matriz_celdas.getX(), matriz_celdas.getY(),
-                                    matriz_celdas.DameFASEde(l, k), matriz_celdas.DameTEMPERATURAde(l, k), l, k);
-
-
-                            }
-                        }*/
-
-            //matriz_celdas.GetClon();
-
-
-          
-
-            matriz_celdas.SetNormas(norm);
-            historial.Add(matriz_celdas.ClonarParaLISTA());
-            //historial.Add(matriz_celdas);
-            historial.Last().MallaFutura(); // actualizamos
+            matriz_celdas.MallaFutura(); // actualizamos
 
 
             // volvemos a pintar los rectangulos
@@ -334,8 +303,8 @@ namespace WpfApplication1
                 {
 
 
-                    double fase = historial.Last().DameFASEde(i + 1, j + 1); // estará entre 1 y 0
-                    double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                     if (fase == 1)
                     { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
@@ -365,9 +334,10 @@ namespace WpfApplication1
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            matriz_celdas.SetNormas(norm);
-            historial.Add(matriz_celdas);
-            historial.Last().MallaFutura(); // actualizamos
+
+            historial.Add(matriz_celdas.ClonarParaLISTA());
+
+            matriz_celdas.MallaFutura(); // actualizamos
 
 
             // volvemos a pintar los rectangulos
@@ -377,8 +347,8 @@ namespace WpfApplication1
                 {
 
 
-                    double fase = historial.Last().DameFASEde(i + 1, j + 1); // estará entre 1 y 0
-                    double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                     if (fase == 1)
                     { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
@@ -510,6 +480,7 @@ namespace WpfApplication1
 
             matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             MessageBox.Show("Se han establecido las condiciones de contorno");
+            matriz_celdas.SetNormas(norm);
 
         }
 
