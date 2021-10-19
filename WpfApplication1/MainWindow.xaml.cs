@@ -32,52 +32,39 @@ namespace WpfApplication1
         Malla matriz_celdas= new Malla();
 
         List<Malla> historial= new List<Malla>();
-        DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
-
-
+        
         public MainWindow()
         {
             InitializeComponent();
-
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e) // mostrar reglas
-        {
-            Form1 lc = new Form1();
-            lc.ShowDialog();
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) // guardar fichero
         {
 
-            // Configure save file dialog box
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Simulación"; // Default file name
-            dlg.DefaultExt = ".txt"; // Default file extension
-            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+        //    // Configure save file dialog box
+        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+        //    dlg.FileName = "Simulación"; // Default file name
+        //    dlg.DefaultExt = ".txt"; // Default file extension
+        //    dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
 
-            // Show save file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
+        //    // Show save file dialog box
+        //    Nullable<bool> result = dlg.ShowDialog();
 
-            // Process save file dialog box results
-            if (result == true)
-            {
-                // Save document
-                string filename = dlg.FileName;
-                int n = matriz_celdas.GuardarSimulacion(filename);
-                if (n == 0)
-                { MessageBox.Show("Simulación guardada correctamente!"); }
-                else
-                { MessageBox.Show("No ha sido posible guardar la simulación"); }
-            }
-            else
-            { MessageBox.Show("No ha sido posible guardar la simulación"); }
+        //    // Process save file dialog box results
+        //    if (result == true)
+        //    {
+        //        // Save document
+        //        string filename = dlg.FileName;
+        //        int n = matriz_celdas.GuardarSimulacion(filename);
+        //        if (n == 0)
+        //        { MessageBox.Show("Simulación guardada correctamente!"); }
+        //        else
+        //        { MessageBox.Show("No ha sido posible guardar la simulación"); }
+        //    }
+        //    else
+        //    { MessageBox.Show("No ha sido posible guardar la simulación"); }
 
 
 
@@ -96,14 +83,19 @@ namespace WpfApplication1
 
         } // pintar rojo --> fase 0
 
-
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
-            button1.IsEnabled = true;
-            button2.IsEnabled = true;
-            button4.IsEnabled = true;
-            button5.IsEnabled = true;
-            botonCARGAR.IsEnabled = true;
+            
+            betta.IsEnabled = true;
+            dxdy.IsEnabled = true;
+            epsilon.IsEnabled = true;
+            delta.IsEnabled = true;
+            M.IsEnabled = true;
+            dt.IsEnabled = true;
+            ParametrosA.IsEnabled = true;
+            ParametrosB.IsEnabled = true;
+            Parametros.IsEnabled = true;
+
 
             canvas1.Children.Clear();
             canvas2.Children.Clear();
@@ -205,93 +197,93 @@ namespace WpfApplication1
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
         {
-            try
-            {
-                canvas1.Children.Clear();
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Multiselect = true;
-                ofd.Filter = "Text documents (.txt)|*.txt";
-                Nullable<bool> result = ofd.ShowDialog();
+        //    try
+        //    {
+        //        canvas1.Children.Clear();
+        //        OpenFileDialog ofd = new OpenFileDialog();
+        //        ofd.Multiselect = true;
+        //        ofd.Filter = "Text documents (.txt)|*.txt";
+        //        Nullable<bool> result = ofd.ShowDialog();
 
-                if (result == true)
-                {
-                    // Cargar documento
-                    string filename = ofd.FileName;
-                    Malla matriz = matriz_celdas.CargarSimulacion(filename);
-                    matriz_celdas = matriz;
-                    x = matriz_celdas.getX()-2;
-                    y = matriz_celdas.getY()-2;
+        //        if (result == true)
+        //        {
+        //            // Cargar documento
+        //            string filename = ofd.FileName;
+        //            Malla matriz = matriz_celdas.CargarSimulacion(filename);
+        //            matriz_celdas = matriz;
+        //            x = matriz_celdas.getX()-2;
+        //            y = matriz_celdas.getY()-2;
 
-                    generarMallaEnCARGA();
+        //            generarMallaEnCARGA();
 
-                    MessageBox.Show("Fichero cargado con éxito!");
+        //            MessageBox.Show("Fichero cargado con éxito!");
 
-                    button1.IsEnabled = true;
-                    button2.IsEnabled = true;
-                    button4.IsEnabled = true;
-                    button5.IsEnabled = true;
-                    botonCARGAR.IsEnabled = true;
+        //            button1.IsEnabled = true;
+        //            button2.IsEnabled = true;
+        //            button4.IsEnabled = true;
+        //            button5.IsEnabled = true;
+        //            botonCARGAR.IsEnabled = true;
 
                     
 
-                }
-                else
-                { MessageBox.Show("No ha sido posible cargar la simulación"); }
-            }
+        //        }
+        //        else
+        //        { MessageBox.Show("No ha sido posible cargar la simulación"); }
+        //    }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
 
         }
 
-        private void generarMallaEnCARGA()
-        {
-            casillas = new Rectangle[y, x];
+        //private void generarMallaEnCARGA()
+        //{
+        //    casillas = new Rectangle[y, x];
 
-            canvas1.Height = y * 15;
-            canvas1.Width = x * 15;
+        //    canvas1.Height = y * 15;
+        //    canvas1.Width = x * 15;
 
 
-            // Bucle para crear los rectangulos
-            for (int i = 0; i < y; i++)
-            {
-                for (int j = 0; j < x; j++)
-                {
-                    Rectangle b = new Rectangle();
-                    b.Width = 15;
-                    b.Height = 15;
-                    b.Fill = new SolidColorBrush(Colors.Gray);
-                    b.StrokeThickness = 0.5;
-                    b.Stroke = Brushes.Black;
-                    canvas1.Children.Add(b);
+        //    // Bucle para crear los rectangulos
+        //    for (int i = 0; i < y; i++)
+        //    {
+        //        for (int j = 0; j < x; j++)
+        //        {
+        //            Rectangle b = new Rectangle();
+        //            b.Width = 15;
+        //            b.Height = 15;
+        //            b.Fill = new SolidColorBrush(Colors.Gray);
+        //            b.StrokeThickness = 0.5;
+        //            b.Stroke = Brushes.Black;
+        //            canvas1.Children.Add(b);
 
-                    // Posicion del cuadrado
-                    Canvas.SetTop(b, (i - 1) * 15);
-                    Canvas.SetLeft(b, (j - 1) * 15);
-                    b.Tag = new Point(j, i);
+        //            // Posicion del cuadrado
+        //            Canvas.SetTop(b, (i - 1) * 15);
+        //            Canvas.SetLeft(b, (j - 1) * 15);
+        //            b.Tag = new Point(j, i);
 
-                    b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+        //            b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
 
-                    casillas[i, j] = b;
-                }
-            }
+        //            casillas[i, j] = b;
+        //        }
+        //    }
 
-            for (int i = 0; i < y; i++)
-            {
-                for (int j = 0; j < x; j++)
-                {
+        //    for (int i = 0; i < y; i++)
+        //    {
+        //        for (int j = 0; j < x; j++)
+        //        {
 
-                    if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == false)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-                    if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == true)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
+        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == false)
+        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
+        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == true)
+        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
 
-                }
-            }
+        //        }
+        //    }
             
-        } // hay que modificar para que se cargen las dos
+        //} // hay que modificar para que se cargen las dos
 
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
@@ -306,25 +298,24 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < x; j++)
                 {
-
-                   
                         double fase = historial.Last().DameFASEde(i+1,j+1); // estará entre 1 y 0
                         double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                         if (fase == 1)
-                        { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0,0,0,0)); }
-                        if (fase !=1)
+                        { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+
+                        if ((fase != 0) && (fase!=1))
                         {
-                         byte alpha = Convert.ToByte((-255+60)*(fase-1)+60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                         byte alpha = Convert.ToByte(255-Math.Round(fase * 10)*23); // truncamos los valores y en funcion de esto establecemos una alpha
 
                         casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));  
                         }
-
+                        
                         if (temperatura == -1)
-                        { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
-                        if (temperatura != -1)
+                        { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                        if ((temperatura != 0) && (temperatura  != -1))
                         {
-                            byte alpha = Convert.ToByte((255-100)*(temperatura+1)+100); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                            byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23); 
 
                             casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                         }
@@ -349,28 +340,28 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < x; j++)
                 {
-
-
                     double fase = historial.Last().DameFASEde(i + 1, j + 1); // estará entre 1 y 0
                     double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                     if (fase == 1)
-                    { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
-                    if (fase != 1)
+                    { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+
+                    if ((fase != 0) && (fase != 1))
                     {
-                        byte alpha = Convert.ToByte((-255 + 60) * (fase - 1) + 60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); // truncamos los valores y en funcion de esto establecemos una alpha
 
                         casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
                     }
 
                     if (temperatura == -1)
-                    { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
-                    if (temperatura != -1)
+                    { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    if ((temperatura != 0) && (temperatura != -1))
                     {
-                        byte alpha = Convert.ToByte((255 - 40) * (temperatura + 1) + 40); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+                        byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23);
 
                         casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                     }
+
 
 
                 }
@@ -380,7 +371,8 @@ namespace WpfApplication1
         private void button2_Click(object sender, RoutedEventArgs e) // simulación automatica
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
+ 
             dispatcherTimer.Start();
 
         }
@@ -403,7 +395,6 @@ namespace WpfApplication1
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
                     matriz_celdas.SetFaseDeCelda(i, j, 1);
                     matriz_celdas.SetTemperaturaDeCelda(i, j, -1);
-                    matriz_celdas.SetVidaDeCelda(i, j, false);
                     casillas[i, j].Fill = new SolidColorBrush(Colors.White);
                     casillas2[i, j].Fill = new SolidColorBrush(Colors.White);
                     
@@ -413,6 +404,9 @@ namespace WpfApplication1
 
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
+            comboBox1.IsEnabled = true;
+            button6.IsEnabled = true;
+
             norm.SetDxDy(Convert.ToDouble(dxdy.Text));
             norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
             norm.SetBetta(Convert.ToDouble(betta.Text));
@@ -481,7 +475,15 @@ namespace WpfApplication1
 
         private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
         {
-         
+            button1.IsEnabled = true;
+            button2.IsEnabled = true;
+            button4.IsEnabled = true;
+            button5.IsEnabled = true;
+            botonCARGAR.IsEnabled = true;
+            slider1.IsEnabled = true;
+            
+
+
             matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             MessageBox.Show("Se han establecido las condiciones de contorno");
 
@@ -560,10 +562,13 @@ namespace WpfApplication1
 
         }
 
-       
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            dispatcherTimer.Stop();
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(Convert.ToInt32(e.NewValue));
+            dispatcherTimer.Start();
 
-
-        
+        }
     }
 }
 

@@ -8,10 +8,6 @@ namespace WpfApplication1
 {
     class Celda
     {
-
-       
-        bool viva = false;  // PODRIEM TREURE
-        int vecinos_vivos;
         double fase = 1;
         double temperatura = -1;
 
@@ -90,22 +86,7 @@ namespace WpfApplication1
          public double GetFaseFutura()
          { return (this.estado_futuro_fase); }
 
-        public void SetVida(bool vida)
-        {this.viva = vida;} //TREURE
 
-        public bool GetVida()
-        {return (this.viva);} //TREURE
-
-        public void SetVecinosVivos(int num)
-        { this.vecinos_vivos = num; } //TREURE
-
-        public int GetVecinosVivos()
-        { return (this.vecinos_vivos); } //TREURE
-
-        public void ActualizarCelda(bool Viva, int numVecinosVivos)
-        {
-            this.viva = n.ActualizarVida(Viva, numVecinosVivos);
-        } //TREURE
 
         public void SetNorma(Normas norm)
         {
