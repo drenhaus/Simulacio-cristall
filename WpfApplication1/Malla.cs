@@ -22,6 +22,19 @@ namespace WpfApplication2
 
         Normas norma1; //   MIRAR
 
+
+
+        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
+        {
+
+            Malla A = new Malla();
+
+            A.SetNumeroDeFilasYColumnas(X, Y);
+            A.SetTemperaturaDeCelda(i, j, T);
+            A.SetFaseDeCelda(i, j, F);
+            return A;
+        }
+
         public Celda[,] GetMatriz()
         {
             return this.matriz_malla;
