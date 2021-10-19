@@ -85,11 +85,17 @@ namespace WpfApplication1
 
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
-            button1.IsEnabled = true;
-            button2.IsEnabled = true;
-            button4.IsEnabled = true;
-            button5.IsEnabled = true;
-            botonCARGAR.IsEnabled = true;
+            
+            betta.IsEnabled = true;
+            dxdy.IsEnabled = true;
+            epsilon.IsEnabled = true;
+            delta.IsEnabled = true;
+            M.IsEnabled = true;
+            dt.IsEnabled = true;
+            ParametrosA.IsEnabled = true;
+            ParametrosB.IsEnabled = true;
+            Parametros.IsEnabled = true;
+
 
             canvas1.Children.Clear();
             canvas2.Children.Clear();
@@ -398,6 +404,9 @@ namespace WpfApplication1
 
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
+            comboBox1.IsEnabled = true;
+            button6.IsEnabled = true;
+
             norm.SetDxDy(Convert.ToDouble(dxdy.Text));
             norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
             norm.SetBetta(Convert.ToDouble(betta.Text));
@@ -466,7 +475,15 @@ namespace WpfApplication1
 
         private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
         {
-         
+            button1.IsEnabled = true;
+            button2.IsEnabled = true;
+            button4.IsEnabled = true;
+            button5.IsEnabled = true;
+            botonCARGAR.IsEnabled = true;
+            slider1.IsEnabled = true;
+            
+
+
             matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             MessageBox.Show("Se han establecido las condiciones de contorno");
 

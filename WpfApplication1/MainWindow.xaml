@@ -27,6 +27,8 @@
             <TextBox AcceptsReturn="True" />
 
 
+
+
         </DockPanel>
         <Canvas Height="552" HorizontalAlignment="Left" Margin="143,0,0,0" Name="canvas12" VerticalAlignment="Top" Width="1100">
             <TextBox Canvas.Left="152" Canvas.Top="22" Height="23" Name="TextBoxY" Width="38" />
@@ -38,27 +40,27 @@
             <Button Canvas.Left="259" Canvas.Top="56" Content="Simulación automática" Height="23" IsEnabled="False" Name="button2" Visibility="Visible" Width="133" Click="button2_Click" />
             <Button Canvas.Left="259" Canvas.Top="166" Content="Stop" Height="21" IsEnabled="False" Name="button4" Visibility="Visible" Width="56" Click="button4_Click" />
             <Button Canvas.Left="320" Canvas.Top="166" Content="Restart" Height="21" IsEnabled="False" Name="button5" Visibility="Visible" Width="71" Click="button5_Click" />
-            <CheckBox Canvas.Left="44" Canvas.Top="338" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" />
-            <CheckBox Canvas.Left="162" Canvas.Top="338" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" />
-            <TextBox Canvas.Left="116" Canvas.Top="210" Height="23" Name="betta" Width="73" />
-            <TextBox Canvas.Left="116" Canvas.Top="181" Height="23" Name="epsilon" Width="73" />
-            <TextBox Canvas.Left="116" Canvas.Top="152" Height="23" Name="dxdy" Width="73" />
-            <TextBox Canvas.Left="116" Canvas.Top="239" Height="23" Name="delta" Width="73" />
-            <TextBox Canvas.Left="116" Canvas.Top="268" Height="23" Name="M" Width="73" />
-            <TextBox Canvas.Left="116" Canvas.Top="297" Height="23" Name="dt" Width="73" />
+            <CheckBox Canvas.Left="44" Canvas.Top="338" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" IsEnabled="False"  />
+            <CheckBox Canvas.Left="162" Canvas.Top="338" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" IsEnabled="False" />
+            <TextBox Canvas.Left="116" Canvas.Top="210" Height="23" Name="betta" Width="73" IsEnabled="False"  />
+            <TextBox Canvas.Left="116" Canvas.Top="181" Height="23" Name="epsilon" Width="73" IsEnabled="False" />
+            <TextBox Canvas.Left="116" Canvas.Top="152" Height="23" Name="dxdy" Width="73" IsEnabled="False"  />
+            <TextBox Canvas.Left="116" Canvas.Top="239" Height="23" Name="delta" Width="73" IsEnabled="False"  />
+            <TextBox Canvas.Left="116" Canvas.Top="268" Height="23" Name="M" Width="73" IsEnabled="False"  />
+            <TextBox Canvas.Left="116" Canvas.Top="297" Height="23" Name="dt" Width="73" IsEnabled="False" />
             <Label Canvas.Left="56" Canvas.Top="152" Content="dx,dy" Height="28" Name="label3" />
             <Label Canvas.Left="56" Canvas.Top="181" Content="Epsilon" Height="28" Name="label4" />
             <Label Canvas.Left="56" Canvas.Top="210" Content="Betta" Height="28" Name="label5" />
             <Label Canvas.Left="56" Canvas.Top="239" Content="Delta" Height="28" Name="label6" />
             <Label Canvas.Left="70" Canvas.Top="268" Content="M" Height="28" Name="label7" />
             <Label Canvas.Left="70" Canvas.Top="297" Content="dt" Height="28" Name="label8" />
-            <Button Canvas.Left="86" Canvas.Top="370" Content="Cargar parametros " Height="21" Name="Parametros" Width="133" Click="Parametros_Click" />
-            <ComboBox Canvas.Left="195" Canvas.Top="412" Height="23" Name="comboBox1" Width="113">
+            <Button Canvas.Left="86" Canvas.Top="370" Content="Cargar parametros " Height="21" Name="Parametros" Width="133" Click="Parametros_Click" IsEnabled="False" />
+            <ComboBox Canvas.Left="195" Canvas.Top="412" Height="23" Name="comboBox1" Width="113" IsEnabled="False">
                 <ComboBoxItem Content="Fixed" />
                 <ComboBoxItem Content="Espejo" />
             </ComboBox>
             <Label Canvas.Left="46" Canvas.Top="407" Content="Condiciones de contorno" Height="28" Name="label9" />
-            <Button Canvas.Left="95" Canvas.Top="451" Content="Cargar condiciones contorno " Height="23" Name="button6" Width="172" Click="button6_Click" />
+            <Button Canvas.Left="95" Canvas.Top="451" Content="Cargar condiciones contorno " Height="23" Name="button6" Width="172" Click="button6_Click" IsEnabled="False" />
             <Button Canvas.Left="813" Canvas.Top="20" Content="Mostrar datos" Height="22" Name="button7" Width="104" Click="button7_Click" />
             <ScrollViewer Canvas.Left="416" Canvas.Top="288" Height="239" Name="scrollViewer1" Width="339" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility= "Visible">
                 <Canvas Height="220" Name="canvas2" Width="305"></Canvas>
@@ -78,7 +80,7 @@
             <ScrollViewer Canvas.Left="801" Canvas.Top="297" VerticalScrollBarVisibility="Hidden" Height="230" Name="scrollViewer4" Width="281">
                 <Grid Height="212" Name="grid2" Width="269" />
             </ScrollViewer>
-            <Slider Height="21" Canvas.Left="257" Canvas.Top="93" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
+            <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="257" Canvas.Top="93" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
             <Label Content="1s" Canvas.Left="314" Canvas.Top="114" Height="28" Width="25"/>
             <Label Content="2s" Canvas.Left="373" Canvas.Top="114" Height="28" Width="25"/>
             <Label Content="0.02s" Canvas.Left="243" Canvas.Top="114" Height="28" Width="38"/>
