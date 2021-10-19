@@ -30,7 +30,6 @@ namespace WpfApplication1
         int x;  //columnas
         int y;  //filas
         Malla matriz_celdas= new Malla();
-        int velocidad=1000; //ms
 
         List<Malla> historial= new List<Malla>();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
@@ -39,7 +38,6 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) // guardar fichero
@@ -367,7 +365,7 @@ namespace WpfApplication1
         private void button2_Click(object sender, RoutedEventArgs e) // simulación automatica
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(this.velocidad);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
  
             dispatcherTimer.Start();
 
@@ -549,7 +547,9 @@ namespace WpfApplication1
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            this.velocidad = Convert.ToInt32(e.NewValue);
+            dispatcherTimer.Stop();
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(Convert.ToInt32(e.NewValue));
+            dispatcherTimer.Start();
 
         }
     }
