@@ -23,17 +23,7 @@ namespace WpfApplication2
         Normas norma1; //   MIRAR
 
 
-
-        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
-        {
-
-            Malla A = new Malla();
-
-            A.SetNumeroDeFilasYColumnas(X, Y);
-            A.SetTemperaturaDeCelda(i, j, T);
-            A.SetFaseDeCelda(i, j, F);
-            return A;
-        }
+       
 
         public Celda[,] GetMatriz()
         {
@@ -54,7 +44,51 @@ namespace WpfApplication2
         { 
         this.norma1=n;
         }
-        
+
+        public void SetMatriz(Celda[,] matriz_MALLA)
+        {
+            this.matriz_malla = matriz_MALLA;
+        }
+
+        /*        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
+                {
+
+                    Malla A = new Malla();
+
+                    A.SetNumeroDeFilasYColumnas(X, Y);
+                    A.SetTemperaturaDeCelda(i, j, T);
+                    A.SetFaseDeCelda(i, j, F);
+                    return A;
+                }*/
+        public Malla ClonarParaLISTA()
+        {
+            /*Celda[,] malla_para_guardar;
+            malla_para_guardar = new Celda[y, x];*/
+
+
+            ClonarMatrix();
+
+            for (int i = 0; i < y; i++)
+            {
+                for (int j = 0; j < x; j++)
+                {
+                    Celda fill_clone_lista = new Celda();
+                    matriz_malla_Clone[i, j] = fill_clone_lista;
+                    matriz_malla_Clone[i, j].SetVida(matriz_malla[i, j].GetVida());
+                    matriz_malla_Clone[i, j].SetFase(matriz_malla[i, j].GetFase());
+                    matriz_malla_Clone[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
+
+                }
+            }
+
+            Malla malla_para_guardar = new Malla();
+
+            malla_para_guardar.SetNumeroDeFilasYColumnas(getY(), getX());
+            malla_para_guardar.SetNormas(norma1);
+            malla_para_guardar.SetMatriz(matriz_malla_Clone);
+
+            return malla_para_guardar;
+        }
         public void ClonarMatrix()
         {
             matriz_malla_Clone=new Celda[y,x];

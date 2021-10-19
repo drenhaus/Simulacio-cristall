@@ -303,23 +303,27 @@ namespace WpfApplication1
 
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
-            
-            
-            for (int l = 1; l < y - 1; l++) // i = l    j = k
-            {
-                for (int k = 1; k < x - 1; k++)
-                {
-                    matriz_celdas.MallaGuardar(matriz_celdas.getX(), matriz_celdas.getY(),
-                        matriz_celdas.DameFASEde(l, k), matriz_celdas.DameTEMPERATURAde(l, k), l, k);
 
 
-                }
-            }
+            /*            for (int l = 1; l < y - 1; l++) // i = l    j = k
+                        {
+                            for (int k = 1; k < x - 1; k++)
+                            {
+                                matriz_celdas.MallaGuardar(matriz_celdas.getX(), matriz_celdas.getY(),
+                                    matriz_celdas.DameFASEde(l, k), matriz_celdas.DameTEMPERATURAde(l, k), l, k);
 
 
+                            }
+                        }*/
+
+            //matriz_celdas.GetClon();
+
+
+          
 
             matriz_celdas.SetNormas(norm);
-            historial.Add(matriz_celdas);
+            historial.Add(matriz_celdas.ClonarParaLISTA());
+            //historial.Add(matriz_celdas);
             historial.Last().MallaFutura(); // actualizamos
 
 
