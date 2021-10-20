@@ -561,16 +561,19 @@ namespace WpfApplication1
         {
             int contadorHISTORIAL = historial.Count;
             List<double> listaFasexIteracion = new List<double>();
+            List<double> listaTEMPxIteracion = new List<double>();
 
             for (int k = 0; k < contadorHISTORIAL; k++)
             {
                 listaFasexIteracion.Add(historial[k].GetcantidadFase());
+                listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
             }
 
             graficosPage lc = new graficosPage();
 
             lc.SetcontadorHIST(contadorHISTORIAL);
             lc.SetListaFASExIteracion(listaFasexIteracion);
+            lc.SetListaTEMPxIteracion(listaTEMPxIteracion);
             // hem de anar ageneradora
 
             lc.ShowDialog();
@@ -578,7 +581,7 @@ namespace WpfApplication1
         }
         private void graf2_Click(object sender, RoutedEventArgs e) // click en el primer graff
         {
-            int contadorHISTORIAL = historial.Count;
+/*            int contadorHISTORIAL = historial.Count;
             List<double> listaTEMPxIteracion = new List<double>();
 
             for (int k = 0; k < contadorHISTORIAL; k++)
@@ -593,7 +596,7 @@ namespace WpfApplication1
 
             // hem de anar ageneradora
 
-            lc.ShowDialog();
+            lc.ShowDialog();*/
 
         }
         private void button7_Click(object sender, RoutedEventArgs e) // mostrar datos
