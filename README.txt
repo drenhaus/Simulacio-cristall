@@ -5,6 +5,7 @@
 
 7. Se puede cagar los datos sin haver datos
 8. Se puede cagar las condiciones de contorno sin haver selecionado nada
+9. Se puede hacer graficos sin datos
 
 # COSAS A HACER
 
