@@ -17,6 +17,8 @@ namespace WpfApplication2
         int numeroTotalDeVivos;
         int contadorVecinosVivos;
         double cantidadDeFASE; // es la media de la fase en una matriz
+        double cantidadDeTEMP; // es la media de la temperatura en una matriz
+
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
         
@@ -84,8 +86,6 @@ namespace WpfApplication2
 
             return malla_para_guardar;
         }
-
-      
 
         public void ClonarMatrix()
         {
@@ -266,6 +266,26 @@ namespace WpfApplication2
             cantidadDeFASE = cantidadDeFASE / celdasrecorridas; // asi normalizamos la cantidad de celdas
 
             return cantidadDeFASE;
+
+
+        }
+
+        public double GetcantidadTEMP()
+        {
+            cantidadDeTEMP = 0;
+            int celdasrecorridas = 0;
+            for (int i = 1; i < y - 1; i++)
+            {
+                for (int j = 1; j < x - 1; j++)
+                {
+                    cantidadDeTEMP = cantidadDeTEMP + matriz_malla[i, j].GetTemperatura();
+                    celdasrecorridas++;
+
+                }
+            }
+            cantidadDeTEMP = cantidadDeTEMP / celdasrecorridas; // asi normalizamos la cantidad de celdas
+
+            return cantidadDeTEMP;
 
 
         }
