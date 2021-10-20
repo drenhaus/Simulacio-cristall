@@ -9,8 +9,10 @@
         Title="graficosPage" Height="450" Width="800">
     <Grid>
         <oxyPlot:PlotView x:Name="Grafica" >
-            
+
         </oxyPlot:PlotView>
-        <Button x:Name="BtnCalcularFASE" Content="Calcular FASE" HorizontalAlignment="Left" Margin="709,391,0,0" VerticalAlignment="Top" Width="75" Click="BtnCalcularFASE_Click"/>
+        <Button x:Name="BtnCalcularFASE" Content="Calcular FASE" HorizontalAlignment="Left" Margin="715,392,0,0" VerticalAlignment="Top" Width="69" Click="BtnCalcularFASE_Click" Height="18"/>
+        <Button x:Name="BtnCalcularTEMP" Content="Calcular TEMP" HorizontalAlignment="Left" Margin="0,392,0,0" VerticalAlignment="Top" Width="83" Click="BtnCalcularTEMP_Click" Height="18"/>
+
     </Grid>
 </Window>

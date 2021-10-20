@@ -589,7 +589,7 @@ namespace WpfApplication1
             graficosPage lc = new graficosPage();
 
             lc.SetcontadorHIST(contadorHISTORIAL);
-            lc.SetListaFASExIteracion(listaTEMPxIteracion);
+            lc.SetListaTEMPxIteracion(listaTEMPxIteracion);
 
             // hem de anar ageneradora
 
