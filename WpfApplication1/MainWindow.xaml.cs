@@ -685,8 +685,10 @@ namespace WpfApplication1
             {
 
                 boton_retroceder.IsEnabled = true;
-                historial.RemoveAt(historial.Count - 1);
-                matriz_celdas.SetMatriz(historial.Last().GetMatriz());
+                historial.RemoveAt(historial.Count() - 1);
+                
+                matriz_celdas.SetMatriz(historial.Last().ClonarParaLISTA().GetMatriz());
+                
 
                 for (int i = 0; i < y; i++)
                 {
