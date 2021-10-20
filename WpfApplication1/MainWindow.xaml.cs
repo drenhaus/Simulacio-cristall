@@ -84,7 +84,7 @@ namespace WpfApplication1
             casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // FromArgb(alpha, red, green, blue)
 
             historial.Add(matriz_celdas.ClonarParaLISTA());
-
+        }
 
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
@@ -565,6 +565,7 @@ namespace WpfApplication1
             button5.IsEnabled = true;
             botonCARGAR.IsEnabled = true;
             slider1.IsEnabled = true;
+            boton_retroceder.IsEnabled = true;
             
 
 

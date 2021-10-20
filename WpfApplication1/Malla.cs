@@ -68,7 +68,6 @@ namespace WpfApplication2
                     {
                         Celda fill_clone = new Celda(); // rellenamos la matriz con celdas
                         matriz_malla_Clone_LISTA[i, j] = fill_clone;
-                        matriz_malla_Clone_LISTA[i, j].SetVida(matriz_malla[i, j].GetVida());//
                         matriz_malla_Clone_LISTA[i, j].SetFase(matriz_malla[i, j].GetFase());
                         matriz_malla_Clone_LISTA[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
 
