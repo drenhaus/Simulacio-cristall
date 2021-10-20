@@ -26,20 +26,9 @@
                     </MenuItem>
 
 
-                <MenuItem Header="Crear Graficas" Height=" 50" Width="143" >
+                <MenuItem Header="Crear Graficas" Height=" 50" Width="143" Click="MenuItem_Click_20">
 
-                    <MenuItem Header="Grafico de Fase" IsEnabled="True" Name="graf1" Click="graf1_Click">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/save.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-
-                    <MenuItem Header="Grafico de Temperatura" IsEnabled="True " Name="graf2" Click="graf2_Click">
-                        <MenuItem.Icon>
-                            <Image Source="/icons/load.png" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-
+                    
                 </MenuItem>
 
 

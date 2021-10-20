@@ -557,7 +557,7 @@ namespace WpfApplication1
 
         }
 
-        private void graf1_Click(object sender, RoutedEventArgs e) // click en el primer graff
+        private void MenuItem_Click_20(object sender, RoutedEventArgs e) // click en el primer graff
         {
             int contadorHISTORIAL = historial.Count;
             List<double> listaFasexIteracion = new List<double>();
@@ -577,26 +577,6 @@ namespace WpfApplication1
             // hem de anar ageneradora
 
             lc.ShowDialog();
-
-        }
-        private void graf2_Click(object sender, RoutedEventArgs e) // click en el primer graff
-        {
-/*            int contadorHISTORIAL = historial.Count;
-            List<double> listaTEMPxIteracion = new List<double>();
-
-            for (int k = 0; k < contadorHISTORIAL; k++)
-            {
-                listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
-            }
-
-            graficosPage lc = new graficosPage();
-
-            lc.SetcontadorHIST(contadorHISTORIAL);
-            lc.SetListaTEMPxIteracion(listaTEMPxIteracion);
-
-            // hem de anar ageneradora
-
-            lc.ShowDialog();*/
 
         }
         private void button7_Click(object sender, RoutedEventArgs e) // mostrar datos

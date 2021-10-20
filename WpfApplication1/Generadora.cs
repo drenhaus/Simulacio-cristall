@@ -23,7 +23,6 @@ namespace WpfApplication1
         {
             this.listaFasexIteracion = A;
         }
-
         public List<Punto> GenerarDatosTEMP(double limiteSuperior)
         {
 
@@ -52,7 +51,6 @@ namespace WpfApplication1
 
             return Puntos;
         }
-
         private double EvaluarTEMP(double x)
         {
             return listaTEMPxIteracion[Convert.ToInt32(x)];
