@@ -30,7 +30,7 @@ namespace WpfApplication1
         public graficosPage()
         {
             InitializeComponent();
-            BtnCalcular.Click += BtnCalcular_Click;
+            BtnCalcularFASE.Click += BtnCalcularFASE_Click;
             generador = new Generadora();
         }
 
@@ -44,7 +44,7 @@ namespace WpfApplication1
         }
 
 
-        private void BtnCalcular_Click(object sender, RoutedEventArgs e)
+        private void BtnCalcularFASE_Click(object sender, RoutedEventArgs e)
         {
             generador.SetListaFASExIteracion(listaFasexIteracion);
             generador.GenerarDatos(Convert.ToDouble(contadorHISTORIAL));
@@ -73,28 +73,9 @@ namespace WpfApplication1
             linea.Title = "Valores generados";
             model.Series.Add(linea);
             Grafica.Model = model;
-            /*            List Points = new List<DataPoint>
-                                          {
-                                              new DataPoint(0, 4),
-                                              new DataPoint(10, 13),
-                                              new DataPoint(20, 15),
-                                              new DataPoint(30, 16),
-                                              new DataPoint(40, 12),
-                                              new DataPoint(50, 12)
-                                          };*/
 
-           // linea.Points.Add
         }
 
-
-
-        /*        private void WPF_load(object sender, EventArgs e)
-                {
-                    OxyPlot.Wpf.PlotView pv = new OxyPlot.Wpf.PlotView();
-                    pv.Po
-
-
-                }*/
     }
 
 }

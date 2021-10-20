@@ -29,7 +29,6 @@ namespace WpfApplication1
             for (double x = limiteInferior; x < limiteSuperior; x+=incremento)
             {
                 Puntos.Add(new Punto(x, Evaluar(x))); // canviar a imagen
-
             }
 
             return Puntos;
@@ -38,10 +37,7 @@ namespace WpfApplication1
 
         private double Evaluar(double x)
         {
-
             return listaFasexIteracion[Convert.ToInt32(x)];
-            //return Math.Sin(x);
-
         }
     }
 }
