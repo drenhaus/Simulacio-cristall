@@ -296,8 +296,8 @@ namespace WpfApplication1
         {
 
 
-            if (historial.Count > 0)    //si NO estamos en la primera iteracion
-            {
+/*            if (historial.Count > 0)    //si NO estamos en la primera iteracion
+            {*/
                 matriz_celdas.MallaFutura(); // actualizamos
                 historial.Add(matriz_celdas.ClonarParaLISTA());
 
@@ -334,9 +334,9 @@ namespace WpfApplication1
                     }
                 }
 
-            }
+            //}
 
-            else                      //Para la primera iteracion, primero anadimos el estado actual luego calculamos i gustdamos resultado.
+            /*else                      //Para la primera iteracion, primero anadimos el estado actual luego calculamos i gustdamos resultado.
             { 
                 historial.Add(matriz_celdas.ClonarParaLISTA());
                 matriz_celdas.MallaFutura(); ;
@@ -376,7 +376,7 @@ namespace WpfApplication1
                 }
 
                 
-            }
+            }*/
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -630,16 +630,12 @@ namespace WpfApplication1
 
         private void boton_retroceder_Click(object sender, RoutedEventArgs e)
         {
-            if (historial.Count > 1)
-            {
+            
+
                 boton_retroceder.IsEnabled = true;
                 historial.RemoveAt(historial.Count - 1);
+                matriz_celdas.SetMatriz(historial.Last().GetMatriz());
 
-                matriz_celdas = historial.Last();
-            }
-            else
-            { boton_retroceder.IsEnabled = false; }
-            // volvemos a pintar los rectangulos
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
