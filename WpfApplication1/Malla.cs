@@ -103,6 +103,37 @@ namespace WpfApplication2
         public Celda[,] GetClon()
         { return this.matriz_malla_Clone; }
 
+
+        public double[,] FasesTodas()
+        {
+            double[,] fases = new double[y, x];
+            for (int i = 0; i < y; i++)
+                for (int j = 0; j < x; j++)
+                {
+                    {
+                        fases[i, j] = DameFASEde(i, j);
+                    }
+                }
+
+            return fases;
+        }
+
+        public double[,] TemperaturasTodas()
+        {
+            double[,] temperatura = new double[y, x];
+            for (int i = 0; i < y; i++)
+                for (int j = 0; j < x; j++)
+                {
+                    {
+                        temperatura[i, j] = DameTEMPERATURAde(i, j);
+                    }
+                }
+
+            return temperatura;
+        }
+
+
+
         public void SetNumeroDeFilasYColumnas(int fila, int columna)
         {
             this.y = fila+2;

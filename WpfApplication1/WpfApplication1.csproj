@@ -67,8 +67,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DatosFase.xaml.cs">
+      <DependentUpon>DatosFase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DatosTemperatura.xaml.cs">
+      <DependentUpon>DatosTemperatura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Generadora.cs" />
     <Compile Include="Punto.cs" />
+    <Page Include="DatosFase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatosTemperatura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="graficosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

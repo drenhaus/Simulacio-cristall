@@ -72,18 +72,6 @@
             <ScrollViewer Canvas.Left="427" Canvas.Top="16" Height="239" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Name="scrollViewer2" Width="339">
                 <Canvas Height="192" Name="canvas1" Width="314"></Canvas>
             </ScrollViewer>
-            <ScrollViewer Height="182" Name="scrollViewer3" Width="289" VerticalScrollBarVisibility="Hidden" Canvas.Left="793" Canvas.Top="56">
-                <Grid Height="179" Name="grid1" Width="263">
-                    <Grid.Resources>
-                        <Style TargetType="{x:Type Panel}">
-                            <Setter Property="Margin" Value="0,0,0,6" />
-                        </Style>
-                    </Grid.Resources>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Canvas.Left="801" Canvas.Top="297" VerticalScrollBarVisibility="Hidden" Height="230" Name="scrollViewer4" Width="281">
-                <Grid Height="212" Name="grid2" Width="269" />
-            </ScrollViewer>
             <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="257" Canvas.Top="93" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
             <Label Content="1s" Canvas.Left="314" Canvas.Top="114" Height="28" Width="25"/>
             <Label Content="2s" Canvas.Left="373" Canvas.Top="114" Height="28" Width="25"/>
