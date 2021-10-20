@@ -29,8 +29,9 @@ namespace WpfApplication1
         Rectangle[,] casillas2;
         int x;  //columnas
         int y;  //filas
-        Malla matriz_celdas= new Malla();
-
+        
+        Malla matriz_celdas = new Malla();
+        
         List<Malla> historial= new List<Malla>();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
@@ -38,6 +39,7 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) // guardar fichero
@@ -75,13 +77,14 @@ namespace WpfApplication1
             Rectangle a = (Rectangle)sender;
             Point p = (Point)a.Tag;
 
-            matriz_celdas.SetTemperaturaDeCelda(Convert.ToInt32(p.Y)+1, Convert.ToInt32(p.X)+1,0);
-            matriz_celdas.SetFaseDeCelda(Convert.ToInt32(p.Y)+1, Convert.ToInt32(p.X)+1,0);
+            matriz_celdas.SetTemperaturaDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0);
+            matriz_celdas.SetFaseDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0);
 
             casillas[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // FromArgb(alpha, red, green, blue)
             casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // FromArgb(alpha, red, green, blue)
 
-        } // pintar rojo --> fase 0
+            historial.Add(matriz_celdas.ClonarParaLISTA());
+
 
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
@@ -111,7 +114,7 @@ namespace WpfApplication1
                     y = 10;
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
                 }
-                
+
             }
             catch
             {
@@ -122,7 +125,7 @@ namespace WpfApplication1
 
             generarMalla1();
             generarMalla2();
-            
+
         }
 
         private void generarMalla1()
@@ -131,7 +134,7 @@ namespace WpfApplication1
 
             canvas1.Height = y * 15;
             canvas1.Width = x * 15;
-            
+
 
             // Bucle para crear los rectangulos
             for (int i = 0; i < y; i++)
@@ -152,12 +155,12 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-                                            
+
                     casillas[i, j] = b;
                 }
             }
 
-             
+
         }
 
         private void generarMalla2()
@@ -197,6 +200,7 @@ namespace WpfApplication1
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
         {
+
         //    try
         //    {
         //        canvas1.Children.Clear();
@@ -224,7 +228,8 @@ namespace WpfApplication1
         //            button5.IsEnabled = true;
         //            botonCARGAR.IsEnabled = true;
 
-                    
+
+
 
         //        }
         //        else
@@ -237,6 +242,7 @@ namespace WpfApplication1
         //    }
 
         }
+
 
         //private void generarMallaEnCARGA()
         //{
@@ -285,21 +291,21 @@ namespace WpfApplication1
             
         //} // hay que modificar para que se cargen las dos
 
+
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
 
-            matriz_celdas.SetNormas(norm);
-            historial.Add(matriz_celdas);
-            historial.Last().MallaFutura(); // actualizamos
-
-
-            // volvemos a pintar los rectangulos
-            for (int i = 0; i < y; i++)
+            if (historial.Count < 1)
             {
-                for (int j = 0; j < x; j++)
+                historial.Add(matriz_celdas.ClonarParaLISTA());
+                // volvemos a pintar los rectangulos
+                for (int i = 0; i < y; i++)
                 {
-                        double fase = historial.Last().DameFASEde(i+1,j+1); // estará entre 1 y 0
-                        double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+                    for (int j = 0; j < x; j++)
+                    {
+
+                        double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                        double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                         if (fase == 1)
                         { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
@@ -308,40 +314,118 @@ namespace WpfApplication1
                         {
                          byte alpha = Convert.ToByte(255-Math.Round(fase * 10)*23); // truncamos los valores y en funcion de esto establecemos una alpha
 
-                        casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));  
+                            casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
                         }
                         
                         if (temperatura == -1)
                         { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
                         if ((temperatura != 0) && (temperatura  != -1))
                         {
+                        
+                        
+
                             byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23); 
 
                             casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                         }
 
-                       
 
+
+                    }
                 }
-            }
+            }//si esta vacio
 
+                matriz_celdas.MallaFutura(); // actualizamos
+                historial.Add(matriz_celdas.ClonarParaLISTA());
+
+                // volvemos a pintar los rectangulos
+                for (int i = 0; i < y; i++)
+                {
+                    for (int j = 0; j < x; j++)
+                    {
+
+
+                        double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                        double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+
+                        if (fase == 1)
+                        { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                        if (fase != 1)
+                        {
+                            byte alpha = Convert.ToByte((-255 + 60) * (fase - 1) + 60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                            casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
+                        }
+
+                        if (temperatura == -1)
+                        { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                        if (temperatura != -1)
+                        {
+                            byte alpha = Convert.ToByte((255 - 100) * (temperatura + 1) + 100); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                            casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
+                        }
+
+
+
+                    }
+                }
 
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            matriz_celdas.SetNormas(norm);
-            historial.Add(matriz_celdas);
-            historial.Last().MallaFutura(); // actualizamos
+
+            if (historial.Count < 1)
+            {
+                historial.Add(matriz_celdas.ClonarParaLISTA());
+                // volvemos a pintar los rectangulos
+                for (int i = 0; i < y; i++)
+                {
+                    for (int j = 0; j < x; j++)
+                    {
 
 
+                        double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                        double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+
+                        if (fase == 1)
+                        { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                        if (fase != 1)
+                        {
+                            byte alpha = Convert.ToByte((-255 + 60) * (fase - 1) + 60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                            casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
+                        }
+
+                        if (temperatura == -1)
+                        { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                        if (temperatura != -1)
+                        {
+                            byte alpha = Convert.ToByte((255 - 100) * (temperatura + 1) + 100); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                            casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
+                        }
+
+
+
+                    }
+                }
+            }//si esta vacio
+
+            matriz_celdas.MallaFutura(); // actualizamos
+            historial.Add(matriz_celdas.ClonarParaLISTA());
+            
             // volvemos a pintar los rectangulos
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
                 {
-                    double fase = historial.Last().DameFASEde(i + 1, j + 1); // estará entre 1 y 0
-                    double temperatura = historial.Last().DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+
+
+
+                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
                     if (fase == 1)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
@@ -367,7 +451,7 @@ namespace WpfApplication1
                 }
             }
         }
-        
+
         private void button2_Click(object sender, RoutedEventArgs e) // simulación automatica
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -397,7 +481,7 @@ namespace WpfApplication1
                     matriz_celdas.SetTemperaturaDeCelda(i, j, -1);
                     casillas[i, j].Fill = new SolidColorBrush(Colors.White);
                     casillas2[i, j].Fill = new SolidColorBrush(Colors.White);
-                    
+
                 }
             }
         }
@@ -413,28 +497,28 @@ namespace WpfApplication1
             norm.SetDelta(Convert.ToDouble(delta.Text));
             norm.SetM(Convert.ToDouble(M.Text));
             norm.SetDT(Convert.ToDouble(dt.Text));
-            
-            if (ParametrosA.IsChecked == true)
-            { 
 
-            norm.SetDxDy(0.005);
-            norm.SetEpsilon(0.005);
-            norm.SetBetta(400);
-            norm.SetDelta(0.5);
-            norm.SetM(20);
-            norm.SetDT(5*Math.Pow(10,-6));
-            
+            if (ParametrosA.IsChecked == true)
+            {
+
+                norm.SetDxDy(0.005);
+                norm.SetEpsilon(0.005);
+                norm.SetBetta(400);
+                norm.SetDelta(0.5);
+                norm.SetM(20);
+                norm.SetDT(5 * Math.Pow(10, -6));
+
             }
 
             if (ParametrosB.IsChecked == true)
-            { 
-            norm.SetDxDy(0.005);
-            norm.SetEpsilon(0.005);
-            norm.SetBetta(300);
-            norm.SetDelta(0.7);
-            norm.SetM(30);
-            norm.SetDT(5 * Math.Pow(10, -6));
-                      
+            {
+                norm.SetDxDy(0.005);
+                norm.SetEpsilon(0.005);
+                norm.SetBetta(300);
+                norm.SetDelta(0.7);
+                norm.SetM(30);
+                norm.SetDT(5 * Math.Pow(10, -6));
+
             }
 
             MessageBox.Show("Datos cargados");
@@ -486,9 +570,32 @@ namespace WpfApplication1
 
             matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             MessageBox.Show("Se han establecido las condiciones de contorno");
+            matriz_celdas.SetNormas(norm);
 
         }
 
+        private void MenuItem_Click_20(object sender, RoutedEventArgs e) // click en el primer graff
+        {
+            int contadorHISTORIAL = historial.Count;
+            List<double> listaFasexIteracion = new List<double>();
+            List<double> listaTEMPxIteracion = new List<double>();
+
+            for (int k = 0; k < contadorHISTORIAL; k++)
+            {
+                listaFasexIteracion.Add(historial[k].GetcantidadFase());
+                listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
+            }
+
+            graficosPage lc = new graficosPage();
+
+            lc.SetcontadorHIST(contadorHISTORIAL);
+            lc.SetListaFASExIteracion(listaFasexIteracion);
+            lc.SetListaTEMPxIteracion(listaTEMPxIteracion);
+            // hem de anar ageneradora
+
+            lc.ShowDialog();
+
+        }
         private void button7_Click(object sender, RoutedEventArgs e) // mostrar datos
         {
             grid1.Children.Clear();
@@ -503,14 +610,14 @@ namespace WpfApplication1
             bool visibleya = false;
             if (visibleya == false)
             {
-                for (int i = 0; i < y ; i++)
+                for (int i = 0; i < y; i++)
                 {
                     RowDefinition row = new RowDefinition();
                     grid1.RowDefinitions.Add(row);
                     RowDefinition row2 = new RowDefinition();
                     grid2.RowDefinitions.Add(row2);
                 }
-                for (int j = 0; j < x ; j++)
+                for (int j = 0; j < x; j++)
                 {
                     ColumnDefinition column = new ColumnDefinition();
                     grid1.ColumnDefinitions.Add(column);
@@ -518,22 +625,22 @@ namespace WpfApplication1
                     grid2.ColumnDefinitions.Add(column2);
                 }
 
-                visibleya=true;
+                visibleya = true;
             }
 
             if (visibleya == true)
             {
 
-                for (int i = 0; i < y ; i++)
+                for (int i = 0; i < y; i++)
                 {
                     for (int j = 0; j < x; j++)
                     {
                         TextBlock txt = new TextBlock();
                         txt.FontSize = 12;
                         txt.FontWeight = FontWeights.Bold;
-                        Decimal d = new Decimal ();
-                        d = Decimal.Round(Convert.ToDecimal(matriz_celdas.DameFASEde(i+1, j+1)),2);
-                       
+                        Decimal d = new Decimal();
+                        d = Decimal.Round(Convert.ToDecimal(matriz_celdas.DameFASEde(i + 1, j + 1)), 2);
+
                         txt.Text = d.ToString();
 
                         Grid.SetColumn(txt, j);
@@ -557,10 +664,11 @@ namespace WpfApplication1
                         grid2.Children.Add(txt2);
 
                     }
+
                 }
             }
-
         }
+
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -569,6 +677,54 @@ namespace WpfApplication1
             dispatcherTimer.Start();
 
         }
+
+        private void boton_retroceder_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                boton_retroceder.IsEnabled = true;
+                historial.RemoveAt(historial.Count - 1);
+                matriz_celdas.SetMatriz(historial.Last().GetMatriz());
+
+                for (int i = 0; i < y; i++)
+                {
+                    for (int j = 0; j < x; j++)
+                    {
+
+
+                        double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                        double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+
+                        if (fase == 1)
+                        { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                        if (fase != 1)
+                        {
+                            byte alpha = Convert.ToByte((-255 + 60) * (fase - 1) + 60); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                            casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
+                        }
+
+                        if (temperatura == -1)
+                        { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)); }
+                        if (temperatura != -1)
+                        {
+                            byte alpha = Convert.ToByte((255 - 100) * (temperatura + 1) + 100); // provamos para que se vea bien y establecemos 1 a 40 y 0 a 255, mirar de ajustar bien
+
+                            casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
+                        }
+
+
+                    }
+                }
+
+            }
+
+            catch
+            { MessageBox.Show("No es posible retroceder mas"); }
+        }//Boton retroceder
+
     }
+
 }
 

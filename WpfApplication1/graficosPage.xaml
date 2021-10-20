@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfApplication1.graficosPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        xmlns:oxyPlot="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="graficosPage" Height="450" Width="800">
+    <Grid>
+        <oxyPlot:PlotView x:Name="Grafica" >
+
+        </oxyPlot:PlotView>
+        <Button x:Name="BtnCalcularFASE" Content="Calcular FASE" HorizontalAlignment="Left" Margin="715,392,0,0" VerticalAlignment="Top" Width="69" Click="BtnCalcularFASE_Click" Height="18"/>
+        <Button x:Name="BtnCalcularTEMP" Content="Calcular TEMP" HorizontalAlignment="Left" Margin="0,392,0,0" VerticalAlignment="Top" Width="83" Click="BtnCalcularTEMP_Click" Height="18"/>
+
+    </Grid>
+</Window>
