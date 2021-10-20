@@ -85,6 +85,7 @@
             <Grid Canvas.Left="796" Canvas.Top="66" Height="153" Name="grid1" Width="298"></Grid>
             <Grid Height="153" Name="grid2" Width="298" Canvas.Left="796" Canvas.Top="254" />
         </Canvas>
+        <Button x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="575,128,0,0" IsEnabled="False" Click="boton_retroceder_Click"/>
     </Grid>
     
    
