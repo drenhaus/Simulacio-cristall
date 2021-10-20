@@ -14,11 +14,16 @@ namespace WpfApplication2
         int y=0; //numero de filas
 
 
+
+        double cantidadDeFASE; // es la media de la fase en una matriz
+        double cantidadDeTEMP; // es la media de la temperatura en una matriz
+
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
-
+        
         Normas norma1; //   MIRAR
 
+    
         public Celda[,] GetMatriz()
         {
             return this.matriz_malla;
@@ -38,7 +43,46 @@ namespace WpfApplication2
         { 
         this.norma1=n;
         }
-        
+
+        public void SetMatriz(Celda[,] matriz_MALLA)
+        {
+            this.matriz_malla = matriz_MALLA;
+        }
+
+        /*        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
+                {
+
+                    Malla A = new Malla();
+
+                    A.SetNumeroDeFilasYColumnas(X, Y);
+                    A.SetTemperaturaDeCelda(i, j, T);
+                    A.SetFaseDeCelda(i, j, F);
+                    return A;
+                }*/
+        public Malla ClonarParaLISTA()
+        {
+            Celda [,] matriz_malla_Clone_LISTA = new Celda[y, x];
+            for (int i = 0; i < y; i++)
+                for (int j = 0; j < x; j++)
+                {
+                    {
+                        Celda fill_clone = new Celda(); // rellenamos la matriz con celdas
+                        matriz_malla_Clone_LISTA[i, j] = fill_clone;
+                        matriz_malla_Clone_LISTA[i, j].SetFase(matriz_malla[i, j].GetFase());
+                        matriz_malla_Clone_LISTA[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
+
+                    }
+                }
+
+            Malla malla_para_guardar = new Malla();
+
+            malla_para_guardar.SetNumeroDeFilasYColumnas(getY()-2, getX()-2);
+            malla_para_guardar.SetNormas(norma1);
+            malla_para_guardar.SetMatriz(matriz_malla_Clone_LISTA);
+
+            return malla_para_guardar;
+        }
+
         public void ClonarMatrix()
         {
             matriz_malla_Clone=new Celda[y,x];
@@ -127,12 +171,12 @@ namespace WpfApplication2
         }
 
 
-
         public void SetFaseDeCelda(int fila, int columna, double fase)
         {
 
             matriz_malla[fila, columna].SetFase(fase);
         }
+
         public void SetTemperaturaDeCelda(int fila, int columna, double T)
         {
 
@@ -160,6 +204,47 @@ namespace WpfApplication2
         public double DameTEMPERATURAdeClon(int posFILAS, int posCOLUMNAS)
         {
             return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetTemperatura());
+        }
+
+
+        public double GetcantidadFase()
+        {
+            cantidadDeFASE = 0;
+            int celdasrecorridas = 0;
+            for (int i = 1; i < y-1; i++)
+            {
+                for (int j = 1; j < x-1; j++)
+                {
+                    cantidadDeFASE = cantidadDeFASE + matriz_malla[i, j].GetFase();
+                    celdasrecorridas ++;
+
+                }
+            }
+            cantidadDeFASE = cantidadDeFASE / celdasrecorridas; // asi normalizamos la cantidad de celdas
+
+            return cantidadDeFASE;
+
+
+        }
+
+        public double GetcantidadTEMP()
+        {
+            cantidadDeTEMP = 0;
+            int celdasrecorridas = 0;
+            for (int i = 1; i < y - 1; i++)
+            {
+                for (int j = 1; j < x - 1; j++)
+                {
+                    cantidadDeTEMP = cantidadDeTEMP + matriz_malla[i, j].GetTemperatura();
+                    celdasrecorridas++;
+
+                }
+            }
+            cantidadDeTEMP = cantidadDeTEMP / celdasrecorridas; // asi normalizamos la cantidad de celdas
+
+            return cantidadDeTEMP;
+
+
         }
 
 

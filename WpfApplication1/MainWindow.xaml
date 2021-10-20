@@ -23,6 +23,10 @@
                     </MenuItem>
 
                 </MenuItem>
+                <MenuItem Header="Crear Graficas" Height=" 50" Width="143" Click="MenuItem_Click_20">
+
+                </MenuItem>
+
             </Menu>
             <TextBox AcceptsReturn="True" />
 
@@ -85,6 +89,7 @@
             <Label Content="2s" Canvas.Left="373" Canvas.Top="114" Height="28" Width="25"/>
             <Label Content="0.02s" Canvas.Left="243" Canvas.Top="114" Height="28" Width="38"/>
         </Canvas>
+        <Button x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="425,195,0,0" Click="boton_retroceder_Click" IsEnabled="False"/>
     </Grid>
 
 
