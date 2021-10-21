@@ -86,6 +86,24 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA());
         }
 
+        private void rectangle_MouseEnter(object sender, EventArgs e)
+        {
+            Rectangle a = (Rectangle)sender;
+            Point p = (Point)a.Tag;
+            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+
+
+        }
+        private void rectangle_MouseEnter2(object sender, EventArgs e)
+        {
+            Rectangle a = (Rectangle)sender;
+            Point p = (Point)a.Tag;
+            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+
+        }
+
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
             
@@ -155,6 +173,7 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                    b.MouseEnter += new System.Windows.Input.MouseEventHandler(rectangle_MouseEnter);
 
                     casillas[i, j] = b;
                 }
@@ -190,6 +209,9 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                    b.MouseEnter += new System.Windows.Input.MouseEventHandler (rectangle_MouseEnter2);
+                    
+                    
 
                     casillas2[i, j] = b;
                 }
@@ -559,20 +581,19 @@ namespace WpfApplication1
 
         private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
         {
-            button1.IsEnabled = true;
-            button2.IsEnabled = true;
-            button4.IsEnabled = true;
-            button5.IsEnabled = true;
-            botonCARGAR.IsEnabled = true;
-            slider1.IsEnabled = true;
-            boton_retroceder.IsEnabled = true;
-            
+                button1.IsEnabled = true;
+                button2.IsEnabled = true;
+                button4.IsEnabled = true;
+                button5.IsEnabled = true;
+                botonCARGAR.IsEnabled = true;
+                slider1.IsEnabled = true;
+                boton_retroceder.IsEnabled = true;
 
 
-            matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
-            MessageBox.Show("Se han establecido las condiciones de contorno");
-            matriz_celdas.SetNormas(norm);
 
+                matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+                MessageBox.Show("Se han establecido las condiciones de contorno");
+                matriz_celdas.SetNormas(norm);
         }
 
         private void MenuItem_Click_20(object sender, RoutedEventArgs e) // click en el primer graff
@@ -597,80 +618,6 @@ namespace WpfApplication1
             lc.ShowDialog();
 
         }
-        private void button7_Click(object sender, RoutedEventArgs e) // mostrar datos
-        {
-            grid1.Children.Clear();
-            grid1.ColumnDefinitions.Clear();
-            grid1.RowDefinitions.Clear();
-
-            grid2.Children.Clear();
-            grid2.ColumnDefinitions.Clear();
-            grid2.RowDefinitions.Clear();
-
-
-            bool visibleya = false;
-            if (visibleya == false)
-            {
-                for (int i = 0; i < y; i++)
-                {
-                    RowDefinition row = new RowDefinition();
-                    grid1.RowDefinitions.Add(row);
-                    RowDefinition row2 = new RowDefinition();
-                    grid2.RowDefinitions.Add(row2);
-                }
-                for (int j = 0; j < x; j++)
-                {
-                    ColumnDefinition column = new ColumnDefinition();
-                    grid1.ColumnDefinitions.Add(column);
-                    ColumnDefinition column2 = new ColumnDefinition();
-                    grid2.ColumnDefinitions.Add(column2);
-                }
-
-                visibleya = true;
-            }
-
-            if (visibleya == true)
-            {
-
-                for (int i = 0; i < y; i++)
-                {
-                    for (int j = 0; j < x; j++)
-                    {
-                        TextBlock txt = new TextBlock();
-                        txt.FontSize = 12;
-                        txt.FontWeight = FontWeights.Bold;
-                        Decimal d = new Decimal();
-                        d = Decimal.Round(Convert.ToDecimal(matriz_celdas.DameFASEde(i + 1, j + 1)), 2);
-
-                        txt.Text = d.ToString();
-
-                        Grid.SetColumn(txt, j);
-                        Grid.SetRow(txt, i);
-                        Grid.SetColumnSpan(txt, 40);
-
-                        grid1.Children.Add(txt);
-
-                        TextBlock txt2 = new TextBlock();
-                        txt2.FontSize = 12;
-                        txt2.FontWeight = FontWeights.Bold;
-                        Decimal d2 = new Decimal();
-                        d2 = Decimal.Round(Convert.ToDecimal(matriz_celdas.DameTEMPERATURAde(i + 1, j + 1)), 2);
-
-                        txt2.Text = d2.ToString();
-
-                        Grid.SetColumn(txt2, j);
-                        Grid.SetRow(txt2, i);
-                        Grid.SetColumnSpan(txt2, 40);
-
-                        grid2.Children.Add(txt2);
-
-                    }
-
-                }
-            }
-        }
-
-
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             dispatcherTimer.Stop();
