@@ -313,17 +313,40 @@ namespace WpfApplication2
                 return -1;
             }
         }
-        
 
 
+        public Malla CargarSimulacion(string name)
+        {
+            Malla matriz_celdas = new Malla();
+
+            StreamReader sr = new StreamReader(name);
+            string linea = sr.ReadLine();
+            string[] trozos = linea.Split(' ');
+            matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0]) - 2, Convert.ToInt32(trozos[1]) - 2);
+
+
+            string line = sr.ReadLine();
+            int i = 0;
+            while (line != null)
+            {
+                string[] traces = line.Split(' ');
+                for (int j = 0; j < traces.Length - 1; j++)
+                {
+                    string[] data = traces[j].Split('&');
+                    matriz_celdas.SetFaseDeCelda(i, j, Convert.ToDouble(data[0]));
+                    matriz_celdas.SetTemperaturaDeCelda(i, j, Convert.ToDouble(data[1]));
+                }
+                line = sr.ReadLine();
+
+                i++;
+            }
+            sr.Close();
+            return matriz_celdas;
+        }
     
     }
 
 }
 
-    
-    }
-
-}
 
     

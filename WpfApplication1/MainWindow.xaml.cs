@@ -201,95 +201,117 @@ namespace WpfApplication1
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
         {
 
-        //    try
-        //    {
-        //        canvas1.Children.Clear();
-        //        OpenFileDialog ofd = new OpenFileDialog();
-        //        ofd.Multiselect = true;
-        //        ofd.Filter = "Text documents (.txt)|*.txt";
-        //        Nullable<bool> result = ofd.ShowDialog();
+            try
+            {
+                canvas1.Children.Clear();
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Multiselect = true;
+                ofd.Filter = "Text documents (.txt)|*.txt";
+                Nullable<bool> result = ofd.ShowDialog();
 
-        //        if (result == true)
-        //        {
-        //            // Cargar documento
-        //            string filename = ofd.FileName;
-        //            Malla matriz = matriz_celdas.CargarSimulacion(filename);
-        //            matriz_celdas = matriz;
-        //            x = matriz_celdas.getX()-2;
-        //            y = matriz_celdas.getY()-2;
+                if (result == true)
+                {
+                    // Cargar documento
+                    string filename = ofd.FileName;
+                    Malla matriz = matriz_celdas.CargarSimulacion(filename);
+                    matriz_celdas = matriz;
+                    x = matriz_celdas.getX() - 2;
+                    y = matriz_celdas.getY() - 2;
 
-        //            generarMallaEnCARGA();
+                    generarMallaEnCARGA();
 
-        //            MessageBox.Show("Fichero cargado con éxito!");
+                    MessageBox.Show("Fichero cargado con éxito!");
 
-        //            button1.IsEnabled = true;
-        //            button2.IsEnabled = true;
-        //            button4.IsEnabled = true;
-        //            button5.IsEnabled = true;
-        //            botonCARGAR.IsEnabled = true;
-
-
+                    button1.IsEnabled = true;
+                    button2.IsEnabled = true;
+                    button4.IsEnabled = true;
+                    button5.IsEnabled = true;
+                    botonCARGAR.IsEnabled = true;
 
 
-        //        }
-        //        else
-        //        { MessageBox.Show("No ha sido posible cargar la simulación"); }
-        //    }
 
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
+
+                }
+                else
+                { MessageBox.Show("No ha sido posible cargar la simulación"); }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
 
-        //private void generarMallaEnCARGA()
-        //{
-        //    casillas = new Rectangle[y, x];
+        private void generarMallaEnCARGA()
+        {
+            casillas = new Rectangle[y, x];
 
-        //    canvas1.Height = y * 15;
-        //    canvas1.Width = x * 15;
+            canvas1.Height = y * 15;
+            canvas1.Width = x * 15;
 
 
-        //    // Bucle para crear los rectangulos
-        //    for (int i = 0; i < y; i++)
-        //    {
-        //        for (int j = 0; j < x; j++)
-        //        {
-        //            Rectangle b = new Rectangle();
-        //            b.Width = 15;
-        //            b.Height = 15;
-        //            b.Fill = new SolidColorBrush(Colors.Gray);
-        //            b.StrokeThickness = 0.5;
-        //            b.Stroke = Brushes.Black;
-        //            canvas1.Children.Add(b);
+            // Bucle para crear los rectangulos
+            for (int i = 0; i < y; i++)
+            {
+                for (int j = 0; j < x; j++)
+                {
+                    Rectangle b = new Rectangle();
+                    b.Width = 15;
+                    b.Height = 15;
+                    b.Fill = new SolidColorBrush(Colors.White);
+                    b.StrokeThickness = 0.5;
+                    b.Stroke = Brushes.Black;
+                    canvas1.Children.Add(b);
 
-        //            // Posicion del cuadrado
-        //            Canvas.SetTop(b, (i - 1) * 15);
-        //            Canvas.SetLeft(b, (j - 1) * 15);
-        //            b.Tag = new Point(j, i);
+                    // Posicion del cuadrado
+                    Canvas.SetTop(b, (i - 1) * 15);
+                    Canvas.SetLeft(b, (j - 1) * 15);
+                    b.Tag = new Point(j, i);
 
-        //            b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                    b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
 
-        //            casillas[i, j] = b;
-        //        }
-        //    }
+                    casillas[i, j] = b;
+                }
+            }
 
-        //    for (int i = 0; i < y; i++)
-        //    {
-        //        for (int j = 0; j < x; j++)
-        //        {
+            for (int i = 0; i < y; i++)
+            {
+                for (int j = 0; j < x; j++)
+                {
 
-        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == false)
-        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == true)
-        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
+                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
 
-        //        }
-        //    }
-            
-        //} // hay que modificar para que se cargen las dos
+                    if (fase == 1)
+                    { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+
+                    if ((fase != 0) && (fase != 1))
+                    {
+                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); // truncamos los valores y en funcion de esto establecemos una alpha
+
+                        casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
+                    }
+
+                    if (temperatura == -1)
+                    { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    if ((temperatura != 0) && (temperatura != -1))
+                    {
+
+
+
+                        byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23);
+
+                        casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
+                    }
+
+
+
+                }
+            }
+
+        }
 
 
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
