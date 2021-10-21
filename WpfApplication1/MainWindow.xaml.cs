@@ -464,6 +464,7 @@ namespace WpfApplication1
         private void button4_Click(object sender, RoutedEventArgs e) // stop
         {
             dispatcherTimer.Stop();
+            MessageBox.Show("Se ha detenido la simulación");
         }
 
         private void button5_Click(object sender, RoutedEventArgs e) //restart
@@ -567,20 +568,25 @@ namespace WpfApplication1
 
         private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
         {
-            button1.IsEnabled = true;
-            button2.IsEnabled = true;
-            button4.IsEnabled = true;
-            button5.IsEnabled = true;
-            botonCARGAR.IsEnabled = true;
-            slider1.IsEnabled = true;
-            boton_retroceder.IsEnabled = true;
-            
 
+            if (comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Porfavor, seleciona una de las opciones del desplegable"); 
+            }
+            else { 
+                matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+                MessageBox.Show("Se han establecido las condiciones de contorno");
+                matriz_celdas.SetNormas(norm);
 
-            matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
-            MessageBox.Show("Se han establecido las condiciones de contorno");
-            matriz_celdas.SetNormas(norm);
-
+                button1.IsEnabled = true;
+                button2.IsEnabled = true;
+                button4.IsEnabled = true;
+                button5.IsEnabled = true;
+                botonCARGAR.IsEnabled = true;
+                slider1.IsEnabled = true;
+                boton_retroceder.IsEnabled = true;
+                }
+          
         }
 
         private void MenuItem_Click_20(object sender, RoutedEventArgs e) // click en el primer graff
