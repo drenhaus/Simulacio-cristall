@@ -488,40 +488,48 @@ namespace WpfApplication1
 
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
-            comboBox1.IsEnabled = true;
-            button6.IsEnabled = true;
+            
 
-            norm.SetDxDy(Convert.ToDouble(dxdy.Text));
-            norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
-            norm.SetBetta(Convert.ToDouble(betta.Text));
-            norm.SetDelta(Convert.ToDouble(delta.Text));
-            norm.SetM(Convert.ToDouble(M.Text));
-            norm.SetDT(Convert.ToDouble(dt.Text));
-
-            if (ParametrosA.IsChecked == true)
+            try
             {
 
-                norm.SetDxDy(0.005);
-                norm.SetEpsilon(0.005);
-                norm.SetBetta(400);
-                norm.SetDelta(0.5);
-                norm.SetM(20);
-                norm.SetDT(5 * Math.Pow(10, -6));
+                norm.SetDxDy(Convert.ToDouble(dxdy.Text));
+                norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
+                norm.SetBetta(Convert.ToDouble(betta.Text));
+                norm.SetDelta(Convert.ToDouble(delta.Text));
+                norm.SetM(Convert.ToDouble(M.Text));
+                norm.SetDT(Convert.ToDouble(dt.Text));
 
+                if (ParametrosA.IsChecked == true)
+                {
+
+                    norm.SetDxDy(0.005);
+                    norm.SetEpsilon(0.005);
+                    norm.SetBetta(400);
+                    norm.SetDelta(0.5);
+                    norm.SetM(20);
+                    norm.SetDT(5 * Math.Pow(10, -6));
+
+                }
+
+                if (ParametrosB.IsChecked == true)
+                {
+                    norm.SetDxDy(0.005);
+                    norm.SetEpsilon(0.005);
+                    norm.SetBetta(300);
+                    norm.SetDelta(0.7);
+                    norm.SetM(30);
+                    norm.SetDT(5 * Math.Pow(10, -6));
+
+                }
+
+                comboBox1.IsEnabled = true;
+                button6.IsEnabled = true;
+
+                MessageBox.Show("Datos cargados");
             }
-
-            if (ParametrosB.IsChecked == true)
-            {
-                norm.SetDxDy(0.005);
-                norm.SetEpsilon(0.005);
-                norm.SetBetta(300);
-                norm.SetDelta(0.7);
-                norm.SetM(30);
-                norm.SetDT(5 * Math.Pow(10, -6));
-
-            }
-
-            MessageBox.Show("Datos cargados");
+            
+            catch { MessageBox.Show("Error en los parametros"); }
         }
 
         private void ParametrosB_Checked(object sender, RoutedEventArgs e)
