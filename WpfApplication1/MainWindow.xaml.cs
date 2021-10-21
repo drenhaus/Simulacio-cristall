@@ -91,13 +91,16 @@ namespace WpfApplication1
             Rectangle a = (Rectangle)sender;
             Point p = (Point)a.Tag;
             labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
-            
+            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+
+
         }
         private void rectangle_MouseEnter2(object sender, EventArgs e)
         {
             Rectangle a = (Rectangle)sender;
             Point p = (Point)a.Tag;
             labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
 
         }
 
@@ -206,7 +209,6 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-
                     b.MouseEnter += new System.Windows.Input.MouseEventHandler (rectangle_MouseEnter2);
                     
                     
@@ -579,20 +581,19 @@ namespace WpfApplication1
 
         private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
         {
-            button1.IsEnabled = true;
-            button2.IsEnabled = true;
-            button4.IsEnabled = true;
-            button5.IsEnabled = true;
-            botonCARGAR.IsEnabled = true;
-            slider1.IsEnabled = true;
-            boton_retroceder.IsEnabled = true;
-            
+                button1.IsEnabled = true;
+                button2.IsEnabled = true;
+                button4.IsEnabled = true;
+                button5.IsEnabled = true;
+                botonCARGAR.IsEnabled = true;
+                slider1.IsEnabled = true;
+                boton_retroceder.IsEnabled = true;
 
 
-            matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
-            MessageBox.Show("Se han establecido las condiciones de contorno");
-            matriz_celdas.SetNormas(norm);
 
+                matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+                MessageBox.Show("Se han establecido las condiciones de contorno");
+                matriz_celdas.SetNormas(norm);
         }
 
         private void MenuItem_Click_20(object sender, RoutedEventArgs e) // click en el primer graff
