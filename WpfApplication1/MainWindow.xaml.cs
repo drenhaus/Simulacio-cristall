@@ -86,6 +86,21 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA());
         }
 
+        private void rectangle_MouseEnter(object sender, EventArgs e)
+        {
+            Rectangle a = (Rectangle)sender;
+            Point p = (Point)a.Tag;
+            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+            
+        }
+        private void rectangle_MouseEnter2(object sender, EventArgs e)
+        {
+            Rectangle a = (Rectangle)sender;
+            Point p = (Point)a.Tag;
+            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+
+        }
+
         private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
         {
             
@@ -155,6 +170,7 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+                    b.MouseEnter += new System.Windows.Input.MouseEventHandler(rectangle_MouseEnter);
 
                     casillas[i, j] = b;
                 }
@@ -190,6 +206,10 @@ namespace WpfApplication1
                     b.Tag = new Point(j, i);
 
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
+
+                    b.MouseEnter += new System.Windows.Input.MouseEventHandler (rectangle_MouseEnter2);
+                    
+                    
 
                     casillas2[i, j] = b;
                 }
@@ -669,7 +689,6 @@ namespace WpfApplication1
                 }
             }
         }
-
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

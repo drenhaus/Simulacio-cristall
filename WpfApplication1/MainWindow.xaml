@@ -88,6 +88,8 @@
             <Label Content="1s" Canvas.Left="314" Canvas.Top="114" Height="28" Width="25"/>
             <Label Content="2s" Canvas.Left="373" Canvas.Top="114" Height="28" Width="25"/>
             <Label Content="0.02s" Canvas.Left="243" Canvas.Top="114" Height="28" Width="38"/>
+            <TextBox Canvas.Left="266" Canvas.Top="244" Height="23" x:Name="labelFase" Width="73" IsEnabled="False"  />
+            <TextBox Canvas.Left="266" Canvas.Top="288" Height="23" x:Name="labelTemperatura" Width="73" IsEnabled="False"  />
         </Canvas>
         <Button x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="425,195,0,0" Click="boton_retroceder_Click" IsEnabled="False"/>
     </Grid>
