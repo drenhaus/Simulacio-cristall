@@ -286,98 +286,40 @@ namespace WpfApplication2
 
         }
 
-        //public int GuardarSimulacion(string nombre)
-        //{
-        //    try
-        //    {
-        //        StreamWriter w = new StreamWriter(nombre);
-        //        for (int j = 0; j < y; j++)
-        //        {
-        //            for (int i = 0; i < x; i++)
-        //            {
+        public int GuardarSimulacion(string nombre)
+        {
+            try
+            {
+                StreamWriter w = new StreamWriter(nombre);
 
-        //                if (i == x - 1)
-        //                {
-        //                    if (DameElEstadoDe(j, i) == true)
-        //                    {
-        //                        w.Write(1);
-        //                    }
-        //                    else
-        //                    {
-        //                        w.Write(0);
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    if (DameElEstadoDe(j, i) == true)
-        //                    {
-        //                        w.Write(1 + " ");
-        //                    }
-        //                    else
-        //                    {
-        //                        w.Write(0 + " ");
-        //                    }
-        //                }
+                w.Write(this.y + " " + this.x);
+                w.Write('\n');
 
+                for (int j = 0; j < y; j++)
+                {
+                    for (int i = 0; i < x; i++)
+                    {
+                        w.Write(this.DameFASEde(j, i) + "&" + this.DameTEMPERATURAde(j, i) + " ");
+                    }
 
-        //            }
-        //            if (j == y - 1)
-        //            { }
-        //            else
-        //            {
-        //                w.Write('\n');
-        //            }
+                    w.Write('\n');
 
-        //        }
-        //        w.Close();
-        //        return 0;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return -1;
-        //    }
-
-        //}
+                }
+                w.Close();
+                return 0;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
         
-        //public Malla CargarSimulacion(string name)
-        //{
-        //    Malla matriz_celdas = new Malla();
 
-        //    StreamReader sr = new StreamReader(name);
-        //    int i = 0;
-        //    string linea = sr.ReadLine();
-        //    string[] trozos = linea.Split(' ');
-        //    while (linea != null)
-        //    {
-        //        i++;
-        //        linea = sr.ReadLine();
-        //    }
-        //    sr.Close();
 
-        //    matriz_celdas.SetNumeroDeFilasYColumnas(i-2, trozos.Length-2);
+    
+    }
 
-        //    StreamReader f = new StreamReader(name);
-            
-        //    string line = f.ReadLine();    // 1 0
-        //    int h = 0;                     // 0 1
-        //    while (line != null)
-        //    {
-                
-        //        string[] traces = line.Split(' ');
-        //        for (int j = 0; j < traces.Length; j++)
-        //        {
-        //            if (Convert.ToInt32(traces[j]) == 0)
-        //            { matriz_celdas.SetVidaDeCelda(h, j, false); }
-        //            else
-        //            { matriz_celdas.SetVidaDeCelda(h, j, true); }
-        //        }
-        //        line = f.ReadLine();
-
-        //     h++;
-        //    }
-        //    f.Close();
-        //    return matriz_celdas;
-        //}
+}
 
     
     }
