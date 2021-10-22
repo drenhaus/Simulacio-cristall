@@ -565,24 +565,21 @@ namespace WpfApplication1
 
         }
 
+        // BOTON RETROCEDER
+            //cada vez que le damos al boton retroceder eliminamos un elemento del historial, actualizamos
+            // la matriz con la que estamos trabajando y la volvemos a pintar
         private void boton_retroceder_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
-                boton_retroceder.IsEnabled = true;
-                historial.RemoveAt(historial.Count() - 1);
-                
-                matriz_celdas.SetMatriz(historial.Last().ClonarParaLISTA().GetMatriz());
-
-                volverApintar();
+                historial.RemoveAt(historial.Count() - 1); // eliminamos
+                matriz_celdas.SetMatriz(historial.Last().ClonarParaLISTA().GetMatriz()); // actualizamos
+                volverApintar(); // volvemos a pintar
             }
 
-            catch
+            catch // cuando llegamos al principio de la simulación y no podemos retroceder más nos salta un error
             { MessageBox.Show("No es posible retroceder mas"); }
-        }//Boton retroceder
-
+        }
     }
-
 }
 
