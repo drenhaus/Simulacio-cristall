@@ -113,14 +113,25 @@ namespace WpfApplication1
             //Una vez hemos definido las columnas y filas manualmente, clicamos al boton de crear y generamos el grid de rectangulos
         private void button3_Click(object sender, RoutedEventArgs e) 
         {
-            
+            // Nos aseguramos antes de generar la matriz que no haya otra matriz ya establecida. Para ello eliminamos lo que tengamos
+            // en los canvas 1 y 2 para evitar problemas de generar mallas encima de otras mallas
+            canvas1.Children.Clear();
+            canvas2.Children.Clear();
+
+            // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
+            // para poder realizar la simulación
+            betta.IsEnabled = true;
+            dxdy.IsEnabled = true;
+            epsilon.IsEnabled = true;
+            delta.IsEnabled = true;
+            M.IsEnabled = true;
+            dt.IsEnabled = true;
+            ParametrosA.IsEnabled = true;
+            ParametrosB.IsEnabled = true;
+            Parametros.IsEnabled = true;
+
             try
             {
-                // Nos aseguramos antes de generar la matriz que no haya otra matriz ya establecida. Para ello eliminamos lo que tengamos
-                // en los canvas 1 y 2 para evitar problemas de generar mallas encima de otras mallas
-                canvas1.Children.Clear();
-                canvas2.Children.Clear();
-
                 x = Convert.ToInt32(TextBoxX.Text); // Guardamos el numero de columnas introducidas en la variable x
                 y = Convert.ToInt32(TextBoxY.Text); // Guardamos el numero de filas introducidas en la variable y
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);  // definimos la matriz llamando la función de la clase Malla
@@ -135,19 +146,6 @@ namespace WpfApplication1
                     MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
                 }
-
-                // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
-                // para poder realizar la simulación
-                betta.IsEnabled = true;
-                dxdy.IsEnabled = true;
-                epsilon.IsEnabled = true;
-                delta.IsEnabled = true;
-                M.IsEnabled = true;
-                dt.IsEnabled = true;
-                ParametrosA.IsEnabled = true;
-                ParametrosB.IsEnabled = true;
-                Parametros.IsEnabled = true;
-
             }
             catch
             {
@@ -161,11 +159,11 @@ namespace WpfApplication1
             }
 
             // Llamamos a la funcion que nos crea los rectángulos de las matrizes
-            generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
-            generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
+            this.casillas=generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
+            this.casillas2=generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
         }
 
-        private void generarMalla1(Rectangle[,] c, Canvas ca)
+        private Rectangle[,] generarMalla1(Rectangle[,] c, Canvas ca)
         {
             // establecemos las dimensiones de la matriz de las casillas y las alturas en el canvas
             c = new Rectangle[y, x]; 
@@ -198,6 +196,7 @@ namespace WpfApplication1
                     c[i, j] = b; // guardamos el rectangulo en su posición i,j de la matriz de casillas
                 }
             }
+            return c;
         }
 
      
