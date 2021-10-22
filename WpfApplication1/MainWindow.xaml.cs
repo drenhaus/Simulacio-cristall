@@ -94,141 +94,113 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA()); // Cada nuevo clic es añadido al historial por si quisieramos retroceder a algún estado anterior donde no se ha clicado una casilla 
         }
 
-
+        // CUANDO PASAMOS EL RATÓN POR ENCIMA DE UNA CASILLA
+            // para esta función se han generado dos labels en los que se iran mostrando las fases y la temperatura de la celda en la que 
+            //tengamos el raton encima
         private void rectangle_MouseEnter(object sender, EventArgs e)
         {
             Rectangle a = (Rectangle)sender;
-            Point p = (Point)a.Tag;
-            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
-            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+            Point p = (Point)a.Tag; // obtenemos el punto donde esta el ratón
 
+            // escribimos en las labels el valor de la fase y de la temperatura, teniendo en cuenta que en la matriz seran los puntos x+1,y+1
 
+            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de fase
+            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de temperatura
         }
-        private void rectangle_MouseEnter2(object sender, EventArgs e)
-        {
-            Rectangle a = (Rectangle)sender;
-            Point p = (Point)a.Tag;
-            labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
-            labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1));
+     
 
-        }
-
-        private void button3_Click(object sender, RoutedEventArgs e) // crear rejilla
+        // CREAMOS LA MATRIZ/REJILLA AL CLICAR AL BOTON DE CREAR
+            //Una vez hemos definido las columnas y filas manualmente, clicamos al boton de crear y generamos el grid de rectangulos
+        private void button3_Click(object sender, RoutedEventArgs e) 
         {
             
-            betta.IsEnabled = true;
-            dxdy.IsEnabled = true;
-            epsilon.IsEnabled = true;
-            delta.IsEnabled = true;
-            M.IsEnabled = true;
-            dt.IsEnabled = true;
-            ParametrosA.IsEnabled = true;
-            ParametrosB.IsEnabled = true;
-            Parametros.IsEnabled = true;
-
-
-            canvas1.Children.Clear();
-            canvas2.Children.Clear();
-
             try
             {
-                x = Convert.ToInt32(TextBoxX.Text);
-                y = Convert.ToInt32(TextBoxY.Text);
-                matriz_celdas.SetNumeroDeFilasYColumnas(y, x);  // es crea matriu i somple de cell
+                // Nos aseguramos antes de generar la matriz que no haya otra matriz ya establecida. Para ello eliminamos lo que tengamos
+                // en los canvas 1 y 2 para evitar problemas de generar mallas encima de otras mallas
+                canvas1.Children.Clear();
+                canvas2.Children.Clear();
+
+                x = Convert.ToInt32(TextBoxX.Text); // Guardamos el numero de columnas introducidas en la variable x
+                y = Convert.ToInt32(TextBoxY.Text); // Guardamos el numero de filas introducidas en la variable y
+                matriz_celdas.SetNumeroDeFilasYColumnas(y, x);  // definimos la matriz llamando la función de la clase Malla
+               
+                // Generamos la excepción de que cuando se haya introducido un numero menor o igual a 0 el programa de el aviso
+                // pero igualmente nos genere una matriz 'defecto' de 10x10 para poder simular si el usuario no lo cambia
                 if ((x <= 0) || (y <= 0))
                 {
                     x = 10;
                     y = 10;
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+                    MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
+                        "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
                 }
+
+                // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
+                // para poder realizar la simulación
+                betta.IsEnabled = true;
+                dxdy.IsEnabled = true;
+                epsilon.IsEnabled = true;
+                delta.IsEnabled = true;
+                M.IsEnabled = true;
+                dt.IsEnabled = true;
+                ParametrosA.IsEnabled = true;
+                ParametrosB.IsEnabled = true;
+                Parametros.IsEnabled = true;
 
             }
             catch
             {
+                // Generamos excepción con datos incorrectos, como seria una letra. Generamos igualmente la matriz defecto 
+                // y avisamos del problema
                 x = 10;
                 y = 10;
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+                MessageBox.Show("Error en la introducción de los valores. Por favor, vuelva " +
+                        "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
             }
 
-            generarMalla1();
-            generarMalla2();
-
+            // Llamamos a la funcion que nos crea los rectángulos de las matrizes
+            generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
+            generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
         }
 
-        private void generarMalla1()
+        private void generarMalla1(Rectangle[,] c, Canvas ca)
         {
-            casillas = new Rectangle[y, x];
-
-            canvas1.Height = y * 15;
-            canvas1.Width = x * 15;
-
+            // establecemos las dimensiones de la matriz de las casillas y las alturas en el canvas
+            c = new Rectangle[y, x]; 
+            ca.Height = y * 15;
+            ca.Width = x * 15; 
 
             // Bucle para crear los rectangulos
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
                 {
+                    // creamos un nuevo rectangulo y definimos sus propiedades
                     Rectangle b = new Rectangle();
                     b.Width = 15;
                     b.Height = 15;
                     b.Fill = new SolidColorBrush(Colors.White);
                     b.StrokeThickness = 0.5;
                     b.Stroke = Brushes.Black;
-                    canvas1.Children.Add(b);
+                    ca.Children.Add(b);// añadimos el rectangulo al canvas
 
-                    // Posicion del cuadrado
+                    // Posición del cuadrado
                     Canvas.SetTop(b, (i - 1) * 15);
                     Canvas.SetLeft(b, (j - 1) * 15);
                     b.Tag = new Point(j, i);
 
+                    // definimos los eventos que tiene el rectangulo: clicar y pasar por encima
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
                     b.MouseEnter += new System.Windows.Input.MouseEventHandler(rectangle_MouseEnter);
-
-                    casillas[i, j] = b;
+                    
+                    c[i, j] = b; // guardamos el rectangulo en su posición i,j de la matriz de casillas
                 }
             }
-
-
         }
 
-        private void generarMalla2()
-        {
-            casillas2 = new Rectangle[y, x];
-
-            canvas2.Height = y * 15;
-            canvas2.Width = x * 15;
-
-
-            // Bucle para crear los rectangulos
-            for (int i = 0; i < y; i++)
-            {
-                for (int j = 0; j < x; j++)
-                {
-                    Rectangle b = new Rectangle();
-                    b.Width = 15;
-                    b.Height = 15;
-                    b.Fill = new SolidColorBrush(Colors.White);
-                    b.StrokeThickness = 0.5;
-                    b.Stroke = Brushes.Black;
-                    canvas2.Children.Add(b);
-
-                    // Posicion del cuadrado
-                    Canvas.SetTop(b, (i - 1) * 15);
-                    Canvas.SetLeft(b, (j - 1) * 15);
-                    b.Tag = new Point(j, i);
-
-                    b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-                    b.MouseEnter += new System.Windows.Input.MouseEventHandler (rectangle_MouseEnter2);
-                    
-                    
-
-                    casillas2[i, j] = b;
-                }
-            }
-
-
-        }
-
+     
         private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
         {
 
