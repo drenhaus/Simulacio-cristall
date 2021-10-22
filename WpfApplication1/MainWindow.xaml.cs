@@ -45,28 +45,28 @@ namespace WpfApplication1
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) // guardar fichero
         {
 
-        //    // Configure save file dialog box
-        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-        //    dlg.FileName = "Simulación"; // Default file name
-        //    dlg.DefaultExt = ".txt"; // Default file extension
-        //    dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Simulación"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
 
-        //    // Show save file dialog box
-        //    Nullable<bool> result = dlg.ShowDialog();
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
 
-        //    // Process save file dialog box results
-        //    if (result == true)
-        //    {
-        //        // Save document
-        //        string filename = dlg.FileName;
-        //        int n = matriz_celdas.GuardarSimulacion(filename);
-        //        if (n == 0)
-        //        { MessageBox.Show("Simulación guardada correctamente!"); }
-        //        else
-        //        { MessageBox.Show("No ha sido posible guardar la simulación"); }
-        //    }
-        //    else
-        //    { MessageBox.Show("No ha sido posible guardar la simulación"); }
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string filename = dlg.FileName;
+                int n = matriz_celdas.GuardarSimulacion(filename);
+                if (n == 0)
+                { MessageBox.Show("Simulación guardada correctamente!"); }
+                else
+                { MessageBox.Show("No ha sido posible guardar la simulación"); }
+            }
+            else
+            { MessageBox.Show("No ha sido posible guardar la simulación"); }
 
 
 
@@ -204,6 +204,7 @@ namespace WpfApplication1
             try
             {
                 canvas1.Children.Clear();
+                canvas2.Children.Clear();
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Multiselect = true;
                 ofd.Filter = "Text documents (.txt)|*.txt";
@@ -218,7 +219,43 @@ namespace WpfApplication1
                     x = matriz_celdas.getX() - 2;
                     y = matriz_celdas.getY() - 2;
 
-                    generarMallaEnCARGA();
+                    generarMalla1();
+                    generarMalla2();
+
+                    for (int i = 0; i < y; i++)
+                    {
+                        for (int j = 0; j < x; j++)
+                        {
+
+                            double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
+                            double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
+
+                            if (fase == 1)
+                            { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+
+                            if ((fase != 0) && (fase != 1))
+                            {
+                                byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); // truncamos los valores y en funcion de esto establecemos una alpha
+
+                                casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
+                            }
+
+                            if (temperatura == -1)
+                            { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                            if ((temperatura != 0) && (temperatura != -1))
+                            {
+
+
+
+                                byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23);
+
+                                casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
+                            }
+
+
+
+                        }
+                    }
 
                     MessageBox.Show("Fichero cargado con éxito!");
 
@@ -226,7 +263,17 @@ namespace WpfApplication1
                     button2.IsEnabled = true;
                     button4.IsEnabled = true;
                     button5.IsEnabled = true;
+                    boton_retroceder.IsEnabled = true;
                     botonCARGAR.IsEnabled = true;
+                    betta.IsEnabled = true;
+                    dxdy.IsEnabled = true;
+                    epsilon.IsEnabled = true;
+                    delta.IsEnabled = true;
+                    M.IsEnabled = true;
+                    dt.IsEnabled = true;
+                    ParametrosA.IsEnabled = true;
+                    ParametrosB.IsEnabled = true;
+                    Parametros.IsEnabled = true;
 
 
 
@@ -247,6 +294,7 @@ namespace WpfApplication1
         private void generarMallaEnCARGA()
         {
             casillas = new Rectangle[y, x];
+            casillas2 = new Rectangle[y, x];
 
             canvas1.Height = y * 15;
             canvas1.Width = x * 15;
@@ -273,41 +321,6 @@ namespace WpfApplication1
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
 
                     casillas[i, j] = b;
-                }
-            }
-
-            for (int i = 0; i < y; i++)
-            {
-                for (int j = 0; j < x; j++)
-                {
-
-                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
-                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
-
-                    if (fase == 1)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
-
-                    if ((fase != 0) && (fase != 1))
-                    {
-                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); // truncamos los valores y en funcion de esto establecemos una alpha
-
-                        casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
-                    }
-
-                    if (temperatura == -1)
-                    { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
-                    if ((temperatura != 0) && (temperatura != -1))
-                    {
-
-
-
-                        byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23);
-
-                        casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
-                    }
-
-
-
                 }
             }
 
