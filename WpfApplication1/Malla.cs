@@ -10,10 +10,9 @@ namespace WpfApplication2
 {
     class Malla
     {
-        int x=0; //numero de colummnas   //
+        //ATRIBUTOS
+        int x=0; //numero de colummnas 
         int y=0; //numero de filas
-
-
 
         double cantidadDeFASE; // es la media de la fase en una matriz
         double cantidadDeTEMP; // es la media de la temperatura en una matriz
@@ -21,33 +20,36 @@ namespace WpfApplication2
         Celda[,] matriz_malla; // matriz_malla_Clone =matriz_malla
         Celda[,] matriz_malla_Clone; //matriz espejo
         
-        Normas norma1; //   MIRAR
+        Normas norma1; 
 
-    
+        // GET 
         public Celda[,] GetMatriz()
-        {
-            return this.matriz_malla;
-        }
-
+        {return this.matriz_malla; }
+        public Celda[,] GetClon()
+        { return this.matriz_malla_Clone; }
         public int getX()
-        {
-            return x;
-        }
-
+        {return x; }
         public int getY()
-        {
-            return y;
-        }
+        { return y;}
+        public double DameFASEde(int posFILAS, int posCOLUMNAS)
+        { return (this.matriz_malla[posFILAS, posCOLUMNAS].GetFase()); }
+        public double DameFASEdeClon(int posFILAS, int posCOLUMNAS)
+        { return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetFase()); }
+        public double DameTEMPERATURAde(int posFILAS, int posCOLUMNAS)
+        { return (this.matriz_malla[posFILAS, posCOLUMNAS].GetTemperatura()); }
+        public double DameTEMPERATURAdeClon(int posFILAS, int posCOLUMNAS)
+        { return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetTemperatura()); }
 
+        // SET
         public void SetNormas(Normas n)
-        { 
-        this.norma1=n;
-        }
-
+        {  this.norma1=n; }
         public void SetMatriz(Celda[,] matriz_MALLA)
-        {
-            this.matriz_malla = matriz_MALLA;
-        }
+        { this.matriz_malla = matriz_MALLA; }
+        public void SetFaseDeCelda(int fila, int columna, double fase)
+        { matriz_malla[fila, columna].SetFase(fase); }
+        public void SetTemperaturaDeCelda(int fila, int columna, double T)
+        { matriz_malla[fila, columna].SetTemperatura(T); }
+
 
         /*        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
                 {
@@ -59,9 +61,15 @@ namespace WpfApplication2
                     A.SetFaseDeCelda(i, j, F);
                     return A;
                 }*/
-        public Malla ClonarParaLISTA()
+
+        //CLONAR PARA LISTA
+        //generamos una clon de nuestra matriz para guardar en el historial
+        // para ello es importante definir las celdas como nuevas celdas para no sobrescribir 
+        //valores en el historial
+        public Malla ClonarParaLISTA() 
         {
-            Celda [,] matriz_malla_Clone_LISTA = new Celda[y, x];
+            Celda [,] matriz_malla_Clone_LISTA = new Celda[y, x]; // nueva matriz
+            // recorremos toda la matriz para copiar todos los valores
             for (int i = 0; i < y; i++)
                 for (int j = 0; j < x; j++)
                 {
@@ -70,19 +78,21 @@ namespace WpfApplication2
                         matriz_malla_Clone_LISTA[i, j] = fill_clone;
                         matriz_malla_Clone_LISTA[i, j].SetFase(matriz_malla[i, j].GetFase());
                         matriz_malla_Clone_LISTA[i, j].SetTemperatura(matriz_malla[i, j].GetTemperatura());
-
                     }
                 }
+            Malla malla_para_guardar = new Malla(); // generamos la nueva malla
 
-            Malla malla_para_guardar = new Malla();
-
-            malla_para_guardar.SetNumeroDeFilasYColumnas(getY()-2, getX()-2);
-            malla_para_guardar.SetNormas(norma1);
-            malla_para_guardar.SetMatriz(matriz_malla_Clone_LISTA);
-
+            malla_para_guardar.SetNumeroDeFilasYColumnas(getY()-2, getX()-2); // definimos el numero de filas y columnas
+            // restamos 2 ya que en Malla x e y es el numero de celdas + contorno
+            malla_para_guardar.SetNormas(norma1); // definimos las normas
+            malla_para_guardar.SetMatriz(matriz_malla_Clone_LISTA); // definimos la nueva matriz
             return malla_para_guardar;
         }
 
+        //CLONAMOS LA MATRIZ
+            //esta funcion nos será útil para calcular el estado futuro, al ir actualizando las celdas
+            // estas irán variando sus valores, asi que cogeremos de referencia los valores del clon que no 
+            // variaran
         public void ClonarMatrix()
         {
             matriz_malla_Clone=new Celda[y,x];
@@ -97,16 +107,16 @@ namespace WpfApplication2
                           
                        }
                    }
-
         }
 
-        public Celda[,] GetClon()
-        { return this.matriz_malla_Clone; }
+        // SET NUMERO DE FILAS Y COLUMNAS
+            //dados el numero de filas y columnas se generan las dimensiones de la matriz_malla y la clon, considerando
+            // un contorno
 
         public void SetNumeroDeFilasYColumnas(int fila, int columna)
         {
-            this.y = fila+2;
-            this.x = columna+2;
+            this.y = fila+2; // filas + contorno
+            this.x = columna+2; // columnas + contorno
             
             this.matriz_malla = new Celda [y,x];
             this.matriz_malla_Clone = new Celda[y,x];
@@ -120,15 +130,13 @@ namespace WpfApplication2
                     matriz_malla[i,j] = fill;
                     matriz_malla_Clone[i,j] = fill_clone;
                 }}
- 
         }
 
-
+        //DEFINIMOS LAS CONDICIONES DE CONTRONO
         public void SetCondicionsContornoFaseTemperatura(string condicion)
         {
             if (condicion == "fixed")
             {
-
                 for (int i = 1; i < y; i++)
                 {
                     this.matriz_malla[0, i].SetFase(1);
@@ -164,49 +172,14 @@ namespace WpfApplication2
                         this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla[j, x - 2].GetFase());
 
                     }
-
                 }
-
             }
         }
 
-
-        public void SetFaseDeCelda(int fila, int columna, double fase)
-        {
-
-            matriz_malla[fila, columna].SetFase(fase);
-        }
-
-        public void SetTemperaturaDeCelda(int fila, int columna, double T)
-        {
-
-            matriz_malla[fila, columna].SetTemperatura(T);
-        }
-
-
-
-        public double DameFASEde(int posFILAS, int posCOLUMNAS)
-
-        {
-            return (this.matriz_malla[posFILAS, posCOLUMNAS].GetFase());
-        }
-       
-        public double DameFASEdeClon(int posFILAS, int posCOLUMNAS)
-        {
-            return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetFase());
-        }
-
-        public double DameTEMPERATURAde(int posFILAS, int posCOLUMNAS)
-        {
-            return (this.matriz_malla[posFILAS, posCOLUMNAS].GetTemperatura());
-        }
-
-        public double DameTEMPERATURAdeClon(int posFILAS, int posCOLUMNAS)
-        {
-            return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetTemperatura());
-        }
-
-
+        // CALCULAMOS EL VALOR MEDIO DE LA FASE
+            //será util para hacer las graficas
+            // hacemos un recorrido por toda la matriz y vamos sumando la fase. Finalmente dividimos este
+            // valor por el numero de celdas recorridas
         public double GetcantidadFase()
         {
             cantidadDeFASE = 0;
@@ -217,16 +190,16 @@ namespace WpfApplication2
                 {
                     cantidadDeFASE = cantidadDeFASE + matriz_malla[i, j].GetFase();
                     celdasrecorridas ++;
-
                 }
             }
             cantidadDeFASE = cantidadDeFASE / celdasrecorridas; // asi normalizamos la cantidad de celdas
-
             return cantidadDeFASE;
-
-
         }
 
+        // CALCULAMOS EL VALOR MEDIO DE LA TEMPERATURA
+        //será util para hacer las graficas
+        // hacemos un recorrido por toda la matriz y vamos sumando la temperatura. Finalmente dividimos este 
+        // valor por el numero de celdas recorridas
         public double GetcantidadTEMP()
         {
             cantidadDeTEMP = 0;
@@ -237,31 +210,24 @@ namespace WpfApplication2
                 {
                     cantidadDeTEMP = cantidadDeTEMP + matriz_malla[i, j].GetTemperatura();
                     celdasrecorridas++;
-
                 }
             }
             cantidadDeTEMP = cantidadDeTEMP / celdasrecorridas; // asi normalizamos la cantidad de celdas
-
             return cantidadDeTEMP;
-
-
         }
 
-
+        // ACTUALIZAR A LA MALLA FUTURA
         public void MallaFutura()
         {
             ClonarMatrix();
-
             for (int i = 1; i < y-1; i++)
             {
                 for (int j = 1; j < x-1; j++)
                 {
-
-                   
-                    // hem de posar l'estat dels de les fases i temperatura
+                    //ponemos los estados de las fases y temperaturas de las celdas proximas
                     matriz_malla[i, j].SetFaseDerecha(DameFASEdeClon(i,j+1));
                     matriz_malla[i, j].SetFaseIzquierda(DameFASEdeClon(i, j - 1));
-                    matriz_malla[i, j].SetFaseAbajo(DameFASEdeClon(i + 1, j));   // es -1 xq la malla empiza por fila 0 i ma augmentando el valor a medida que baja
+                    matriz_malla[i, j].SetFaseAbajo(DameFASEdeClon(i + 1, j)); 
                     matriz_malla[i, j].SetFaseArriba(DameFASEdeClon(i - 1, j));
 
                     matriz_malla[i, j].SetTemperaturaDerecha(DameTEMPERATURAdeClon(i, j + 1));
@@ -269,21 +235,13 @@ namespace WpfApplication2
                     matriz_malla[i, j].SetTemperaturaAbajo(DameTEMPERATURAdeClon(i + 1, j));
                     matriz_malla[i, j].SetTemperaturaArriba(DameTEMPERATURAdeClon(i - 1, j));
 
-
-
-                    //ACTUALIZAMOS LA CELDA
-
+                    //actualizamos
 
                     matriz_malla[i, j].SetNorma(norma1);
                     matriz_malla[i, j].ActualizarFASEdeCelda();
-
-
-
-
                 }
             }
             
-
         }
 
         //public int GuardarSimulacion(string nombre)

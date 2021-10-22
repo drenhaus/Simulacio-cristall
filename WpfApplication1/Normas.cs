@@ -7,7 +7,7 @@ namespace NormasJuego
 {
     class Normas
     {
-
+        //ATRIBUTOS
         double m;
         double delta;
         double dt;
