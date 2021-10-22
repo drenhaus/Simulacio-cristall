@@ -23,17 +23,16 @@ namespace WpfApplication1
 
     public partial class MainWindow : Window
     {
+        // ATRIBUTOS
+        Normas norm = new Normas(); // Clase donde hay guardados todos los parámetros de la simulación
+        Rectangle[,] casillas; // Matriz donde guardaremos todos los rectangulos para poder recorrerlos referidos a la fase
+        Rectangle[,] casillas2; // Matriz donde guardaremos todos los rectangulos para poder recorrerlos referidos a la temperatura
+        int x;  //columnas de la malla a generar (valor introducido en el formulario)
+        int y;  //filas de la malla a generar (valor introducido en el formulario)
 
-        Normas norm = new Normas();
-        Rectangle[,] casillas; // Matriz donde guardaremos todos los rectangulos para poder recorrerlos
-        Rectangle[,] casillas2;
-        int x;  //columnas
-        int y;  //filas
-        
-        Malla matriz_celdas = new Malla();
-        
-        List<Malla> historial= new List<Malla>();
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        Malla matriz_celdas = new Malla(); // Matriz con la que estaremos trabajando en la interación presente
+        List<Malla> historial= new List<Malla>(); // Historial donde se van guardando los pasos de las simulaciones anteriores
+        DispatcherTimer dispatcherTimer = new DispatcherTimer(); //Timer para la simulación automática
 
         
         public MainWindow()
@@ -42,7 +41,8 @@ namespace WpfApplication1
 
         }
 
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e) // guardar fichero
+        //GUARDAR FICHERO
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e) 
         {
 
         //    // Configure save file dialog box
@@ -72,19 +72,28 @@ namespace WpfApplication1
 
         }
 
+
+        // CLICAR ENCIMA DE UNA CASILLA
+            // cuando clicamos encima de una casilla esta se establecerá con fase y temperatura 0 y el color correspondiente 
+            // Para determinar el color se ha utilizado FromArgb(alpha, red, green, blue), donde alpha es la transparencia que iremos
+            // variando para lograr las distintas tonalidades de fase y temperatura
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Rectangle a = (Rectangle)sender;
-            Point p = (Point)a.Tag;
+            Point p = (Point)a.Tag; // obtenemos el punto donde se ha clicado
 
-            matriz_celdas.SetTemperaturaDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0);
-            matriz_celdas.SetFaseDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0);
+            // el punto que obtenemos x,y es respecto la matriz de casillas (lo que se muestra), al trabajar con la matriz_celda hay que trabajar con x+1,y+1
+            // ya que en esta matriz hay un contorno definido para las condiciones de contorno
 
-            casillas[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // FromArgb(alpha, red, green, blue)
-            casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // FromArgb(alpha, red, green, blue)
+            matriz_celdas.SetTemperaturaDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0); // definimos que en ese punto hay temperatura 0
+            matriz_celdas.SetFaseDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0); // definimos que en ese punto hay fase 0
 
-            historial.Add(matriz_celdas.ClonarParaLISTA());
+            casillas[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // Para fase 0 definimos color rojo completamente opaco
+            casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
+
+            historial.Add(matriz_celdas.ClonarParaLISTA()); // Cada nuevo clic es añadido al historial por si quisieramos retroceder a algún estado anterior donde no se ha clicado una casilla 
         }
+
 
         private void rectangle_MouseEnter(object sender, EventArgs e)
         {

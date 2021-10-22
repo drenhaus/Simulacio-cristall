@@ -19,7 +19,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Simulacion cristal"
+            <TextBlock Text="Simulación cristal"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
