@@ -418,11 +418,12 @@ namespace WpfApplication1
         // CARGAR PARÁMETROS
             // Cuando clicamos el boton de cargar parametros definimos los distintos 
             // valores de la clase norma.
-            // Definimos 
+            // Definimos que se pueda elejir también entre dos conjuntos de parámetros: A y B
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                // guardamos los valores introducidos
                 norm.SetDxDy(Convert.ToDouble(dxdy.Text));
                 norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
                 norm.SetBetta(Convert.ToDouble(betta.Text));
@@ -430,7 +431,7 @@ namespace WpfApplication1
                 norm.SetM(Convert.ToDouble(M.Text));
                 norm.SetDT(Convert.ToDouble(dt.Text));
 
-                if (ParametrosA.IsChecked == true)
+                if (ParametrosA.IsChecked == true) // Parámetros A
                 {
                     norm.SetDxDy(0.005);
                     norm.SetEpsilon(0.005);
@@ -438,10 +439,9 @@ namespace WpfApplication1
                     norm.SetDelta(0.5);
                     norm.SetM(20);
                     norm.SetDT(5 * Math.Pow(10, -6));
-
                 }
 
-                if (ParametrosB.IsChecked == true)
+                if (ParametrosB.IsChecked == true) // Parámetros B
                 {
                     norm.SetDxDy(0.005);
                     norm.SetEpsilon(0.005);
@@ -452,21 +452,29 @@ namespace WpfApplication1
 
                 }
 
+                // Abilitamos los botones para poder seguir con la simulación
                 comboBox1.IsEnabled = true;
                 button6.IsEnabled = true;
 
-                MessageBox.Show("Datos cargados");
+                MessageBox.Show("Datos cargados"); // informamos con un MessageBox que se han cargado los parámetros
             }
             
+            // si hay error en los parámetros 
             catch { MessageBox.Show("Error en los parametros"); }
         }
 
+        // SELECIONAMOS LOS PARÁMETROS B
+            //cuando tenemos selecionados los parametros B escribimos en los textbox los valores de 
+            // estos para poder consultarlos
+            // Ponemos también una condición que nos permita solo selecionar A o B, es decir, que al 
+            // selecionar B se deselecione A
         private void ParametrosB_Checked(object sender, RoutedEventArgs e)
         {
             if (ParametrosB.IsChecked == true)
             {
-                ParametrosA.IsChecked = false;
+                ParametrosA.IsChecked = false; // deselecionamos A
 
+                //escribimos los parametros para poder verlos
                 dxdy.Text = Convert.ToString(0.005);
                 epsilon.Text = Convert.ToString(0.005);
                 betta.Text = Convert.ToString(300);
@@ -474,16 +482,21 @@ namespace WpfApplication1
                 M.Text = Convert.ToString(30);
                 double c = 5 * Math.Pow(10, -6);
                 dt.Text = Convert.ToString(c);
-
             }
         }
 
+        // SELECIONAMOS LOS PARÁMETROS A
+        //cuando tenemos selecionados los parametros A escribimos en los textbox los valores de 
+        // estos para poder consultarlos
+        // Ponemos también una condición que nos permita solo selecionar A o B, es decir, que al 
+        // selecionar A se deselecione B
         private void ParametrosA_Checked(object sender, RoutedEventArgs e)
         {
             if (ParametrosA.IsChecked == true)
             {
-                ParametrosB.IsChecked = false;
+                ParametrosB.IsChecked = false; // deselecionamos B
 
+                //escribimos los parametros para poder verlos
                 dxdy.Text = Convert.ToString(0.005);
                 epsilon.Text = Convert.ToString(0.005);
                 betta.Text = Convert.ToString(400);
@@ -494,17 +507,22 @@ namespace WpfApplication1
             }
         }
 
-        private void button6_Click(object sender, RoutedEventArgs e) // condicions de contorn
+
+        // ESTABLECER CONDICIONES DE CONTORNO
+            //creamos un comboBox que nos deje elegir entre dos opciones de condiciones de contorno
+        private void button6_Click(object sender, RoutedEventArgs e) 
         {
-            if (comboBox1.SelectedItem == null)
+            if (comboBox1.SelectedItem == null) // si no se ha selecionado nada nos salta un mensaje de error
             {
                 MessageBox.Show("Porfavor, seleciona una de las opciones del desplegable"); 
             }
             else { 
+                // establecemos condiciones de contorno
                 matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
                 MessageBox.Show("Se han establecido las condiciones de contorno");
+                // establecemos las normas
                 matriz_celdas.SetNormas(norm);
-
+                // abilitamos todos los botones de simulación
                 button1.IsEnabled = true;
                 button2.IsEnabled = true;
                 button4.IsEnabled = true;
@@ -515,34 +533,35 @@ namespace WpfApplication1
                 }
         }
 
-        private void MenuItem_Click_20(object sender, RoutedEventArgs e) // click en el primer graff
+        // CLICAMOS EN EL MENÚ DE CREAR GRAFICO
+            //generamos una lista con los valores de fase y temperatura que hemos guardado en el historial
+            // y esta lista la entregamos a la clase de graficos
+        private void MenuItem_Click_20(object sender, RoutedEventArgs e) 
         {
             int contadorHISTORIAL = historial.Count;
-            List<double> listaFasexIteracion = new List<double>();
-            List<double> listaTEMPxIteracion = new List<double>();
+            List<double> listaFasexIteracion = new List<double>(); // lista de Fases
+            List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
 
-            for (int k = 0; k < contadorHISTORIAL; k++)
+            for (int k = 0; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
             {
                 listaFasexIteracion.Add(historial[k].GetcantidadFase());
                 listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
             }
+            // Abrimos una nueva ventana para mostrar los graficos
 
             graficosPage lc = new graficosPage();
-
-            lc.SetcontadorHIST(contadorHISTORIAL);
-            lc.SetListaFASExIteracion(listaFasexIteracion);
-            lc.SetListaTEMPxIteracion(listaTEMPxIteracion);
-            // hem de anar ageneradora
-
+            lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
+            lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
+            lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
             lc.ShowDialog();
 
         }
 
+        // VARIAMOS EL SLIDER DE VELOCIDAD
+            //Establecemos el nuevo valor del slider como el timespan del timer
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            dispatcherTimer.Stop();
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(Convert.ToInt32(e.NewValue));
-            dispatcherTimer.Start();
 
         }
 
