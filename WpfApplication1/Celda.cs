@@ -8,29 +8,27 @@ namespace WpfApplication1
 {
     class Celda
     {
-        double fase = 1;
-        double temperatura = -1;
+        //ATRIBUTOS 
+        double fase = 1; //fase por defecto
+        double temperatura = -1; // temperatura por defecto
 
-        // F mayuscuara referncia a FASE
+        // valores vecinos de las fases
         double F_derecha=1;
         double F_izquierda=1;
         double F_abajo=1;
-        double F_arriba=1; // COMO LA URRS
-
+        double F_arriba=1; 
+        // valores vecinos de las temperaturas
         double T_derecha=-1;
         double T_izquierda=-1;
         double T_abajo=-1;
-        double T_arriba=-1; // COMO LA URRS
+        double T_arriba=-1; 
 
         double estado_futuro_fase;
         double estado_futuro_temperatura;
 
-        Normas n= new Normas();
+        Normas n= new Normas(); 
 
-
-        // LOS GET
-            //fase
-
+        // LOS GET de fases y temperatura
         public double GetFase()
         { return (this.fase); }
         public double GetFaseDerecha()
@@ -41,8 +39,6 @@ namespace WpfApplication1
          { return (this.F_abajo); }
         public double GetFaseArriba()
          { return (this.F_arriba); }
-
-            //temperatura
          public double GetTemperatura()
          { return (this.temperatura); }
          public double GetTemperaturaDerecha()
@@ -54,9 +50,7 @@ namespace WpfApplication1
          public double GetTemperaturaArriba()
          { return (this.T_arriba); }
 
-
-         // LOS SET
-            //fase
+         // LOS SET de fase y temperatura
          public void SetFase(double fase)
          { this.fase = fase; }
          public void SetFaseDerecha(double fase)
@@ -67,8 +61,6 @@ namespace WpfApplication1
          { this.F_abajo = fase; }
          public void SetFaseArriba(double fase)
          { this.F_arriba = fase; }
-
-            //temperatura
          public void SetTemperatura(double temperatura)
          { this.temperatura = temperatura; }
          public void SetTemperaturaDerecha(double temperatura)
@@ -80,22 +72,16 @@ namespace WpfApplication1
          public void SetTemperaturaArriba(double temperatura)
          { this.T_arriba = temperatura; }
 
-         public double GetTemperaturaFutura()
-         { return (this.estado_futuro_temperatura); }
-
-         public double GetFaseFutura()
-         { return (this.estado_futuro_fase); }
-
-
-
+        // SET de los parámetros
         public void SetNorma(Normas norm)
         {
             this.n = norm;
         }
 
-
+        // CALCULAMOS EL VALOR DE LA NUEVA FASE Y TEMPERATURA
         public void ActualizarFASEdeCelda()
         {
+            // definimos los valores de los parámetros
             double dy = n.GetDxDy();
             double dx = n.GetDxDy();
             double epsilon = n.GetEpsilon();
@@ -104,18 +90,18 @@ namespace WpfApplication1
             double delta = n.GetDelta();
             double dt = n.GetDT();
 
-            double dFase_dY_quadrat = (F_arriba - 2.0 * fase + F_abajo) / (dy * dy); //derivada segona Y
-            double dFase_dX_quadrat = (F_derecha - 2.0 * fase + F_izquierda) / (dx * dx); //derivada segona X
-            double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENT^2
+            double dFase_dY_quadrat = (F_arriba - 2.0 * fase + F_abajo) / (dy * dy); //derivada segunda
+            double dFase_dX_quadrat = (F_derecha - 2.0 * fase + F_izquierda) / (dx * dx); //derivada segunda
+            double gradient_gradeint = dFase_dX_quadrat + dFase_dY_quadrat; // GRADIENTE^2
 
             double A = ((1.0 / (epsilon * epsilon * m)) * (fase * (1.0 - fase) * (fase - 0.5 + 30.0 * epsilon * betta * delta * temperatura * fase * (1.0 - fase))));//Primera parte
-            double B = epsilon * epsilon * gradient_gradeint * (1.0 / (epsilon * epsilon * m)); //segona part
+            double B = epsilon * epsilon * gradient_gradeint * (1.0 / (epsilon * epsilon * m)); //segunda parte
             double d_fase_d_t = A + B;
 
             this.estado_futuro_fase = fase + dt * d_fase_d_t;
 
             double dTemperatura_dY_quadrat = (T_arriba - 2.0 * temperatura + T_abajo) / (dy * dy);
-            double dTemperatura_dX_quadrat = (T_derecha - 2.0 * temperatura + T_izquierda) / (dx * dx); //derivada segona X
+            double dTemperatura_dX_quadrat = (T_derecha - 2.0 * temperatura + T_izquierda) / (dx * dx); //derivada segunda X
             double gradient_gradeint_TEMP = dTemperatura_dX_quadrat + dTemperatura_dY_quadrat;
 
             double C = gradient_gradeint_TEMP;
@@ -127,10 +113,6 @@ namespace WpfApplication1
             // actualizamos la celda
             fase = estado_futuro_fase;
             temperatura = estado_futuro_temperatura;
-
         }
-
-
-
     }
 }
