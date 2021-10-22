@@ -23,7 +23,9 @@ namespace WpfApplication1
     /// Lógica de interacción para graficosPage.xaml
     /// </summary>
     public partial class graficosPage : Window
-    {
+    {    
+        //ATRIBUTOS
+
         Generadora generador;
         int contadorHISTORIAL;
         List<double> listaFasexIteracion = new List<double>();
@@ -32,11 +34,12 @@ namespace WpfApplication1
         public graficosPage()
         {
             InitializeComponent();
-            BtnCalcularFASE.Click += BtnCalcularFASE_Click;
+            BtnCalcularFASE.Click += BtnCalcularFASE_Click; //creamos los eventos click
             BtnCalcularTEMP.Click += BtnCalcularTEMP_Click;
-            generador = new Generadora();
+            generador = new Generadora(); // generamos una clase Generadora cuando inicializamos
         }
 
+        // SET de los atributos
         public void SetListaFASExIteracion(List<double> A)
         {
             this.listaFasexIteracion = A;
@@ -50,13 +53,14 @@ namespace WpfApplication1
             this.contadorHISTORIAL = count;
         }
 
-
+        // GRÁFICA FASE
         private void BtnCalcularFASE_Click(object sender, RoutedEventArgs e)
         {
-            generador.SetListaFASExIteracion(listaFasexIteracion);
+            // introducimos las listas al generador
+            generador.SetListaFASExIteracion(listaFasexIteracion); 
             generador.GenerarDatosFASE(Convert.ToDouble(contadorHISTORIAL));
 
-            PlotModel model = new PlotModel();
+            PlotModel model = new PlotModel(); // creamos un nuevo modelo de plot
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
@@ -70,7 +74,7 @@ namespace WpfApplication1
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Datos geneardos FASE";
+            model.Title = "Datos FASE media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -83,8 +87,10 @@ namespace WpfApplication1
 
         }
 
+        //GRÁFICA TEMPERATURA
         private void BtnCalcularTEMP_Click(object sender, RoutedEventArgs e)
         {
+            //definimos las listas
             generador.SetListaTEMPxIteracion(listaTEMPxIteracion);
             generador.GenerarDatosTEMP(Convert.ToDouble(contadorHISTORIAL));
 
@@ -112,9 +118,7 @@ namespace WpfApplication1
             linea.Title = "Valores generados";
             model.Series.Add(linea);
             Grafica.Model = model;
-
         }
-
     }
 
 }
