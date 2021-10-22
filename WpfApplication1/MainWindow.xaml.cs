@@ -163,6 +163,9 @@ namespace WpfApplication1
             this.casillas2=generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
         }
 
+        // GENERAMOS LOS RECTANGULOS DE LA MATRIX
+            // le introducimos como parametros si se trata de los rectangulos de fase o temperatura (casillas o casillas2) y en que canvas 
+            // vamos a trabajar. Nos retorna la matriz de las casillas para que podemos definirla posteriormente como el atributo
         private Rectangle[,] generarMalla1(Rectangle[,] c, Canvas ca)
         {
             // establecemos las dimensiones de la matriz de las casillas y las alturas en el canvas
@@ -196,7 +199,7 @@ namespace WpfApplication1
                     c[i, j] = b; // guardamos el rectangulo en su posición i,j de la matriz de casillas
                 }
             }
-            return c;
+            return c; 
         }
 
      
@@ -293,118 +296,133 @@ namespace WpfApplication1
             
         //} // hay que modificar para que se cargen las dos
 
+        
+        //FUNCION QUE PINTA LA MATRIZ ACTUAL
+            // esta funcion recorre todos los rectangulos de casillas y casillas2 y actualiza el color que tienen
         private void volverApintar()
         {
-            // volvemos a pintar los rectangulos 1
+            // volvemos a pintar los rectangulos de la matriz CASILLAS
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
                 {
+                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // nos guardamos la fase que estará entre 1 y 0
+                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // guardamos la temperatura que estará entre -1 y 0
 
-                    double fase = matriz_celdas.DameFASEde(i + 1, j + 1); // estará entre 1 y 0
-                    double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // estará entre -1 y 0
-
-                    if (fase == 1)
+                    // si la fase es 1 se establece como color el blanco y si la fase es 0 se establece el color rojo opaco
+                    if (fase == 1) 
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    if (fase == 0)
+                    {casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); }
+
+                    // para los otros valores multiplicamos por diez la fase y luego por 23 (de esta manera obtenemos un valor escalado dentro
+                    // del margen de 0-255) 
+                    // Este valor lo redondeamos y se lo restamos a 255 y asi obtenemos la opacidad de dicha fase, situando fase 0 a 255 y fase 1 a 0
 
                     if ((fase != 0) && (fase != 1))
                     {
-                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); // truncamos los valores y en funcion de esto establecemos una alpha
+                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); 
 
                         casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
                     }
 
+                    // si la temperatura es -1 se establece como color el blanco, y si es 0 se establece el color verde opaco
                     if (temperatura == -1)
                     { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    if (temperatura == 0)
+                    { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); }
+
+                    // establecemos la misma relación que en la fase para obtener el color de la temperatura, teniendo en cuenta que hay valores negativos
                     if ((temperatura != 0) && (temperatura != -1))
                     {
                         byte alpha = Convert.ToByte(255 + Math.Round(temperatura * 10) * 23);
-
                         casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 0, 255, 0));
                     }
-
-
-
                 }
             }
         }
 
+        // SIMULACIÓN PASO A PASO
+            // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
+            // de los rectángulos
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
-
+            // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
                 historial.Add(matriz_celdas.ClonarParaLISTA());
-
                 volverApintar();
-            }//si esta vacio
+            }
 
-                matriz_celdas.MallaFutura(); // actualizamos
-                historial.Add(matriz_celdas.ClonarParaLISTA());
+            matriz_celdas.MallaFutura(); // calculamos la matriz futura
+            historial.Add(matriz_celdas.ClonarParaLISTA()); // añadimos la matriz futura al historial
 
-            volverApintar();
-
+            volverApintar(); // pintamos la nueva matriz
         }
 
+        // TICK DE RELOJ
+            // cada tick de reloj se actualizará la malla y se volverá a pintar
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-
+            // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
                 historial.Add(matriz_celdas.ClonarParaLISTA());
-
                 volverApintar();
-            }//si esta vacio
+            }
 
-            matriz_celdas.MallaFutura(); // actualizamos
-            historial.Add(matriz_celdas.ClonarParaLISTA());
+            matriz_celdas.MallaFutura(); // calculamos la matriz futura
+            historial.Add(matriz_celdas.ClonarParaLISTA()); // añadimos la matriz futura al historial
 
-            volverApintar();
-
+            volverApintar(); // pintamos la nueva matriz
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e) // simulación automatica
+        // SIMULACIÓN AUTOMÁTICA
+            // cuando se preme el boton de simulacion automática se inicializa el timer
+        private void button2_Click(object sender, RoutedEventArgs e) 
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);
- 
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);// por defecto establecemos una simulación cada segundo
             dispatcherTimer.Start();
-
         }
 
-        private void button4_Click(object sender, RoutedEventArgs e) // stop
+        // DETENER LA SIMULACIÓN AUTOMÁTICA
+            //Detenemos el timer e indicamos mediante un MessageBox que se ha detenido la simulación
+        private void button4_Click(object sender, RoutedEventArgs e) 
         {
             dispatcherTimer.Stop();
             MessageBox.Show("Se ha detenido la simulación");
         }
 
-        private void button5_Click(object sender, RoutedEventArgs e) //restart
+        // BOTON RESTART
+            //reseteamos la simulación y vaciamos el historial
+        private void button5_Click(object sender, RoutedEventArgs e) 
         {
             List<Malla> reset_historial = new List<Malla>();
-            historial = reset_historial;
+            historial = reset_historial; // vaciamos el historial
 
+            // volvemos a crear la matriz y establecemos que todas las fases son 1 y temperaturas -1
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
                 {
-
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
                     matriz_celdas.SetFaseDeCelda(i, j, 1);
                     matriz_celdas.SetTemperaturaDeCelda(i, j, -1);
                     casillas[i, j].Fill = new SolidColorBrush(Colors.White);
                     casillas2[i, j].Fill = new SolidColorBrush(Colors.White);
-
                 }
             }
         }
 
+        // CARGAR PARÁMETROS
+            // Cuando clicamos el boton de cargar parametros definimos los distintos 
+            // valores de la clase norma.
+            // Definimos 
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
-            
-
             try
             {
-
                 norm.SetDxDy(Convert.ToDouble(dxdy.Text));
                 norm.SetEpsilon(Convert.ToDouble(epsilon.Text));
                 norm.SetBetta(Convert.ToDouble(betta.Text));
@@ -414,7 +432,6 @@ namespace WpfApplication1
 
                 if (ParametrosA.IsChecked == true)
                 {
-
                     norm.SetDxDy(0.005);
                     norm.SetEpsilon(0.005);
                     norm.SetBetta(400);
