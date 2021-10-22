@@ -31,52 +31,20 @@ namespace WpfApplication1
         int y;  //filas de la malla a generar (valor introducido en el formulario)
 
         Malla matriz_celdas = new Malla(); // Matriz con la que estaremos trabajando en la interación presente
-        List<Malla> historial= new List<Malla>(); // Historial donde se van guardando los pasos de las simulaciones anteriores
+        List<Malla> historial = new List<Malla>(); // Historial donde se van guardando los pasos de las simulaciones anteriores
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); //Timer para la simulación automática
 
-        
+
         public MainWindow()
         {
             InitializeComponent();
 
         }
 
-        //GUARDAR FICHERO
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e) 
-        {
-
-        //    // Configure save file dialog box
-        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-        //    dlg.FileName = "Simulación"; // Default file name
-        //    dlg.DefaultExt = ".txt"; // Default file extension
-        //    dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
-
-        //    // Show save file dialog box
-        //    Nullable<bool> result = dlg.ShowDialog();
-
-        //    // Process save file dialog box results
-        //    if (result == true)
-        //    {
-        //        // Save document
-        //        string filename = dlg.FileName;
-        //        int n = matriz_celdas.GuardarSimulacion(filename);
-        //        if (n == 0)
-        //        { MessageBox.Show("Simulación guardada correctamente!"); }
-        //        else
-        //        { MessageBox.Show("No ha sido posible guardar la simulación"); }
-        //    }
-        //    else
-        //    { MessageBox.Show("No ha sido posible guardar la simulación"); }
-
-
-
-        }
-
-
         // CLICAR ENCIMA DE UNA CASILLA
-            // cuando clicamos encima de una casilla esta se establecerá con fase y temperatura 0 y el color correspondiente 
-            // Para determinar el color se ha utilizado FromArgb(alpha, red, green, blue), donde alpha es la transparencia que iremos
-            // variando para lograr las distintas tonalidades de fase y temperatura
+        // cuando clicamos encima de una casilla esta se establecerá con fase y temperatura 0 y el color correspondiente 
+        // Para determinar el color se ha utilizado FromArgb(alpha, red, green, blue), donde alpha es la transparencia que iremos
+        // variando para lograr las distintas tonalidades de fase y temperatura
         private void rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Rectangle a = (Rectangle)sender;
@@ -95,8 +63,8 @@ namespace WpfApplication1
         }
 
         // CUANDO PASAMOS EL RATÓN POR ENCIMA DE UNA CASILLA
-            // para esta función se han generado dos labels en los que se iran mostrando las fases y la temperatura de la celda en la que 
-            //tengamos el raton encima
+        // para esta función se han generado dos labels en los que se iran mostrando las fases y la temperatura de la celda en la que 
+        //tengamos el raton encima
         private void rectangle_MouseEnter(object sender, EventArgs e)
         {
             Rectangle a = (Rectangle)sender;
@@ -107,16 +75,21 @@ namespace WpfApplication1
             labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de fase
             labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de temperatura
         }
-     
 
         // CREAMOS LA MATRIZ/REJILLA AL CLICAR AL BOTON DE CREAR
-            //Una vez hemos definido las columnas y filas manualmente, clicamos al boton de crear y generamos el grid de rectangulos
-        private void button3_Click(object sender, RoutedEventArgs e) 
+        //Una vez hemos definido las columnas y filas manualmente, clicamos al boton de crear y generamos el grid de rectangulos
+        private void button3_Click(object sender, RoutedEventArgs e)
         {
             // Nos aseguramos antes de generar la matriz que no haya otra matriz ya establecida. Para ello eliminamos lo que tengamos
             // en los canvas 1 y 2 para evitar problemas de generar mallas encima de otras mallas
             canvas1.Children.Clear();
             canvas2.Children.Clear();
+
+            if (historial.Count() > 0)
+            {
+                List<Malla> reset_historial = new List<Malla>();
+                historial = reset_historial; // vaciamos el historial
+            }
 
             // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
             // para poder realizar la simulación
@@ -135,7 +108,7 @@ namespace WpfApplication1
                 x = Convert.ToInt32(TextBoxX.Text); // Guardamos el numero de columnas introducidas en la variable x
                 y = Convert.ToInt32(TextBoxY.Text); // Guardamos el numero de filas introducidas en la variable y
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);  // definimos la matriz llamando la función de la clase Malla
-               
+
                 // Generamos la excepción de que cuando se haya introducido un numero menor o igual a 0 el programa de el aviso
                 // pero igualmente nos genere una matriz 'defecto' de 10x10 para poder simular si el usuario no lo cambia
                 if ((x <= 0) || (y <= 0))
@@ -159,19 +132,19 @@ namespace WpfApplication1
             }
 
             // Llamamos a la funcion que nos crea los rectángulos de las matrizes
-            this.casillas=generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
-            this.casillas2=generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
+            this.casillas = generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
+            this.casillas2 = generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
         }
 
         // GENERAMOS LOS RECTANGULOS DE LA MATRIX
-            // le introducimos como parametros si se trata de los rectangulos de fase o temperatura (casillas o casillas2) y en que canvas 
-            // vamos a trabajar. Nos retorna la matriz de las casillas para que podemos definirla posteriormente como el atributo
+        // le introducimos como parametros si se trata de los rectangulos de fase o temperatura (casillas o casillas2) y en que canvas 
+        // vamos a trabajar. Nos retorna la matriz de las casillas para que podemos definirla posteriormente como el atributo
         private Rectangle[,] generarMalla1(Rectangle[,] c, Canvas ca)
         {
             // establecemos las dimensiones de la matriz de las casillas y las alturas en el canvas
-            c = new Rectangle[y, x]; 
+            c = new Rectangle[y, x];
             ca.Height = y * 15;
-            ca.Width = x * 15; 
+            ca.Width = x * 15;
 
             // Bucle para crear los rectangulos
             for (int i = 0; i < y; i++)
@@ -195,110 +168,15 @@ namespace WpfApplication1
                     // definimos los eventos que tiene el rectangulo: clicar y pasar por encima
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
                     b.MouseEnter += new System.Windows.Input.MouseEventHandler(rectangle_MouseEnter);
-                    
+
                     c[i, j] = b; // guardamos el rectangulo en su posición i,j de la matriz de casillas
                 }
             }
-            return c; 
+            return c;
         }
 
-     
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
-        {
-
-        //    try
-        //    {
-        //        canvas1.Children.Clear();
-        //        OpenFileDialog ofd = new OpenFileDialog();
-        //        ofd.Multiselect = true;
-        //        ofd.Filter = "Text documents (.txt)|*.txt";
-        //        Nullable<bool> result = ofd.ShowDialog();
-
-        //        if (result == true)
-        //        {
-        //            // Cargar documento
-        //            string filename = ofd.FileName;
-        //            Malla matriz = matriz_celdas.CargarSimulacion(filename);
-        //            matriz_celdas = matriz;
-        //            x = matriz_celdas.getX()-2;
-        //            y = matriz_celdas.getY()-2;
-
-        //            generarMallaEnCARGA();
-
-        //            MessageBox.Show("Fichero cargado con éxito!");
-
-        //            button1.IsEnabled = true;
-        //            button2.IsEnabled = true;
-        //            button4.IsEnabled = true;
-        //            button5.IsEnabled = true;
-        //            botonCARGAR.IsEnabled = true;
-
-
-
-
-        //        }
-        //        else
-        //        { MessageBox.Show("No ha sido posible cargar la simulación"); }
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        }
-
-
-        //private void generarMallaEnCARGA()
-        //{
-        //    casillas = new Rectangle[y, x];
-
-        //    canvas1.Height = y * 15;
-        //    canvas1.Width = x * 15;
-
-
-        //    // Bucle para crear los rectangulos
-        //    for (int i = 0; i < y; i++)
-        //    {
-        //        for (int j = 0; j < x; j++)
-        //        {
-        //            Rectangle b = new Rectangle();
-        //            b.Width = 15;
-        //            b.Height = 15;
-        //            b.Fill = new SolidColorBrush(Colors.Gray);
-        //            b.StrokeThickness = 0.5;
-        //            b.Stroke = Brushes.Black;
-        //            canvas1.Children.Add(b);
-
-        //            // Posicion del cuadrado
-        //            Canvas.SetTop(b, (i - 1) * 15);
-        //            Canvas.SetLeft(b, (j - 1) * 15);
-        //            b.Tag = new Point(j, i);
-
-        //            b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-
-        //            casillas[i, j] = b;
-        //        }
-        //    }
-
-        //    for (int i = 0; i < y; i++)
-        //    {
-        //        for (int j = 0; j < x; j++)
-        //        {
-
-        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == false)
-        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == true)
-        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
-
-        //        }
-        //    }
-            
-        //} // hay que modificar para que se cargen las dos
-
-        
         //FUNCION QUE PINTA LA MATRIZ ACTUAL
-            // esta funcion recorre todos los rectangulos de casillas y casillas2 y actualiza el color que tienen
+        // esta funcion recorre todos los rectangulos de casillas y casillas2 y actualiza el color que tienen
         private void volverApintar()
         {
             // volvemos a pintar los rectangulos de la matriz CASILLAS
@@ -310,10 +188,10 @@ namespace WpfApplication1
                     double temperatura = matriz_celdas.DameTEMPERATURAde(i + 1, j + 1); // guardamos la temperatura que estará entre -1 y 0
 
                     // si la fase es 1 se establece como color el blanco y si la fase es 0 se establece el color rojo opaco
-                    if (fase == 1) 
+                    if (fase == 1)
                     { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
                     if (fase == 0)
-                    {casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); }
+                    { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); }
 
                     // para los otros valores multiplicamos por diez la fase y luego por 23 (de esta manera obtenemos un valor escalado dentro
                     // del margen de 0-255) 
@@ -321,7 +199,7 @@ namespace WpfApplication1
 
                     if ((fase != 0) && (fase != 1))
                     {
-                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23); 
+                        byte alpha = Convert.ToByte(255 - Math.Round(fase * 10) * 23);
 
                         casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(alpha, 255, 0, 0));
                     }
@@ -343,8 +221,8 @@ namespace WpfApplication1
         }
 
         // SIMULACIÓN PASO A PASO
-            // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
-            // de los rectángulos
+        // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
+        // de los rectángulos
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
@@ -361,7 +239,7 @@ namespace WpfApplication1
         }
 
         // TICK DE RELOJ
-            // cada tick de reloj se actualizará la malla y se volverá a pintar
+        // cada tick de reloj se actualizará la malla y se volverá a pintar
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
@@ -378,8 +256,8 @@ namespace WpfApplication1
         }
 
         // SIMULACIÓN AUTOMÁTICA
-            // cuando se preme el boton de simulacion automática se inicializa el timer
-        private void button2_Click(object sender, RoutedEventArgs e) 
+        // cuando se preme el boton de simulacion automática se inicializa el timer
+        private void button2_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);// por defecto establecemos una simulación cada segundo
@@ -387,16 +265,16 @@ namespace WpfApplication1
         }
 
         // DETENER LA SIMULACIÓN AUTOMÁTICA
-            //Detenemos el timer e indicamos mediante un MessageBox que se ha detenido la simulación
-        private void button4_Click(object sender, RoutedEventArgs e) 
+        //Detenemos el timer e indicamos mediante un MessageBox que se ha detenido la simulación
+        private void button4_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
             MessageBox.Show("Se ha detenido la simulación");
         }
 
         // BOTON RESTART
-            //reseteamos la simulación y vaciamos el historial
-        private void button5_Click(object sender, RoutedEventArgs e) 
+        //reseteamos la simulación y vaciamos el historial
+        private void button5_Click(object sender, RoutedEventArgs e)
         {
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
@@ -416,9 +294,9 @@ namespace WpfApplication1
         }
 
         // CARGAR PARÁMETROS
-            // Cuando clicamos el boton de cargar parametros definimos los distintos 
-            // valores de la clase norma.
-            // Definimos que se pueda elejir también entre dos conjuntos de parámetros: A y B
+        // Cuando clicamos el boton de cargar parametros definimos los distintos 
+        // valores de la clase norma.
+        // Definimos que se pueda elejir también entre dos conjuntos de parámetros: A y B
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -458,16 +336,16 @@ namespace WpfApplication1
 
                 MessageBox.Show("Datos cargados"); // informamos con un MessageBox que se han cargado los parámetros
             }
-            
+
             // si hay error en los parámetros 
             catch { MessageBox.Show("Error en los parametros"); }
         }
 
         // SELECIONAMOS LOS PARÁMETROS B
-            //cuando tenemos selecionados los parametros B escribimos en los textbox los valores de 
-            // estos para poder consultarlos
-            // Ponemos también una condición que nos permita solo selecionar A o B, es decir, que al 
-            // selecionar B se deselecione A
+        //cuando tenemos selecionados los parametros B escribimos en los textbox los valores de 
+        // estos para poder consultarlos
+        // Ponemos también una condición que nos permita solo selecionar A o B, es decir, que al 
+        // selecionar B se deselecione A
         private void ParametrosB_Checked(object sender, RoutedEventArgs e)
         {
             if (ParametrosB.IsChecked == true)
@@ -509,14 +387,15 @@ namespace WpfApplication1
 
 
         // ESTABLECER CONDICIONES DE CONTORNO
-            //creamos un comboBox que nos deje elegir entre dos opciones de condiciones de contorno
-        private void button6_Click(object sender, RoutedEventArgs e) 
+        //creamos un comboBox que nos deje elegir entre dos opciones de condiciones de contorno
+        private void button6_Click(object sender, RoutedEventArgs e)
         {
             if (comboBox1.SelectedItem == null) // si no se ha selecionado nada nos salta un mensaje de error
             {
-                MessageBox.Show("Porfavor, seleciona una de las opciones del desplegable"); 
+                MessageBox.Show("Porfavor, seleciona una de las opciones del desplegable");
             }
-            else { 
+            else
+            {
                 // establecemos condiciones de contorno
                 matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
                 MessageBox.Show("Se han establecido las condiciones de contorno");
@@ -530,13 +409,13 @@ namespace WpfApplication1
                 botonCARGAR.IsEnabled = true;
                 slider1.IsEnabled = true;
                 boton_retroceder.IsEnabled = true;
-                }
+            }
         }
 
         // CLICAMOS EN EL MENÚ DE CREAR GRAFICO
-            //generamos una lista con los valores de fase y temperatura que hemos guardado en el historial
-            // y esta lista la entregamos a la clase de graficos
-        private void MenuItem_Click_20(object sender, RoutedEventArgs e) 
+        //generamos una lista con los valores de fase y temperatura que hemos guardado en el historial
+        // y esta lista la entregamos a la clase de graficos
+        private void MenuItem_Click_20(object sender, RoutedEventArgs e)
         {
             int contadorHISTORIAL = historial.Count;
             List<double> listaFasexIteracion = new List<double>(); // lista de Fases
@@ -558,7 +437,7 @@ namespace WpfApplication1
         }
 
         // VARIAMOS EL SLIDER DE VELOCIDAD
-            //Establecemos el nuevo valor del slider como el timespan del timer
+        //Establecemos el nuevo valor del slider como el timespan del timer
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(Convert.ToInt32(e.NewValue));
@@ -566,8 +445,8 @@ namespace WpfApplication1
         }
 
         // BOTON RETROCEDER
-            //cada vez que le damos al boton retroceder eliminamos un elemento del historial, actualizamos
-            // la matriz con la que estamos trabajando y la volvemos a pintar
+        //cada vez que le damos al boton retroceder eliminamos un elemento del historial, actualizamos
+        // la matriz con la que estamos trabajando y la volvemos a pintar
         private void boton_retroceder_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -580,6 +459,81 @@ namespace WpfApplication1
             catch // cuando llegamos al principio de la simulación y no podemos retroceder más nos salta un error
             { MessageBox.Show("No es posible retroceder mas"); }
         }
+
+        //GUARDAR FICHERO
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Simulación"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string filename = dlg.FileName;
+                int n = matriz_celdas.GuardarSimulacion(filename);
+                if (n == 0)
+                { MessageBox.Show("Simulación guardada correctamente!"); }
+                else
+                { MessageBox.Show("No ha sido posible guardar la simulación"); }
+            }
+            else
+            { MessageBox.Show("No ha sido posible guardar la simulación"); }
+
+        }
+
+        //CARGAR FICHERO
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                canvas1.Children.Clear();
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Multiselect = true;
+                ofd.Filter = "Text documents (.txt)|*.txt";
+                Nullable<bool> result = ofd.ShowDialog();
+
+                if (result == true)
+                {
+                    // Cargar documento
+                    string filename = ofd.FileName;
+                    Malla matriz = matriz_celdas.CargarSimulacion(filename);
+                    matriz_celdas = matriz;
+                    x = matriz_celdas.getX() - 2;
+                    y = matriz_celdas.getY() - 2;
+
+                    // Generamos las Mallas
+                    this.casillas = generarMalla1(casillas, canvas1);
+                    this.casillas2 = generarMalla1(casillas2, canvas2);
+
+                    volverApintar(); // repintamos 
+
+                    MessageBox.Show("Fichero cargado con éxito!");
+
+                    button1.IsEnabled = true;
+                    button2.IsEnabled = true;
+                    button4.IsEnabled = true;
+                    button5.IsEnabled = true;
+                    botonCARGAR.IsEnabled = true;
+                }
+                else
+                { MessageBox.Show("No ha sido posible cargar la simulación"); }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
     }
 }
 
