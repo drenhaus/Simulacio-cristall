@@ -64,8 +64,15 @@
 
             <Canvas Grid.Row="1"
                         Grid.Column="1">
-                <TextBox Canvas.Left="152" Canvas.Top="22" Height="23" Name="TextBoxY" Width="38" />
-                <Label Foreground="White" Canvas.Left="57" Canvas.Top="18" Content="Nº filas" Height="28" Name="label1" />
+                <TextBox Canvas.Left="152" 
+                         Canvas.Top="22" 
+                         Height="23" 
+                         Name="TextBoxY" 
+                         Width="38">
+
+                </TextBox>
+                         
+                    <Label Foreground="White" Canvas.Left="57" Canvas.Top="18" Content="Nº filas" Height="28" Name="label1" />
                 <TextBox Canvas.Left="152" Canvas.Top="56" Height="23" Name="TextBoxX" Width="38" />
                 <Label Foreground="White" Canvas.Left="57" Canvas.Top="51" Content="Nº columnas" Height="28" Name="label2" />
                 <Button Canvas.Left="70" Canvas.Top="93" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
@@ -87,7 +94,7 @@
                 <Label Foreground="White" Canvas.Left="56" Canvas.Top="239" Content="Delta" Height="28" Name="label6" />
                 <Label Foreground="White" Canvas.Left="70" Canvas.Top="268" Content="M" Height="28" Name="label7" />
                 <Label Foreground="White" Canvas.Left="70" Canvas.Top="297" Content="dt" Height="28" Name="label8" />
-                <Button Foreground="White" Canvas.Left="86" Canvas.Top="370" Content="Cargar parametros " Height="21" Name="Parametros" Width="133" Click="Parametros_Click" IsEnabled="False" />
+                <Button  Canvas.Left="86" Canvas.Top="370" Content="Cargar parametros " Height="21" Name="Parametros" Width="133" Click="Parametros_Click" IsEnabled="False" />
                 <ComboBox Canvas.Left="195" Canvas.Top="412" Height="23" Name="comboBox1" Width="113" IsEnabled="False">
                     <ComboBoxItem Content="Fixed" />
                     <ComboBoxItem Content="Espejo" />
