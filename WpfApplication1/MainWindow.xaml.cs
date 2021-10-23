@@ -118,6 +118,9 @@ namespace WpfApplication1
             canvas1.Children.Clear();
             canvas2.Children.Clear();
 
+            List<Malla> reset_historial = new List<Malla>();
+            historial = reset_historial; // vaciamos el historial
+
             // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
             // para poder realizar la simulación
             betta.IsEnabled = true;
