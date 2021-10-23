@@ -197,8 +197,8 @@ namespace WpfApplication1
         {
             // establecemos las dimensiones de la matriz de las casillas y las alturas en el canvas
             c = new Rectangle[y, x]; 
-            ca.Height = 210;
-            ca.Width = 315; 
+            ca.Height = canvas1.Height;
+            ca.Width = canvas1.Width; 
 
             // Bucle para crear los rectangulos
             for (int i = 0; i < y; i++)
@@ -215,8 +215,9 @@ namespace WpfApplication1
                     ca.Children.Add(b);// añadimos el rectangulo al canvas
 
                     // Posición del cuadrado
-                    Canvas.SetTop(b, (i - 1) * canvas1.Height / x);
-                    Canvas.SetLeft(b, (j - 1) * canvas1.Width / y);
+                    
+                    Canvas.SetTop(b, i * canvas1.Height / x);
+                    Canvas.SetLeft(b, j * canvas1.Width / y);
                     b.Tag = new Point(j, i);
 
                     // definimos los eventos que tiene el rectangulo: clicar y pasar por encima

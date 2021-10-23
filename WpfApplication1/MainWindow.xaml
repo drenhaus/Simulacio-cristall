@@ -108,12 +108,21 @@
                 </ComboBox>
                 <Label Foreground="White" Canvas.Left="46" Canvas.Top="407" Content="Condiciones de contorno" Height="28" Name="label9" />
                 <Button Canvas.Left="95" Canvas.Top="451" Content="Cargar condiciones contorno " Height="23" Name="button6" Width="172" Click="button6_Click" IsEnabled="False" />
-                <ScrollViewer Canvas.Left="427" Canvas.Top="323" Height="239" Name="scrollViewer1" Width="339" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility= "Visible">
-                    <Canvas Height="210" Name="canvas2" Width="315"></Canvas>
-                </ScrollViewer>
-                <ScrollViewer Canvas.Left="417" Canvas.Top="16" Height="239" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" Name="scrollViewer2" Width="349">
-                    <Canvas Height="210" Name="canvas1" Width="276" VerticalAlignment="TOP" HorizontalAlignment="Left"></Canvas>
-                </ScrollViewer>
+
+                <Canvas 
+                        Height="229" 
+                        Name="canvas2" 
+                        Width="339" Canvas.Left="423" Canvas.Top="338">
+
+                </Canvas>
+
+                <Canvas Height="229" 
+                            Name="canvas1" 
+                            Width="339" 
+                            VerticalAlignment="TOP" 
+                            HorizontalAlignment="Right" Canvas.Left="422" Canvas.Top="18">
+
+                </Canvas>
                 <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="257" Canvas.Top="93" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
                 <Label Foreground="White" Content="1s" Canvas.Left="314" Canvas.Top="114" Height="28" Width="25"/>
                 <Label Foreground="White" Content="2s" Canvas.Left="373" Canvas.Top="114" Height="28" Width="25"/>
