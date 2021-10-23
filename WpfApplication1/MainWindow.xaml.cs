@@ -92,6 +92,7 @@ namespace WpfApplication1
             casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
 
             historial.Add(matriz_celdas.ClonarParaLISTA()); // Cada nuevo clic es añadido al historial por si quisieramos retroceder a algún estado anterior donde no se ha clicado una casilla 
+            boxIteration.Text = Convert.ToString(historial.Count());
         }
 
         // CUANDO PASAMOS EL RATÓN POR ENCIMA DE UNA CASILLA
@@ -132,6 +133,8 @@ namespace WpfApplication1
             ParametrosA.IsEnabled = true;
             ParametrosB.IsEnabled = true;
             Parametros.IsEnabled = true;
+
+            boxIteration.Text = Convert.ToString(historial.Count());
 
             try
             {
@@ -216,7 +219,8 @@ namespace WpfApplication1
                     c[i, j] = b; // guardamos el rectangulo en su posición i,j de la matriz de casillas
                 }
             }
-            return c; 
+            return c;
+            
         }
 
      
@@ -318,6 +322,7 @@ namespace WpfApplication1
             // esta funcion recorre todos los rectangulos de casillas y casillas2 y actualiza el color que tienen
         private void volverApintar()
         {
+            boxIteration.Text = Convert.ToString(historial.Count());
             // volvemos a pintar los rectangulos de la matriz CASILLAS
             for (int i = 0; i < y; i++)
             {
@@ -417,6 +422,7 @@ namespace WpfApplication1
         {
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
+            boxIteration.Text = Convert.ToString(historial.Count());
 
             // volvemos a crear la matriz y establecemos que todas las fases son 1 y temperaturas -1
             for (int i = 0; i < y; i++)

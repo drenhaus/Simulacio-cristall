@@ -72,8 +72,8 @@
                          >
 
                 </TextBox>
-                         
-                    <Label Foreground="White" Canvas.Left="57" Canvas.Top="18" Content="Nº filas" Height="28" Name="label1" />
+
+                <Label Foreground="White" Canvas.Left="57" Canvas.Top="18" Content="Nº filas" Height="28" Name="label1" />
                 <TextBox Canvas.Left="152" Canvas.Top="56" Height="23" Name="TextBoxX" Width="38" />
                 <Label Foreground="White" Canvas.Left="57" Canvas.Top="51" Content="Nº columnas" Height="28" Name="label2" />
                 <Button Canvas.Left="70" Canvas.Top="93" Content="Crear " Height="21" Name="button3" Width="133" Click="button3_Click" />
@@ -117,6 +117,21 @@
                 <Label Foreground="White" Canvas.Left="429" Canvas.Top="260" Content="Valor fase selecionada" Height="28" x:Name="label3_Copy" Width="134" />
                 <Label Foreground="White" Canvas.Left="407" Canvas.Top="290" Content="Valor temperatura selecionada" Height="28" x:Name="label3_Copy1" Width="177" />
                 <Button x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="boton_retroceder_Click" IsEnabled="False" Canvas.Left="281" Canvas.Top="195"/>
+                
+                <Label Foreground="White" 
+                       Canvas.Left="259" 
+                       Canvas.Top="249" 
+                       HorizontalAlignment="Center"
+                       Content="Iteracion actual" 
+                       Height="28" 
+                       x:Name="laberIteracion" 
+                       Width="102" RenderTransformOrigin="-0.037,-0.036" />
+                <TextBox Canvas.Left="286" 
+                         Canvas.Top="278" 
+                         Width="53"
+                         IsEnabled="False"
+                         x:Name="boxIteration"
+                    />
 
 
 
