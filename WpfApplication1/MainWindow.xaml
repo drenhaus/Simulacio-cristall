@@ -18,7 +18,13 @@
                 <RowDefinition Height="75"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
+            <Button Name="CloseButton" 
+                    Content="x" 
+                    Click="CloseButton_Click"
+                    Grid.Column="1" 
+                    Margin="757,10,10,36.2" />
+            
             <TextBlock Text="Simulación cristal"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"

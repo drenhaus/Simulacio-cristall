@@ -41,6 +41,11 @@ namespace WpfApplication1
 
         }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         //GUARDAR FICHERO
         private void MenuItem_Click_2(object sender, RoutedEventArgs e) 
         {
