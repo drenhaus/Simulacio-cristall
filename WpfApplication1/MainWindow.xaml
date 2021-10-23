@@ -68,7 +68,8 @@
                          Canvas.Top="22" 
                          Height="23" 
                          Name="TextBoxY" 
-                         Width="38">
+                         Width="38"
+                         >
 
                 </TextBox>
                          

@@ -143,8 +143,16 @@ namespace WpfApplication1
                     x = 10;
                     y = 10;
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+
+                    TextBoxY.Text = Convert.ToString(10);
+                    TextBoxX.Text = Convert.ToString(10);
+
                     MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
+
+
+
+
                 }
             }
             catch
@@ -154,8 +162,14 @@ namespace WpfApplication1
                 x = 10;
                 y = 10;
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
+
+                TextBoxY.Text = Convert.ToString(10);
+                TextBoxX.Text = Convert.ToString(10);
+
                 MessageBox.Show("Error en la introducción de los valores. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
+
+
             }
 
             // Llamamos a la funcion que nos crea los rectángulos de las matrizes
