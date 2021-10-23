@@ -133,6 +133,8 @@ namespace WpfApplication1
             ParametrosA.IsEnabled = true;
             ParametrosB.IsEnabled = true;
             Parametros.IsEnabled = true;
+            boton_retroceder.IsEnabled = true; // permite retroceder al estar clicando
+            button5.IsEnabled = true;
 
             boxIteration.Text = Convert.ToString(historial.Count());
 
