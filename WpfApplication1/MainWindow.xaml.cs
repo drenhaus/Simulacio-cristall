@@ -46,37 +46,6 @@ namespace WpfApplication1
             Close();
         }
 
-        //GUARDAR FICHERO
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e) 
-        {
-
-        //    // Configure save file dialog box
-        //    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-        //    dlg.FileName = "Simulación"; // Default file name
-        //    dlg.DefaultExt = ".txt"; // Default file extension
-        //    dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
-
-        //    // Show save file dialog box
-        //    Nullable<bool> result = dlg.ShowDialog();
-
-        //    // Process save file dialog box results
-        //    if (result == true)
-        //    {
-        //        // Save document
-        //        string filename = dlg.FileName;
-        //        int n = matriz_celdas.GuardarSimulacion(filename);
-        //        if (n == 0)
-        //        { MessageBox.Show("Simulación guardada correctamente!"); }
-        //        else
-        //        { MessageBox.Show("No ha sido posible guardar la simulación"); }
-        //    }
-        //    else
-        //    { MessageBox.Show("No ha sido posible guardar la simulación"); }
-
-
-
-        }
-
 
         // CLICAR ENCIMA DE UNA CASILLA
             // cuando clicamos encima de una casilla esta se establecerá con fase y temperatura 0 y el color correspondiente 
@@ -230,101 +199,6 @@ namespace WpfApplication1
             return c;
             
         }
-
-     
-        private void MenuItem_Click_3(object sender, RoutedEventArgs e) // cargar fichero
-        {
-
-        //    try
-        //    {
-        //        canvas1.Children.Clear();
-        //        OpenFileDialog ofd = new OpenFileDialog();
-        //        ofd.Multiselect = true;
-        //        ofd.Filter = "Text documents (.txt)|*.txt";
-        //        Nullable<bool> result = ofd.ShowDialog();
-
-        //        if (result == true)
-        //        {
-        //            // Cargar documento
-        //            string filename = ofd.FileName;
-        //            Malla matriz = matriz_celdas.CargarSimulacion(filename);
-        //            matriz_celdas = matriz;
-        //            x = matriz_celdas.getX()-2;
-        //            y = matriz_celdas.getY()-2;
-
-        //            generarMallaEnCARGA();
-
-        //            MessageBox.Show("Fichero cargado con éxito!");
-
-        //            button1.IsEnabled = true;
-        //            button2.IsEnabled = true;
-        //            button4.IsEnabled = true;
-        //            button5.IsEnabled = true;
-        //            botonCARGAR.IsEnabled = true;
-
-
-
-
-        //        }
-        //        else
-        //        { MessageBox.Show("No ha sido posible cargar la simulación"); }
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-
-        }
-
-
-        //private void generarMallaEnCARGA()
-        //{
-        //    casillas = new Rectangle[y, x];
-
-        //    canvas1.Height = y * 15;
-        //    canvas1.Width = x * 15;
-
-
-        //    // Bucle para crear los rectangulos
-        //    for (int i = 0; i < y; i++)
-        //    {
-        //        for (int j = 0; j < x; j++)
-        //        {
-        //            Rectangle b = new Rectangle();
-        //            b.Width = 15;
-        //            b.Height = 15;
-        //            b.Fill = new SolidColorBrush(Colors.Gray);
-        //            b.StrokeThickness = 0.5;
-        //            b.Stroke = Brushes.Black;
-        //            canvas1.Children.Add(b);
-
-        //            // Posicion del cuadrado
-        //            Canvas.SetTop(b, (i - 1) * 15);
-        //            Canvas.SetLeft(b, (j - 1) * 15);
-        //            b.Tag = new Point(j, i);
-
-        //            b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
-
-        //            casillas[i, j] = b;
-        //        }
-        //    }
-
-        //    for (int i = 0; i < y; i++)
-        //    {
-        //        for (int j = 0; j < x; j++)
-        //        {
-
-        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == false)
-        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Gray); }
-        //            if (matriz_celdas.DameElEstadoDe(i + 1, j + 1) == true)
-        //            { casillas[i, j].Fill = new SolidColorBrush(Colors.Black); }
-
-        //        }
-        //    }
-            
-        //} // hay que modificar para que se cargen las dos
-
         
         //FUNCION QUE PINTA LA MATRIZ ACTUAL
             // esta funcion recorre todos los rectangulos de casillas y casillas2 y actualiza el color que tienen
@@ -611,6 +485,113 @@ namespace WpfApplication1
             catch // cuando llegamos al principio de la simulación y no podemos retroceder más nos salta un error
             { MessageBox.Show("No es posible retroceder mas"); }
         }
+
+        //CARGAR FICHERO
+        // cargamos el fichero que hemos guardado anteriormente
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                canvas1.Children.Clear();
+                canvas2.Children.Clear();
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Multiselect = true;
+                ofd.Filter = "Text documents (.txt)|*.txt";
+                Nullable<bool> result = ofd.ShowDialog();
+
+                if (result == true)
+                {
+                    // Cargar documento
+                    string filename = ofd.FileName;
+                    Malla matriz = matriz_celdas.CargarSimulacion(filename);
+                    matriz_celdas = matriz;
+                    x = matriz_celdas.getX() - 2;
+                    y = matriz_celdas.getY() - 2;
+
+                    // Generamos las Mallas
+                    this.casillas = generarMalla1(casillas, canvas1);
+                    this.casillas2 = generarMalla1(casillas2, canvas2);
+
+                    volverApintar(); // repintamos 
+
+                    MessageBox.Show("Fichero cargado con éxito! Por favor modifique los parámetros de simulación y condiciones de contorno o se simulará por defecto con los parámetros A y condiciones de controno fijas");
+
+                    // abilitamos todos los botones y textboxs por si se carga el fichero solo iniciar el programa
+                    button1.IsEnabled = true;
+                    button2.IsEnabled = true;
+                    button4.IsEnabled = true;
+                    button5.IsEnabled = true;
+                    button6.IsEnabled = true;
+                    boton_retroceder.IsEnabled = true;
+                    botonCARGAR.IsEnabled = true;
+                    betta.IsEnabled = true;
+                    dxdy.IsEnabled = true;
+                    epsilon.IsEnabled = true;
+                    delta.IsEnabled = true;
+                    M.IsEnabled = true;
+                    dt.IsEnabled = true;
+                    ParametrosA.IsEnabled = true;
+                    ParametrosB.IsEnabled = true;
+                    Parametros.IsEnabled = true;
+                    button1.IsEnabled = true;
+                    button2.IsEnabled = true;
+                    button4.IsEnabled = true;
+                    button5.IsEnabled = true;
+                    botonCARGAR.IsEnabled = true;
+                    slider1.IsEnabled = true;
+                    boton_retroceder.IsEnabled = true;
+
+
+                    // Si no cambiamos nada definimos por defecto condiciones de controno fijas y parámetros A
+                    matriz_celdas.SetCondicionsContornoFaseTemperatura("fixed");
+                    norm.SetDxDy(0.005);
+                    norm.SetEpsilon(0.005);
+                    norm.SetBetta(400);
+                    norm.SetDelta(0.5);
+                    norm.SetM(20);
+                    norm.SetDT(5 * Math.Pow(10, -6));
+                    matriz_celdas.SetNormas(norm);
+
+                }
+                else
+                { MessageBox.Show("No ha sido posible cargar la simulación"); }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //GUARDAR FICHERO
+        //guardamos el fichero de la simulación que estamos haciendo
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Simulación"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string filename = dlg.FileName;
+                int n = matriz_celdas.GuardarSimulacion(filename);
+                if (n == 0)
+                { MessageBox.Show("Simulación guardada correctamente!"); }
+                else
+                { MessageBox.Show("No ha sido posible guardar la simulación"); }
+            }
+            else
+            { MessageBox.Show("No ha sido posible guardar la simulación"); }
+
+        }
+
     }
 }
 

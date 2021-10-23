@@ -39,28 +39,28 @@
                               Foreground="White">
 
                 </MenuItem>
-                <MenuItem Header="Archivo" 
-                              Height=" 50" 
-                              FontSize="14"
-                              Foreground="White" RenderTransformOrigin="0.498,-0.386">
 
-                    <MenuItem Header="Guardar estado actual" 
+
+                <MenuItem Header="Guardar estado actual"  Height=" 50" 
+                              FontSize="14"
+                              Foreground="White" 
                                   Click="MenuItem_Click_2" 
-                                  IsEnabled="False" 
                                   x:Name="botonCARGAR">
                         <MenuItem.Icon>
                             <Image Source="/icons/save.png" />
                         </MenuItem.Icon>
                     </MenuItem>
 
-                    <MenuItem Header="Cargar fixero" 
+                <MenuItem Header="Cargar fixero"  Height=" 50" 
+                              FontSize="14"
+                              Foreground="White" 
                                   Click="MenuItem_Click_3">
                         <MenuItem.Icon>
                             <Image Source="/icons/load.png" />
                         </MenuItem.Icon>
                     </MenuItem>
 
-                </MenuItem>
+           
                 <MenuItem Header="Crear Graficas" 
                               Height=" 50" 
                               FontSize="14"
