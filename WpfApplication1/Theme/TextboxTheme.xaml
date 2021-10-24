@@ -16,7 +16,7 @@
                                      VerticalContentAlignment="Center"
                                      Padding="5"
                                      Foreground="#CFCFCF"
-                                     x:Name="SearchBox"/>
+                                    />
 
                             <TextBlock IsHitTestVisible="False"
                                        Text=" · · · "
@@ -30,7 +30,7 @@
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                            <DataTrigger Binding="{Binding Text}" Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>

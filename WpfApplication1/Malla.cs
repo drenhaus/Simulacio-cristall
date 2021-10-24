@@ -157,9 +157,9 @@ namespace WpfApplication1
                     for (int j = 0; j < x; j++)
                     {
                         this.matriz_malla[j, 0].SetFase(matriz_malla_Clone[j, 1].GetFase());
-                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla_Clone[j, 1].GetFase());
+                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla_Clone[j, 1].GetTemperatura());
                         this.matriz_malla[j, x - 1].SetFase(matriz_malla_Clone[j, x - 2].GetFase());
-                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla_Clone[j, x - 2].GetFase());
+                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla_Clone[j, x - 2].GetTemperatura());
 
                     }
                 }
