@@ -66,15 +66,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Explicacion.xaml.cs">
-      <DependentUpon>Explicacion.xaml</DependentUpon>
+    <Compile Include="ExplicacionesDelCristal.xaml.cs">
+      <DependentUpon>ExplicacionesDelCristal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Generadora.cs" />
     <Compile Include="graficosPage.xaml.cs">
       <DependentUpon>graficosPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Punto.cs" />
-    <Page Include="Explicacion.xaml">
+    <Page Include="ExplicacionesDelCristal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +164,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\UPC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fase.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\temperatura.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

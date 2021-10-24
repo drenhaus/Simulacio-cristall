@@ -10,19 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfApplication1
 {
     /// <summary>
-    /// Lógica de interacción para Explicacion.xaml
+    /// Interaction logic for ExplicacionesDelCristal.xaml
     /// </summary>
-    public partial class Explicacion : Page
+    public partial class ExplicacionesDelCristal : Window
     {
-        public Explicacion()
+        public ExplicacionesDelCristal()
         {
             InitializeComponent();
+
+        }
+
+        // PERMITE MOVER LA VENTANA
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
     }
 }

@@ -62,7 +62,7 @@
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
-                              FontFamily="/Fonts/#Poppins">
+                              FontFamily="/Fonts/#Poppins" Click="MenuItem_Click">
 
 
                 </MenuItem>
@@ -100,6 +100,7 @@
                               Click="MenuItem_Click_20"
                           FontFamily="/Fonts/#Poppins"/>
             </StackPanel>
+
 
             <Canvas Margin="230,75,0,0.4" Grid.RowSpan="2" Grid.ColumnSpan="3">
                 <TextBox Canvas.Left="142" 

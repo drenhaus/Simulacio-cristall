@@ -1,0 +1,80 @@
+﻿<Window x:Class="WpfApplication1.ExplicacionesDelCristal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        MouseMove="Window_MouseMove"
+        
+        Background="Transparent"
+        Height="670" Width="1000" Visibility="Visible" AllowsTransparency="True" WindowStyle="None">
+
+    <Border Background="#3a3752" 
+            CornerRadius="20" Margin="0,0,0,144">
+        <Canvas Margin="0,0,0,136">
+            <Label Content="UNIVERSITAT POLITÈCNICA DE CATALUNYA"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Foreground="White"
+               FontSize="40"
+               FontFamily="/Fonts/#Poppins" 
+               Height="87" 
+               Width="929" Canvas.Left="44" Canvas.Top="34"/>
+
+            <Border Width="642"
+                    Height="39"
+                    CornerRadius="10" Canvas.Left="44" Canvas.Top="121">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#171a42" Offset="0.0"/>
+                        <GradientStop Color="#171a42" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+            </Border>
+            <Label Content="Simulación del crecimiento de un cristal - equaciones" Canvas.Left="60" Canvas.Top="121" 
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+               FontSize="22"
+               FontFamily="/Fonts/#Poppins" 
+               Height="39" 
+               Width="642" RenderTransformOrigin="0.53,2.615"/>
+            <Border Width="909"
+                    Height="314"
+                    CornerRadius="10" Canvas.Left="44" Canvas.Top="190">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#6d76de" Offset="0.0"/>
+                        <GradientStop Color="#6d76de" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+            </Border>
+
+            <Image Width="729"
+                           Height="110"
+                           Source="/Images/fase.PNG"
+                           RenderTransformOrigin="0.5,0.5" 
+                            Canvas.Left="126" 
+                            Canvas.Top="224"/>
+            
+            <Image Width="729"
+                           Height="110"
+                           Source="/Images/temperatura.PNG"
+                           RenderTransformOrigin="0.5,0.5" 
+                            Canvas.Left="126" 
+                            Canvas.Top="364"/>
+
+        </Canvas>
+
+
+    </Border>
+
+
+
+</Window>
