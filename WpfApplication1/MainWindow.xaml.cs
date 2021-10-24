@@ -108,6 +108,7 @@ namespace WpfApplication1
             // en los canvas 1 y 2 para evitar problemas de generar mallas encima de otras mallas
             canvas1.Children.Clear();
             canvas2.Children.Clear();
+           
 
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
@@ -148,6 +149,7 @@ namespace WpfApplication1
                     MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
                 }
+                
             }
             catch
             {
@@ -162,6 +164,7 @@ namespace WpfApplication1
 
                 MessageBox.Show("Error en la introducción de los valores. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
+               
             }
 
             // Llamamos a la funcion que nos crea los rectángulos de las matrizes
@@ -189,7 +192,7 @@ namespace WpfApplication1
                     Rectangle b = new Rectangle();
                     b.Width = canvas1.Width / x;
                     b.Height = canvas1.Height / y;
-                    b.Fill = new SolidColorBrush(Colors.White);
+                    b.Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
                     b.StrokeThickness = 0.5;
                     b.Stroke = Brushes.Black;
                     ca.Children.Add(b);// añadimos el rectangulo al canvas
@@ -226,7 +229,7 @@ namespace WpfApplication1
 
                     // si la fase es 1 se establece como color el blanco y si la fase es 0 se establece el color rojo opaco
                     if (fase == 1)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    { casillas[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230)); }
                     if (fase == 0)
                     { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); }
 
@@ -243,7 +246,7 @@ namespace WpfApplication1
 
                     // si la temperatura es -1 se establece como color el blanco, y si es 0 se establece el color verde opaco
                     if (temperatura == -1)
-                    { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    { casillas2[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230)); }
                     if (temperatura == 0)
                     { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); }
 
