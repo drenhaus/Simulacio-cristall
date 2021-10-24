@@ -6,6 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/verTemperaturatTheme.xaml"/>
+                <ResourceDictionary Source="Theme/verFasesTheme.xaml"/>
                 <ResourceDictionary Source="Theme/MinimizeButtTheme.xaml"/>
                 <ResourceDictionary Source="Theme/CloseButtTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ComboBoxTheme.xaml"/>

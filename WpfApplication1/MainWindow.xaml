@@ -206,9 +206,9 @@
                     Foreground="White" Content="2s" Canvas.Left="371" Canvas.Top="127" Height="28" Width="25"/>
                 <Label FontFamily="/Fonts/#Poppins"
                     Foreground="White" Content="0.02s" Canvas.Left="233" Canvas.Top="127" Height="28" Width="45"/>
-                <TextBox Style="{StaticResource ModernTextbox2}"
+                <TextBox Style="{StaticResource verFasetextbox}"
                     Canvas.Left="586" Canvas.Top="263" Height="30" x:Name="labelFase" Width="132" IsEnabled="False"  />
-                <TextBox Style="{StaticResource ModernTextbox2}"
+                <TextBox Style="{StaticResource verTemperaturatextbox}"
                     Canvas.Left="586" Canvas.Top="300" Height="30" x:Name="labelTemperatura" Width="132" IsEnabled="False"  />
                 <Label FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="404" Canvas.Top="269" Content="Valor fase selecionada" Height="28" x:Name="label3_Copy" Width="152" />

@@ -39,6 +39,14 @@ namespace WpfApplication1
             generador = new Generadora(); // generamos una clase Generadora cuando inicializamos
         }
 
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
         // SET de los atributos
         public void SetListaFASExIteracion(List<double> A)
         {
