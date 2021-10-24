@@ -113,6 +113,9 @@ namespace WpfApplication1
             // actualizamos la celda
             fase = estado_futuro_fase;
             temperatura = estado_futuro_temperatura;
+            estado_futuro_fase = 1;
+            estado_futuro_temperatura = -1;
+
         }
     }
 }

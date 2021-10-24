@@ -281,6 +281,9 @@ namespace WpfApplication1
         // de los rectángulos
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
+            // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
+            //matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
@@ -292,12 +295,17 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA()); // añadimos la matriz futura al historial
 
             volverApintar(); // pintamos la nueva matriz
+
+
+           
         }
 
         // TICK DE RELOJ
         // cada tick de reloj se actualizará la malla y se volverá a pintar
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
+            //matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
@@ -309,6 +317,8 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA()); // añadimos la matriz futura al historial
 
             volverApintar(); // pintamos la nueva matriz
+                             
+           
         }
 
         // SIMULACIÓN AUTOMÁTICA
@@ -346,8 +356,8 @@ namespace WpfApplication1
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
                     matriz_celdas.SetFaseDeCelda(i, j, 1);
                     matriz_celdas.SetTemperaturaDeCelda(i, j, -1);
-                    casillas[i, j].Fill = new SolidColorBrush(Colors.White);
-                    casillas2[i, j].Fill = new SolidColorBrush(Colors.White);
+                    casillas[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
+                    casillas2[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
                 }
             }
             CeldaCentralPintada();
@@ -577,7 +587,7 @@ namespace WpfApplication1
 
 
                     // Si no cambiamos nada definimos por defecto condiciones de controno fijas y parámetros A
-                    matriz_celdas.SetCondicionsContornoFaseTemperatura("fixed");
+                    matriz_celdas.SetCondicionsContornoFaseTemperatura("System.Windows.Controls.ComboBoxItem: Fixed");
                     norm.SetDxDy(0.005);
                     norm.SetEpsilon(0.005);
                     norm.SetBetta(400);
