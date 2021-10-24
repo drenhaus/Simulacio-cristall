@@ -277,12 +277,9 @@ namespace WpfApplication1
                     ParametrosB.IsEnabled = true;
                     Parametros.IsEnabled = true;
 
-                    Window2 ventana = new Window2();
-                    ventana.Owner = this;
-                    ventana.ShowDialog();
-                    this.cambioParametros = ventana.GetCambio();
+                    MessageBoxResult resultado = MessageBox.Show("¿Desea cambiar los parámetros y las condiciones de contorno?", "Cambio parámetros", MessageBoxButton.YesNoCancel);
 
-                    if (this.cambioParametros == false)
+                    if (resultado == MessageBoxResult.No)
                     {
                         if ((norm.GetBetta() == 400) && (norm.GetDelta() == 0.5) && (norm.GetM() == 20))
                         {
@@ -308,9 +305,11 @@ namespace WpfApplication1
                         }
                         comboBox1.SelectedItem = matriz_celdas.GetCondicionesContorno();
                     }
-                    else
+                    if (resultado == MessageBoxResult.Yes)
                     {
                         MessageBox.Show("Por favor, especifique los parámetros de la simulación y las condiciones de contorno");
+                        this.norm = new Normas();
+
                     }
 
 
