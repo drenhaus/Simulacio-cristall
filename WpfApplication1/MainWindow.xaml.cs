@@ -312,6 +312,7 @@ namespace WpfApplication1
         // cuando se preme el boton de simulacion automática se inicializa el timer
         private void button2_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);// por defecto establecemos una simulación cada segundo
             dispatcherTimer.Start();
@@ -332,6 +333,7 @@ namespace WpfApplication1
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
             boxIteration.Text = Convert.ToString(historial.Count());
+            dispatcherTimer = new DispatcherTimer();
 
             // volvemos a crear la matriz y establecemos que todas las fases son 1 y temperaturas -1
             for (int i = 0; i < y; i++)

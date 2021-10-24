@@ -136,7 +136,7 @@
                     Canvas.Left="242" Canvas.Top="173" Content="Stop" Height="27" IsEnabled="False" Name="button4" Visibility="Visible" Width="66" Click="button4_Click" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="313" Canvas.Top="173" Content="Restart" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
+                    Canvas.Left="313" Canvas.Top="173" Content="Clear" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
                 <CheckBox Style="{StaticResource CheckBox_RadioButtonStyle}"
                     FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="36" Canvas.Top="373" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" IsEnabled="False"  />
