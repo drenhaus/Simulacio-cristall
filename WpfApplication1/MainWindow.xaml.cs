@@ -282,7 +282,7 @@ namespace WpfApplication1
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
             // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
-            matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+            //matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
 
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
@@ -305,7 +305,7 @@ namespace WpfApplication1
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
-            matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
+            //matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
@@ -587,7 +587,7 @@ namespace WpfApplication1
 
 
                     // Si no cambiamos nada definimos por defecto condiciones de controno fijas y parámetros A
-                    matriz_celdas.SetCondicionsContornoFaseTemperatura("fixed");
+                    matriz_celdas.SetCondicionsContornoFaseTemperatura("System.Windows.Controls.ComboBoxItem: Fixed");
                     norm.SetDxDy(0.005);
                     norm.SetEpsilon(0.005);
                     norm.SetBetta(400);
