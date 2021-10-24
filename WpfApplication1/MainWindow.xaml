@@ -10,10 +10,12 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        MouseMove="Window_MouseMove">
+        >
 
     <Border Background="#272537" 
             CornerRadius="20">
+
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="251.2"/>
@@ -145,7 +147,7 @@
                     Canvas.Left="242" Canvas.Top="173" Content="Stop" Height="27" IsEnabled="False" Name="button4" Visibility="Visible" Width="66" Click="button4_Click" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="313" Canvas.Top="173" Content="Restart" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
+                    Canvas.Left="313" Canvas.Top="173" Content="Clear" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
                 <CheckBox Style="{StaticResource CheckBox_RadioButtonStyle}"
                     FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="36" Canvas.Top="373" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" IsEnabled="False"  />
@@ -211,13 +213,11 @@
                 </Canvas>
 
 
-                <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="251" Canvas.Top="106" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
+                <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="251" Canvas.Top="106" Width="135" Minimum="1" Maximum="100" Value="50" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="1s" Canvas.Left="310" Canvas.Top="127" Height="28" Width="25"/>
+                    Foreground="White" Content="Slower" Canvas.Left="349" Canvas.Top="127" Height="28" Width="50"/>
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="2s" Canvas.Left="371" Canvas.Top="127" Height="28" Width="25"/>
-                <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="0.02s" Canvas.Left="233" Canvas.Top="127" Height="28" Width="45"/>
+                    Foreground="White" Content="Faster" Canvas.Left="233" Canvas.Top="127" Height="28" Width="49"/>
                 <TextBox Style="{StaticResource verFasetextbox}"
                     Canvas.Left="586" Canvas.Top="263" Height="30" x:Name="labelFase" Width="132" IsEnabled="False"  />
                 <TextBox Style="{StaticResource verTemperaturatextbox}"
@@ -259,6 +259,14 @@
 
 
             </Canvas>
+            <Rectangle Fill="Transparent" 
+                       HorizontalAlignment="Left" 
+                       Height="75" Margin="240,0,0,0" 
+                       Stroke="Transparent" 
+                       VerticalAlignment="Top" 
+                       Width="699" 
+                       Grid.ColumnSpan="2"
+                       MouseMove="Window_MouseMove"/>
 
         </Grid>
 

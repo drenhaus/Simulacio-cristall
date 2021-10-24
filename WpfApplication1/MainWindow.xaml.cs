@@ -147,10 +147,6 @@ namespace WpfApplication1
 
                     MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
-
-
-
-
                 }
             }
             catch
@@ -166,13 +162,12 @@ namespace WpfApplication1
 
                 MessageBox.Show("Error en la introducción de los valores. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
-
-
             }
 
             // Llamamos a la funcion que nos crea los rectángulos de las matrizes
             this.casillas = generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
             this.casillas2 = generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
+            CeldaCentralPintada();
         }
 
         // GENERAMOS LOS RECTANGULOS DE LA MATRIX
@@ -192,8 +187,8 @@ namespace WpfApplication1
                 {
                     // creamos un nuevo rectangulo y definimos sus propiedades
                     Rectangle b = new Rectangle();
-                    b.Width = canvas1.Width / y;
-                    b.Height = canvas1.Height / x;
+                    b.Width = canvas1.Width / x;
+                    b.Height = canvas1.Height / y;
                     b.Fill = new SolidColorBrush(Colors.White);
                     b.StrokeThickness = 0.5;
                     b.Stroke = Brushes.Black;
@@ -201,8 +196,8 @@ namespace WpfApplication1
 
                     // Posición del cuadrado
 
-                    Canvas.SetTop(b, i * canvas1.Height / x);
-                    Canvas.SetLeft(b, j * canvas1.Width / y);
+                    Canvas.SetTop(b, i * canvas1.Height / y);
+                    Canvas.SetLeft(b, j * canvas1.Width / x);
                     b.Tag = new Point(j, i);
 
                     // definimos los eventos que tiene el rectangulo: clicar y pasar por encima
@@ -262,6 +257,22 @@ namespace WpfApplication1
             }
         }
 
+        //FUNCIÓN QUE NOS ESTABLECE LA CELDA DEL MEDIO YA POR DEFECTO A 0
+            //definimos la x e y media (redondeando por si no fuera una matriz simetrica)
+            // y establecemos que en este punto hay fase y temperatura 0
+        private void CeldaCentralPintada()
+        {
+            int x_medio = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(x) / 2));
+            int y_medio = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(y) / 2));
+
+            matriz_celdas.SetTemperaturaDeCelda(y_medio, x_medio , 0); // definimos que en ese punto hay temperatura 0
+            matriz_celdas.SetFaseDeCelda(y_medio, x_medio, 0); // definimos que en ese punto hay fase 0
+
+            casillas[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // Para fase 0 definimos color rojo completamente opaco
+            casillas2[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
+        }
+
+
         // SIMULACIÓN PASO A PASO
         // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
         // de los rectángulos
@@ -301,8 +312,9 @@ namespace WpfApplication1
         // cuando se preme el boton de simulacion automática se inicializa el timer
         private void button2_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);// por defecto establecemos una simulación cada segundo
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);// por defecto establecemos una simulación cada segundo
             dispatcherTimer.Start();
         }
 
@@ -321,6 +333,7 @@ namespace WpfApplication1
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
             boxIteration.Text = Convert.ToString(historial.Count());
+            dispatcherTimer = new DispatcherTimer();
 
             // volvemos a crear la matriz y establecemos que todas las fases son 1 y temperaturas -1
             for (int i = 0; i < y; i++)
@@ -334,6 +347,7 @@ namespace WpfApplication1
                     casillas2[i, j].Fill = new SolidColorBrush(Colors.White);
                 }
             }
+            CeldaCentralPintada();
         }
 
         // CARGAR PARÁMETROS
