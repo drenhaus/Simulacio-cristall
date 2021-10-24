@@ -601,5 +601,6 @@ namespace WpfApplication1
             ExplicacionesDelCristal lc = new ExplicacionesDelCristal();
             lc.ShowDialog();
         }
+        
     }
 }

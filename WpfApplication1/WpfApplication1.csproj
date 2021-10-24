@@ -157,5 +157,11 @@
   <ItemGroup>
     <Resource Include="Images\UPC.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fase.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\temperatura.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

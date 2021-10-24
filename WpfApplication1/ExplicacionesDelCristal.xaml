@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
         ResizeMode="NoResize"
+        MouseMove="Window_MouseMove"
         
         Background="Transparent"
         Height="670" Width="1000" Visibility="Visible" AllowsTransparency="True" WindowStyle="None">
 
     <Border Background="#3a3752" 
-            CornerRadius="20">
-        <Canvas>
+            CornerRadius="20" Margin="0,0,0,144">
+        <Canvas Margin="0,0,0,136">
             <Label Content="UNIVERSITAT POLITÈCNICA DE CATALUNYA"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
@@ -34,15 +35,17 @@
                 </Border.Background>
 
             </Border>
-            <Label Content="Simulación del crecimiento de un cristal - equaciones" Canvas.Left="72" Canvas.Top="121" 
+            <Label Content="Simulación del crecimiento de un cristal - equaciones" Canvas.Left="60" Canvas.Top="121" 
                    Foreground="White"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
                FontSize="22"
                FontFamily="/Fonts/#Poppins" 
                Height="39" 
-               Width="614" RenderTransformOrigin="0.53,2.615"/>
-            <Border Width="892"
-                    Height="186"
-                    CornerRadius="10" Canvas.Left="60" Canvas.Top="184">
+               Width="642" RenderTransformOrigin="0.53,2.615"/>
+            <Border Width="909"
+                    Height="314"
+                    CornerRadius="10" Canvas.Left="44" Canvas.Top="190">
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
@@ -53,6 +56,19 @@
 
             </Border>
 
+            <Image Width="729"
+                           Height="110"
+                           Source="/Images/fase.PNG"
+                           RenderTransformOrigin="0.5,0.5" 
+                            Canvas.Left="126" 
+                            Canvas.Top="224"/>
+            
+            <Image Width="729"
+                           Height="110"
+                           Source="/Images/temperatura.PNG"
+                           RenderTransformOrigin="0.5,0.5" 
+                            Canvas.Left="126" 
+                            Canvas.Top="364"/>
 
         </Canvas>
 
