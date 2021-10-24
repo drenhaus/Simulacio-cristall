@@ -10,10 +10,12 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        MouseMove="Window_MouseMove">
+        >
 
     <Border Background="#272537" 
             CornerRadius="20">
+
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="241.6"/>
@@ -242,6 +244,14 @@
 
 
             </Canvas>
+            <Rectangle Fill="Transparent" 
+                       HorizontalAlignment="Left" 
+                       Height="75" Margin="240,0,0,0" 
+                       Stroke="Transparent" 
+                       VerticalAlignment="Top" 
+                       Width="699" 
+                       Grid.ColumnSpan="2"
+                       MouseMove="Window_MouseMove"/>
 
         </Grid>
 
