@@ -9,15 +9,16 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MouseMove="Window_MouseMove">
 
     <Border Background="#272537" 
             CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="209*"/>
-                <ColumnDefinition Width="571*"/>
+                <ColumnDefinition Width="241.6"/>
+                <ColumnDefinition Width="187*"/>
+
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -25,16 +26,25 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="2" 
-                    Margin="516.2,10,10,0"
+            <Button Grid.Column="1" 
+                    Margin="726.4,15,16,0"
                     Name="CloseButton" 
-                    Content="x" 
                     VerticalAlignment="TOP"
-                    FontSize="25"
+                    FontSize="55"
                     Click="CloseButton_Click"
-                    Style="{DynamicResource RoundCorner}" Height="44">
-
+                    Style="{DynamicResource closebutton}" Height="16">
             </Button>
+
+            <Button Grid.Column="1" 
+                    Margin="701.4,15,41,0"
+                    Name="MinimizeButton" 
+                    VerticalAlignment="TOP"
+                    FontSize="55"
+                    Click="MiniButton_Click"
+                    Style="{DynamicResource minimizebutton}"
+                    Height="16" RenderTransformOrigin="3.613,0.613">
+            </Button>
+
 
             <TextBlock Text="Simulacion cristal"
                        VerticalAlignment="Center"
@@ -43,9 +53,9 @@
                        FontSize="22"
                        FontFamily="/Fonts/#Poppins" 
                        Height="33" 
-                       Margin="10,21,15,21.2" 
+                       Margin="20,21,26.6,21.2" 
                        Width="195"/>
-            <StackPanel Margin="0,75,3,0.4" Grid.RowSpan="2">
+            <StackPanel Margin="0,75,1.6,0.4" Grid.RowSpan="2">
 
 
                 <MenuItem Header="Explicacion" 
@@ -91,7 +101,7 @@
                           FontFamily="/Fonts/#Poppins"/>
             </StackPanel>
 
-            <Canvas Margin="0,75,0,0.4" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Canvas Margin="230,75,0,0.4" Grid.RowSpan="2" Grid.ColumnSpan="3">
                 <TextBox Canvas.Left="142" 
                          Canvas.Top="10" 
                          Height="30" 
@@ -114,16 +124,16 @@
                     Canvas.Left="71" Canvas.Top="95" Content="Crear " Height="32" Name="button3" Width="95" Click="button3_Click" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="255" Canvas.Top="20" Content="Simular paso a paso" Height="31" Name="button1" Width="139" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
+                    Canvas.Left="251" Canvas.Top="20" Content="Simular paso a paso" Height="31" Name="button1" Width="139" Visibility="Visible" Click="button1_Click" IsEnabled="False" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="246" Canvas.Top="57" Content="Simulación automática" Height="30" IsEnabled="False" Name="button2" Visibility="Visible" Width="157" Click="button2_Click" />
+                    Canvas.Left="242" Canvas.Top="57" Content="Simulación automática" Height="30" IsEnabled="False" Name="button2" Visibility="Visible" Width="157" Click="button2_Click" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="246" Canvas.Top="173" Content="Stop" Height="27" IsEnabled="False" Name="button4" Visibility="Visible" Width="67" Click="button4_Click" />
+                    Canvas.Left="242" Canvas.Top="173" Content="Stop" Height="27" IsEnabled="False" Name="button4" Visibility="Visible" Width="66" Click="button4_Click" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="318" Canvas.Top="173" Content="Restart" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
+                    Canvas.Left="313" Canvas.Top="173" Content="Restart" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
                 <CheckBox Style="{StaticResource CheckBox_RadioButtonStyle}"
                     FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="36" Canvas.Top="373" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" IsEnabled="False"  />
@@ -177,7 +187,7 @@
                 <Canvas 
                         Height="229" 
                         Name="canvas2" 
-                        Width="339" Canvas.Left="423" Canvas.Top="338">
+                        Width="339" Canvas.Left="415" Canvas.Top="338">
 
                 </Canvas>
 
@@ -185,17 +195,17 @@
                             Name="canvas1" 
                             Width="339" 
                             VerticalAlignment="TOP" 
-                            HorizontalAlignment="Right" Canvas.Left="422" Canvas.Top="18">
+                            HorizontalAlignment="Right" Canvas.Left="415" Canvas.Top="19">
                 </Canvas>
 
 
-                <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="255" Canvas.Top="106" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
+                <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="251" Canvas.Top="106" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="1s" Canvas.Left="312" Canvas.Top="127" Height="28" Width="25"/>
+                    Foreground="White" Content="1s" Canvas.Left="310" Canvas.Top="127" Height="28" Width="25"/>
                 <Label FontFamily="/Fonts/#Poppins"
                     Foreground="White" Content="2s" Canvas.Left="371" Canvas.Top="127" Height="28" Width="25"/>
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="0.02s" Canvas.Left="241" Canvas.Top="127" Height="28" Width="45"/>
+                    Foreground="White" Content="0.02s" Canvas.Left="233" Canvas.Top="127" Height="28" Width="45"/>
                 <TextBox Style="{StaticResource ModernTextbox2}"
                     Canvas.Left="586" Canvas.Top="263" Height="30" x:Name="labelFase" Width="132" IsEnabled="False"  />
                 <TextBox Style="{StaticResource ModernTextbox2}"
@@ -206,20 +216,20 @@
                     Foreground="White" Canvas.Left="376" Canvas.Top="302" Content="Valor temperatura selecionada" Height="28" x:Name="label3_Copy1" Width="198" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Click="boton_retroceder_Click" IsEnabled="False" Canvas.Left="276" Canvas.Top="205" Height="29"/>
+                    x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Click="boton_retroceder_Click" IsEnabled="False" Canvas.Left="271" Canvas.Top="205" Height="29"/>
 
                 <Label Foreground="White" 
-                       Canvas.Left="259" 
+                       Canvas.Left="254" 
                        Canvas.Top="249" 
                        HorizontalAlignment="Center"
                        Content="Iteracion actual" 
                        Height="28" 
                        x:Name="laberIteracion" 
-                       Width="117" RenderTransformOrigin="-0.037,-0.036"
+                       Width="118" RenderTransformOrigin="-0.037,-0.036"
                        FontFamily="/Fonts/#Poppins"/>
                 <TextBox Canvas.Left="286" 
                          Canvas.Top="278" 
-                         Width="51"
+                         Width="39"
                          IsEnabled="False"
                          x:Name="boxIteration"
                          FontFamily="/Fonts/#Poppins"
