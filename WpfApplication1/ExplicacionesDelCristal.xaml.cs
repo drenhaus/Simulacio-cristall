@@ -33,5 +33,15 @@ namespace WpfApplication1
                 this.DragMove();
             }
         }
+        //Cerrar ventana
+        private void BtnCerrarEXPL_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        //Minimizar ventana
+        private void BtnMiniEXPL_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

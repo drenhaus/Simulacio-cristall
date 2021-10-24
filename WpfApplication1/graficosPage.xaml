@@ -83,11 +83,12 @@
 
             <Button Grid.Column="2" 
                     Grid.Row="0"  
-                    Margin="595.8,15,30.6,52.2"
+                    Margin="598.8,15,27.6,52.2"
                     Style="{DynamicResource minimizebutton}" 
                     RenderTransformOrigin="0.2,-1.714"
                     x:Name="BtnMIniGRAF" 
                     Click="BtnMiniGRAF_Click" />
+            
             <Label Content="· Haz click en Temperatura o  en Fase ·" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
