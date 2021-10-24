@@ -14,6 +14,27 @@
     <Border Background="#3a3752" 
             CornerRadius="20" Margin="0,0,0,144">
         <Canvas Margin="0,0,0,136">
+            <Button Height="16" 
+                    Width="16" 
+                    Canvas.Left="968" 
+                    Canvas.Top="13"
+                    Style="{DynamicResource closebutton}"
+                    x:Name="BtnCerrarEXPL" 
+                    Click="BtnCerrarEXPL_Click">
+
+            </Button>
+
+            <Button Height="16" 
+                    Width="16" 
+                    RenderTransformOrigin="9.615,3.84" 
+                    Canvas.Left="945" 
+                    Canvas.Top="13"
+                    Style="{DynamicResource minimizebutton}" 
+                    x:Name="BtnMIniEXPL" 
+                    Click="BtnMiniEXPL_Click" >
+
+            </Button>
+
             <Label Content="UNIVERSITAT POLITÈCNICA DE CATALUNYA"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
@@ -62,7 +83,7 @@
                            RenderTransformOrigin="0.5,0.5" 
                             Canvas.Left="126" 
                             Canvas.Top="224"/>
-            
+
             <Image Width="729"
                            Height="110"
                            Source="/Images/temperatura.PNG"
