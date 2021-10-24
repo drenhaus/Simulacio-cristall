@@ -202,13 +202,11 @@
                 </Canvas>
 
 
-                <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="251" Canvas.Top="106" Width="135" Minimum="20" Maximum="2000" Value="1000" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="200" IsSnapToTickEnabled="True" />
+                <Slider x:Name="slider1" IsEnabled="False" Height="21" Canvas.Left="251" Canvas.Top="106" Width="135" Minimum="1" Maximum="100" Value="50" ValueChanged="Slider_ValueChanged" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="1s" Canvas.Left="310" Canvas.Top="127" Height="28" Width="25"/>
+                    Foreground="White" Content="Slower" Canvas.Left="349" Canvas.Top="127" Height="28" Width="50"/>
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="2s" Canvas.Left="371" Canvas.Top="127" Height="28" Width="25"/>
-                <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Content="0.02s" Canvas.Left="233" Canvas.Top="127" Height="28" Width="45"/>
+                    Foreground="White" Content="Faster" Canvas.Left="233" Canvas.Top="127" Height="28" Width="49"/>
                 <TextBox Style="{StaticResource verFasetextbox}"
                     Canvas.Left="586" Canvas.Top="263" Height="30" x:Name="labelFase" Width="132" IsEnabled="False"  />
                 <TextBox Style="{StaticResource verTemperaturatextbox}"

@@ -302,7 +302,7 @@ namespace WpfApplication1
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(1000);// por defecto establecemos una simulación cada segundo
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);// por defecto establecemos una simulación cada segundo
             dispatcherTimer.Start();
         }
 
