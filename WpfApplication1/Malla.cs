@@ -126,7 +126,7 @@ namespace WpfApplication1
         {
             if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
             {
-                for (int i = 1; i < y; i++)
+                for (int i = 0; i < y; i++)
                 {
                     this.matriz_malla[0, i].SetFase(1);
                     this.matriz_malla[0, i].SetTemperatura(-1);
@@ -146,7 +146,7 @@ namespace WpfApplication1
                 if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
                 {
 
-                    for (int i = 1; i < y; i++)
+                    for (int i = 0; i < y; i++)
                     {
                         this.matriz_malla[0, i].SetFase(matriz_malla_Clone[1, i].GetFase());
                         this.matriz_malla[0, i].SetTemperatura(matriz_malla_Clone[1, i].GetTemperatura());
