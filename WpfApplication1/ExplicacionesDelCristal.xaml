@@ -5,121 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="ExplicacionesDelCristal" Height="531.818" Width="725">
-    <StackPanel Background="#272537">
-        <TextBlock Text="Explicacion"
+        ResizeMode="NoResize"
+        
+        Background="Transparent"
+        Height="670" Width="1000" Visibility="Visible" AllowsTransparency="True" WindowStyle="None">
+
+    <Border Background="#3a3752" 
+            CornerRadius="20">
+        <Canvas>
+            <Label Content="UNIVERSITAT POLITÈCNICA DE CATALUNYA"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Foreground="White"
+               FontSize="40"
+               FontFamily="/Fonts/#Poppins" 
+               Height="87" 
+               Width="929" Canvas.Left="44" Canvas.Top="34"/>
+
+            <Border Width="642"
+                    Height="39"
+                    CornerRadius="10" Canvas.Left="44" Canvas.Top="121">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#171a42" Offset="0.0"/>
+                        <GradientStop Color="#171a42" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+            </Border>
+            <Label Content="Simulación del crecimiento de un cristal - equaciones" Canvas.Left="72" Canvas.Top="121" 
                    Foreground="White"
-                   FontSize="28"
-                   HorizontalAlignment="Left"
-                   Margin="20,0,0,20"
-                   FontFamily="/Fonts/#Poppins"/>
-        <StackPanel Orientation="Horizontal"
-                    Margin="0,0,0,10">
-            <Border Width="400"
-                    Height="200"
-                     Margin="20,0,0,0">
+               FontSize="22"
+               FontFamily="/Fonts/#Poppins" 
+               Height="39" 
+               Width="614" RenderTransformOrigin="0.53,2.615"/>
+            <Border Width="892"
+                    Height="186"
+                    CornerRadius="10" Canvas.Left="60" Canvas.Top="184">
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
-                        <GradientStop Color="#bdd7ff" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,400,200"/>
-                </Border.Clip>
-
-
-                <Grid>
-                    <StackPanel>
-                        <TextBlock Text="UNIVERSITAT POLICTENICA DE &#xA;CATALUNYA&#xA; - Simulacio 2021"
-                                   Foreground="White"
-                                   FontSize="25"
-                                   Margin="20,10,10,0"
-                                   FontFamily="/Fonts/#Poppins"/>
-                        <TextBlock Text="Autores:"
-                                   Foreground="White"
-                                   FontSize="18"
-                                   Margin="20,10,10,0"
-                                   FontFamily="/Fonts/#Poppins"/>
-                        <TextBlock Text="  Olga Catalan&#xA;  Marc Drenhaus&#xA;  Alvaro Hernando"
-                                   Foreground="White"
-                                   FontSize="14"
-                                   Margin="20,10,10,0"
-                                   FontFamily="/Fonts/#Poppins"/>
-                    </StackPanel>
-
-                    <Image Width="181"
-                           Height="148"
-                           Source="/Images/UPC.png"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
-                        <Image.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="0"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Image.RenderTransform>
-                    </Image>
-                </Grid>
-            </Border>
-
-            <Border Width="200"
-                    Height="200"
-                    CornerRadius="10"
-                    Margin="45,0,0,0">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#ffc454" Offset="0.0"/>
-                        <GradientStop Color="#ffb73a" Offset="1"/>
+                        <GradientStop Color="#6d76de" Offset="0.0"/>
+                        <GradientStop Color="#6d76de" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
 
             </Border>
-        </StackPanel>
 
-        <StackPanel>
 
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="Margin" Value="15,0,0,0"/>
-                </Style>
-            </StackPanel.Resources>
+        </Canvas>
 
-            <TextBlock Text="Mas explicaion"
-                        Foreground="White"
-                        FontSize="28"
-                        HorizontalAlignment="Left"
-                        Margin="20,0,0,10"
-                        FontFamily="/Fonts/#Poppins"/>
-            <StackPanel Orientation="Horizontal"
-                         Margin="20,0,0,0">
-                <Border Width="150"
-                        Height="150"
-                        Background="#26c0eb"
-                        CornerRadius="10"
-                        Margin="0"/>
-                <Border Width="150"
-                        Height="150"
-                        Background="#65e669"
-                        CornerRadius="10"/>
-                <Border Width="150"
-                        Height="150"
-                        Background="#cdff70"
-                        CornerRadius="10"/>
-                <Border Width="150"
-                        Height="150"
-                        Background="#fae675"
-                        CornerRadius="10"/>
-            </StackPanel>
-        </StackPanel>
 
-    </StackPanel>
+    </Border>
+
+
 
 </Window>
