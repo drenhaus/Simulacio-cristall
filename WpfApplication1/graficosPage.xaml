@@ -44,6 +44,7 @@
                     Height="18" 
                     Grid.Column="1" 
                     Grid.Row="0"/>
+            
             <Button x:Name="BtnCalcularTEMP" 
                     Content="Calcular TEMP"
                     HorizontalAlignment="Left" 
@@ -54,6 +55,22 @@
                     Height="18" 
                     Grid.Row="0" 
                     Grid.Column="1"/>
+            
+            <Button Grid.Column="1" 
+                    Grid.Row="0"  
+                    Margin="951.2,16,9.6,51.2"
+                    Style="{DynamicResource closebutton}" 
+                    RenderTransformOrigin="0.2,-1.714"
+                    x:Name="BtnCerrarGRAF" 
+                    Click="BtnCerrarGRAF_Click" />
+            
+            <Button Grid.Column="1" 
+                    Grid.Row="0"  
+                    Margin="909.2,16,51.6,51.2"
+                    Style="{DynamicResource minimizebutton}" 
+                    RenderTransformOrigin="0.2,-1.714"
+                    x:Name="BtnMIniGRAF" 
+                    Click="BtnMiniGRAF_Click" />
 
         </Grid>
     </Border>

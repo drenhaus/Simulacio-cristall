@@ -127,6 +127,16 @@ namespace WpfApplication1
             model.Series.Add(linea);
             Grafica.Model = model;
         }
+
+        private void BtnCerrarGRAF_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnMiniGRAF_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 
 
