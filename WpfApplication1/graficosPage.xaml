@@ -50,12 +50,14 @@
                     HorizontalAlignment="Left" 
                     Margin="517.8,5.8,0,0" 
                     VerticalAlignment="Top" 
-                    Width="99" 
+                    Width="81" 
                     Click="BtnCalcularFASE_Click" 
                     Height="38" 
                     Grid.Column="2" 
                     RenderTransformOrigin="0.608,0.845"
-                    Style="{DynamicResource grafFaseBut}" Grid.Row="1"/>
+                    Style="{DynamicResource grafFaseBut}" 
+                    Grid.Row="1"
+                    FontFamily="/Fonts/#Poppins" />
 
             <Button x:Name="BtnCalcularTEMP" 
                     Content="TEMPERATURA"
@@ -66,7 +68,9 @@
                     Click="BtnCalcularTEMP_Click" 
                     Height="38" 
                     Grid.Column="2"
-                    Style="{DynamicResource grafTempeBut}" Grid.Row="1"/>
+                    Style="{DynamicResource grafTempeBut}" 
+                    Grid.Row="1"
+                    FontFamily="/Fonts/#Poppins" />
 
 
             <Button Grid.Column="2" 
@@ -84,6 +88,20 @@
                     RenderTransformOrigin="0.2,-1.714"
                     x:Name="BtnMIniGRAF" 
                     Click="BtnMiniGRAF_Click" />
+            <Label Content="· Haz click en Temperatura o  en Fase ·" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Height="64" 
+                   Margin="195.2,251.8,0,0" 
+                   VerticalAlignment="Top" 
+                   Width="587"
+                   Foreground="Black"
+                   FontSize="30"
+                   FontFamily="/Fonts/#Poppins" 
+                   Grid.Row="1" 
+                   Grid.ColumnSpan="2"
+                   Opacity="0.5"
+                   x:Name="labelmedio"/>
 
         </Grid>
     </Border>
