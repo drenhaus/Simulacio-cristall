@@ -39,6 +39,14 @@ namespace WpfApplication1
             generador = new Generadora(); // generamos una clase Generadora cuando inicializamos
         }
 
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
         // SET de los atributos
         public void SetListaFASExIteracion(List<double> A)
         {
@@ -56,6 +64,8 @@ namespace WpfApplication1
         // GRÁFICA FASE
         private void BtnCalcularFASE_Click(object sender, RoutedEventArgs e)
         {
+            //Oculamos la label
+            labelmedio.Visibility = Visibility.Hidden;
             // introducimos las listas al generador
             generador.SetListaFASExIteracion(listaFasexIteracion);
             generador.GenerarDatosFASE(Convert.ToDouble(contadorHISTORIAL));
@@ -74,7 +84,7 @@ namespace WpfApplication1
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Datos FASE media";
+            model.Title = "Evolución de la Fase media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -90,6 +100,8 @@ namespace WpfApplication1
         //GRÁFICA TEMPERATURA
         private void BtnCalcularTEMP_Click(object sender, RoutedEventArgs e)
         {
+            //Oculamos la label
+            labelmedio.Visibility = Visibility.Hidden;
             //definimos las listas
             generador.SetListaTEMPxIteracion(listaTEMPxIteracion);
             generador.GenerarDatosTEMP(Convert.ToDouble(contadorHISTORIAL));
@@ -108,7 +120,7 @@ namespace WpfApplication1
 
             model.Axes.Add(ejeY);
             model.Axes.Add(ejeX);
-            model.Title = "Datos geneardos TEMPERATURA";
+            model.Title = "Evolución de la Temperatura media";
             LineSeries linea = new LineSeries();
 
             foreach (var item in generador.Puntos)
@@ -118,6 +130,18 @@ namespace WpfApplication1
             linea.Title = "Valores generados";
             model.Series.Add(linea);
             Grafica.Model = model;
+        }
+
+        //Cerrar ventana
+        private void BtnCerrarGRAF_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        //Minimizar ventana
+        private void BtnMiniGRAF_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
     }
 

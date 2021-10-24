@@ -5,14 +5,105 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         xmlns:oxyPlot="http://oxyplot.org/wpf"
-        mc:Ignorable="d"
-        Title="graficosPage" Height="450" Width="800">
-    <Grid>
-        <oxyPlot:PlotView x:Name="Grafica" >
+        mc:Ignorable="d"        
+        Height="670" Width="1000"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseMove="Window_MouseMove">
 
-        </oxyPlot:PlotView>
-        <Button x:Name="BtnCalcularFASE" Content="Calcular FASE" HorizontalAlignment="Left" Margin="715,392,0,0" VerticalAlignment="Top" Width="69" Click="BtnCalcularFASE_Click" Height="18"/>
-        <Button x:Name="BtnCalcularTEMP" Content="Calcular TEMP" HorizontalAlignment="Left" Margin="0,392,0,0" VerticalAlignment="Top" Width="83" Click="BtnCalcularTEMP_Click" Height="18"/>
+    <Border Background="#3a3752" 
+            CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="83*"/>
+                <RowDefinition Height="577*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="334*"/>
+                <ColumnDefinition Width="642*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Text="Crear Graficas"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="22"
+                       FontFamily="/Fonts/#Poppins" 
+                       Height="33" 
+                       Margin="10.2,25,129.2,25.2" 
+                       Width="195"
+                       Grid.Column="1" 
+                       Grid.Row="0"/>
+
+            <oxyPlot:PlotView x:Name="Grafica" 
+                              Grid.Column="1"
+                              Grid.Row="1" Margin="1.2,0.8,5.6,2.8" Grid.ColumnSpan="2"/>
+            <Button x:Name="BtnCalcularFASE" 
+                    Content="FASE" 
+                    HorizontalAlignment="Left" 
+                    Margin="517.8,5.8,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="81" 
+                    Click="BtnCalcularFASE_Click" 
+                    Height="38" 
+                    Grid.Column="2" 
+                    RenderTransformOrigin="0.608,0.845"
+                    Style="{DynamicResource grafFaseBut}" 
+                    Grid.Row="1"
+                    FontFamily="/Fonts/#Poppins" />
+
+            <Button x:Name="BtnCalcularTEMP" 
+                    Content="TEMPERATURA"
+                    HorizontalAlignment="Left" 
+                    Margin="409.8,5.8,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="103" 
+                    Click="BtnCalcularTEMP_Click" 
+                    Height="38" 
+                    Grid.Column="2"
+                    Style="{DynamicResource grafTempeBut}" 
+                    Grid.Row="1"
+                    FontFamily="/Fonts/#Poppins" />
+
+
+            <Button Grid.Column="2" 
+                    Grid.Row="0"  
+                    Margin="620.8,15,5.6,52.2"
+                    Style="{DynamicResource closebutton}" 
+                    RenderTransformOrigin="0.2,-1.714"
+                    x:Name="BtnCerrarGRAF" 
+                    Click="BtnCerrarGRAF_Click" />
+
+            <Button Grid.Column="2" 
+                    Grid.Row="0"  
+                    Margin="595.8,15,30.6,52.2"
+                    Style="{DynamicResource minimizebutton}" 
+                    RenderTransformOrigin="0.2,-1.714"
+                    x:Name="BtnMIniGRAF" 
+                    Click="BtnMiniGRAF_Click" />
+            <Label Content="· Haz click en Temperatura o  en Fase ·" 
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" 
+                   Height="64" 
+                   Margin="195.2,251.8,0,0" 
+                   VerticalAlignment="Top" 
+                   Width="587"
+                   Foreground="Black"
+                   FontSize="30"
+                   FontFamily="/Fonts/#Poppins" 
+                   Grid.Row="1" 
+                   Grid.ColumnSpan="2"
+                   Opacity="0.5"
+                   x:Name="labelmedio"/>
+
+        </Grid>
+    </Border>
+
 </Window>
