@@ -229,18 +229,18 @@ namespace WpfApplication1
 
                 for (int i = 1; i < x; i++)  // filas - y     columnas - x
                 {
-                    matriz_malla[0, i].SetFase(DameFASEdeClon(1, i));
-                    matriz_malla[0, i].SetTemperatura(DameTEMPERATURAdeClon(1, i));
-                    matriz_malla[y - 1, i].SetFase(DameFASEdeClon(y - 2, i));
-                    matriz_malla[y - 1, i].SetTemperatura(DameTEMPERATURAdeClon(y - 2, i));
+                    matriz_malla[0, i].SetFase(DameFASEde(1, i));
+                    matriz_malla[0, i].SetTemperatura(DameTEMPERATURAde(1, i));
+                    matriz_malla[y - 1, i].SetFase(DameFASEde(y - 2, i));
+                    matriz_malla[y - 1, i].SetTemperatura(DameTEMPERATURAde(y - 2, i));
                 }
 
                 for (int j = 1; j < y; j++)
                 {
-                    matriz_malla[j, 0].SetFase(DameFASEdeClon(j, 1));
-                    matriz_malla[j, 0].SetTemperatura(DameTEMPERATURAdeClon(j, 1));
-                    matriz_malla[j, x - 1].SetFase(DameFASEdeClon(j, x - 2));
-                    matriz_malla[j, x - 1].SetTemperatura(DameTEMPERATURAdeClon(j, x - 2));
+                    matriz_malla[j, 0].SetFase(DameFASEde(j, 1));
+                    matriz_malla[j, 0].SetTemperatura(DameTEMPERATURAde(j, 1));
+                    matriz_malla[j, x - 1].SetFase(DameFASEde(j, x - 2));
+                    matriz_malla[j, x - 1].SetTemperatura(DameTEMPERATURAde(j, x - 2));
 
                 }
             }
