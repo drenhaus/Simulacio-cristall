@@ -187,5 +187,17 @@
   <ItemGroup>
     <Resource Include="Images\temperatura.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\save_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\EXPL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\load_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\graf.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

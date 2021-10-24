@@ -58,47 +58,57 @@
             <StackPanel Margin="0,75,1.6,0.4" Grid.RowSpan="2">
 
 
-                <MenuItem Header="Explicacion" 
+                <MenuItem Header="           Explicación" 
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
-                              FontFamily="/Fonts/#Poppins" Click="MenuItem_Click">
+                              FontFamily="/Fonts/#Poppins" Click="MenuItem_Click"
+                              HorizontalAlignment="Center" Margin="10,10" Width="220">
+                    <MenuItem.Icon>
+                        <Image Source="/icons/EXPL.png" Margin="10,-5,-41,-13"/>
+                    </MenuItem.Icon> >
 
 
                 </MenuItem>
 
-                <MenuItem Header="Guardar estado actual" 
+                <MenuItem Header="           Guardar" 
                               Click="MenuItem_Click_2" 
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins"
                               x:Name="botonCARGAR" 
-                              Margin="0,0,-0.4,0">
+                              Margin="10,10">
 
                     <MenuItem.Icon>
-                        <Image Source="/icons/save.png" />
+                        <Image Source="/icons/save_white.png" Margin="-21,-13,-75,-13" />
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <MenuItem Header="Cargar fixero" 
+                <MenuItem Header="           Cargar fixero" 
                               Click="MenuItem_Click_3"
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
-                              FontFamily="/Fonts/#Poppins">
+                              FontFamily="/Fonts/#Poppins" Margin="10,10">
                     <MenuItem.Icon>
-                        <Image Source="/icons/load.png" />
+                        <Image Source="/icons/load_white.png" Margin="-21,-11,-78,-8" />
                     </MenuItem.Icon>
                 </MenuItem>
 
 
-                <MenuItem Header="Crear Graficas" 
+                <MenuItem Header="           Crear Graficas" 
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White" 
                               Click="MenuItem_Click_20"
-                          FontFamily="/Fonts/#Poppins"/>
+                          FontFamily="/Fonts/#Poppins" Margin="10,10,0,0">
+
+                    <MenuItem.Icon>
+                        <Image Source="/icons/graf.png" Margin="-17,-12,-67,-8" />
+                    </MenuItem.Icon>
+
+                </MenuItem>
             </StackPanel>
 
 
