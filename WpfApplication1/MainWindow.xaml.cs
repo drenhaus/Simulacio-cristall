@@ -33,7 +33,8 @@ namespace WpfApplication1
         Malla matriz_celdas = new Malla(); // Matriz con la que estaremos trabajando en la interación presente
         List<Malla> historial = new List<Malla>(); // Historial donde se van guardando los pasos de las simulaciones anteriores
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); //Timer para la simulación automática
-
+        graficosPage lc ;
+        bool ventanaGraf = false; // sabemos si esta abierta la ventana de garficos para que el programa sea mas eficiente.
 
         public MainWindow()
         {
@@ -127,6 +128,8 @@ namespace WpfApplication1
             button5.IsEnabled = true;
 
             boxIteration.Text = Convert.ToString(historial.Count());
+            dispatcherTimer.Stop();
+            ventanaGraf = false;
 
             try
             {
@@ -276,7 +279,7 @@ namespace WpfApplication1
         // SIMULACIÓN PASO A PASO
         // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
         // de los rectángulos
-        private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
+        private void button1_Click(object sender, RoutedEventArgs e) 
         {
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
@@ -289,6 +292,8 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA()); // añadimos la matriz futura al historial
 
             volverApintar(); // pintamos la nueva matriz
+            dispatcherTimer.Stop();
+            ventanaGraf = false;
         }
 
         // TICK DE RELOJ
@@ -306,6 +311,30 @@ namespace WpfApplication1
             historial.Add(matriz_celdas.ClonarParaLISTA()); // añadimos la matriz futura al historial
 
             volverApintar(); // pintamos la nueva matriz
+
+
+            
+
+            if (ventanaGraf == true)
+            {
+                int contadorHISTORIAL = historial.Count;
+                List<double> listaFasexIteracion = new List<double>(); // lista de Fases
+                List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
+
+                for (int k = 0; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
+                {
+                    listaFasexIteracion.Add(historial[k].GetcantidadFase());
+                    listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
+                }
+                // Abrimos una nueva ventana para mostrar los graficos
+
+
+                lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
+                lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
+                lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
+            }
+
+
         }
 
         // SIMULACIÓN AUTOMÁTICA
@@ -316,6 +345,7 @@ namespace WpfApplication1
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(50);// por defecto establecemos una simulación cada segundo
             dispatcherTimer.Start();
+            ventanaGraf = false;
         }
 
         // DETENER LA SIMULACIÓN AUTOMÁTICA
@@ -324,6 +354,7 @@ namespace WpfApplication1
         {
             dispatcherTimer.Stop();
             MessageBox.Show("Se ha detenido la simulación");
+            ventanaGraf = false;
         }
 
         // BOTON RESTART
@@ -348,6 +379,8 @@ namespace WpfApplication1
                 }
             }
             CeldaCentralPintada();
+            dispatcherTimer.Stop();
+            ventanaGraf = false;
         }
 
         // CARGAR PARÁMETROS
@@ -474,6 +507,8 @@ namespace WpfApplication1
         // y esta lista la entregamos a la clase de graficos
         private void MenuItem_Click_20(object sender, RoutedEventArgs e)
         {
+            ventanaGraf = true;
+
             int contadorHISTORIAL = historial.Count;
             List<double> listaFasexIteracion = new List<double>(); // lista de Fases
             List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
@@ -485,7 +520,7 @@ namespace WpfApplication1
             }
             // Abrimos una nueva ventana para mostrar los graficos
 
-            graficosPage lc = new graficosPage();
+            lc = new graficosPage();
             lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
             lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
             lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
@@ -506,6 +541,9 @@ namespace WpfApplication1
         // la matriz con la que estamos trabajando y la volvemos a pintar
         private void boton_retroceder_Click(object sender, RoutedEventArgs e)
         {
+            ventanaGraf = false;
+            dispatcherTimer.Stop();
+
             try
             {
                 historial.RemoveAt(historial.Count() - 1); // eliminamos
