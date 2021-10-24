@@ -22,6 +22,7 @@ namespace WpfApplication2
         Celda[,] matriz_malla_Clone; //matriz espejo
         
         Normas norma1; //   MIRAR
+        string condicionesContorno;
 
     
         public Celda[,] GetMatriz()
@@ -126,6 +127,7 @@ namespace WpfApplication2
 
         public void SetCondicionsContornoFaseTemperatura(string condicion)
         {
+            this.condicionesContorno = condicion;
             if (condicion == "fixed")
             {
 
@@ -169,6 +171,9 @@ namespace WpfApplication2
 
             }
         }
+
+        public string GetCondicionesContorno()
+        { return this.condicionesContorno; }
 
 
         public void SetFaseDeCelda(int fila, int columna, double fase)
@@ -294,6 +299,8 @@ namespace WpfApplication2
 
                 w.Write(this.y + " " + this.x);
                 w.Write('\n');
+                w.Write(this.norma1.GetDxDy() + " " + this.norma1.GetEpsilon() + " " + this.norma1.GetBetta() + " " + this.norma1.GetDelta() + " " + this.norma1.GetM() + " " + this.norma1.GetDT() + " " + this.condicionesContorno);
+                w.Write('\n');
 
                 for (int j = 0; j < y; j++)
                 {
@@ -318,11 +325,22 @@ namespace WpfApplication2
         public Malla CargarSimulacion(string name)
         {
             Malla matriz_celdas = new Malla();
+            Normas norma = new Normas();
 
             StreamReader sr = new StreamReader(name);
             string linea = sr.ReadLine();
             string[] trozos = linea.Split(' ');
             matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0]) - 2, Convert.ToInt32(trozos[1]) - 2);
+            string lineaParam = sr.ReadLine();
+            string[] trozosParam = lineaParam.Split(' ');
+            norma.SetDxDy(Convert.ToDouble(trozosParam[0]));
+            norma.SetEpsilon(Convert.ToDouble(trozosParam[1]));
+            norma.SetBetta(Convert.ToDouble(trozosParam[2]));
+            norma.SetDelta(Convert.ToDouble(trozosParam[3]));
+            norma.SetM(Convert.ToDouble(trozosParam[4]));
+            norma.SetDT(Convert.ToDouble(trozosParam[5]));
+            matriz_celdas.SetNormas(norma);
+            matriz_celdas.SetCondicionsContornoFaseTemperatura(trozosParam[6]);
 
 
             string line = sr.ReadLine();

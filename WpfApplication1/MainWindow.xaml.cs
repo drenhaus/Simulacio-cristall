@@ -29,6 +29,8 @@ namespace WpfApplication1
         Rectangle[,] casillas2;
         int x;  //columnas
         int y;  //filas
+
+        bool cambioParametros; // Variable que nos indica si cambiamos o no los parámetros al cargar la simulación
         
         Malla matriz_celdas = new Malla();
         
@@ -275,6 +277,41 @@ namespace WpfApplication1
                     ParametrosB.IsEnabled = true;
                     Parametros.IsEnabled = true;
 
+                    Window2 ventana = new Window2();
+                    ventana.Owner = this;
+                    ventana.ShowDialog();
+                    this.cambioParametros = ventana.GetCambio();
+
+                    if (this.cambioParametros == false)
+                    {
+                        if ((norm.GetBetta() == 400) && (norm.GetDelta() == 0.5) && (norm.GetM() == 20))
+                        {
+                            ParametrosA.IsChecked = true;
+                            dxdy.Text = Convert.ToString(0.005);
+                            epsilon.Text = Convert.ToString(0.005);
+                            betta.Text = Convert.ToString(400);
+                            delta.Text = Convert.ToString(0.5);
+                            M.Text = Convert.ToString(20);
+                            double c = 5 * Math.Pow(10, -6);
+                            dt.Text = Convert.ToString(c);
+                        }
+                        if ((norm.GetBetta() == 300) && (norm.GetDelta() == 0.7) && (norm.GetM() == 30))
+                        {
+                            ParametrosB.IsChecked = true;
+                            dxdy.Text = Convert.ToString(0.005);
+                            epsilon.Text = Convert.ToString(0.005);
+                            betta.Text = Convert.ToString(300);
+                            delta.Text = Convert.ToString(0.7);
+                            M.Text = Convert.ToString(30);
+                            double c = 5 * Math.Pow(10, -6);
+                            dt.Text = Convert.ToString(c);
+                        }
+                        comboBox1.SelectedItem = matriz_celdas.GetCondicionesContorno();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, especifique los parámetros de la simulación y las condiciones de contorno");
+                    }
 
 
 
@@ -555,7 +592,6 @@ namespace WpfApplication1
                 norm.SetDT(5 * Math.Pow(10, -6));
 
             }
-
             MessageBox.Show("Datos cargados");
         }
 
@@ -762,6 +798,10 @@ namespace WpfApplication1
             { MessageBox.Show("No es posible retroceder mas"); }
         }//Boton retroceder
 
+        private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }

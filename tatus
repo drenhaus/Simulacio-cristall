@@ -1,0 +1,720 @@
+[33mcommit e309d57ca262d5eed4a65eac1d1593df2768c87b[m[33m ([m[1;36mHEAD -> [m[1;32mRevisionCargar[m[33m, [m[1;31morigin/RevisionCargar[m[33m)[m
+Author: Alvaro <alvaro.herlop13@gmail.com>
+Date:   Fri Oct 22 21:54:57 2021 +0200
+
+    Sincronizado el Cargar con el Main
+
+[33mcommit d4d8502f62b620d8b4e2116587bf8c49ac43c644[m
+Author: Alvaro <alvaro.herlop13@gmail.com>
+Date:   Thu Oct 21 10:09:57 2021 +0200
+
+    Revisado el Main, falta comprobar
+
+[33mcommit ba3a4d04c88fc1bae5ec84d2d25cfdcbc3b64e89[m
+Author: Alvaro <alvaro.herlop13@gmail.com>
+Date:   Thu Oct 21 09:01:54 2021 +0200
+
+    Puesto el cargar
+
+[33mcommit 3242cb26b5ebc3949b6fc1c35abe9976d0e81ab9[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Wed Oct 20 19:43:55 2021 +0200
+
+    Update README.txt
+
+[33mcommit ffa9b140ed557d01e6de9a0229fb1d6104609aae[m
+Merge: 5342d4c e9a6b9b
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Wed Oct 20 19:41:51 2021 +0200
+
+    Merge pull request #20 from drenhaus/PruebasDeArreglos
+    
+    Pruebas de arreglos
+
+[33mcommit e9a6b9b86b5644bdc4008bbc4930cf61566d07d1[m[33m ([m[1;31morigin/PruebasDeArreglos[m[33m)[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 20 19:39:00 2021 +0200
+
+    ya funciona el boton retroceder
+
+[33mcommit 2a017eb52080a2625e33f3a3736675fea33be010[m[33m ([m[1;31morigin/ramaParaProvarMergeConGRAFICOSTEMP[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 13:50:49 2021 +0200
+
+    boton retrocer esta desactivado
+
+[33mcommit a951803f855d481fe615a4e93bb8f7c26001667d[m
+Merge: dc67555 a0a71c9
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Wed Oct 20 13:32:19 2021 +0200
+
+    Merge branch 'GRAFICOTEMP' into ramaParaProvarMergeConGRAFICOSTEMP
+
+[33mcommit dc675552f2249ba41f2f33fe47be8fc26838f9e6[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 12:50:51 2021 +0200
+
+    un error mas
+
+[33mcommit 5342d4c5882492fe836974d5f610f78cf7e042ce[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 12:48:50 2021 +0200
+
+    update txt
+
+[33mcommit a0a71c93ba474dc22a0cc61615b843c0076d680a[m[33m ([m[1;31morigin/GRAFICOTEMP[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 12:44:35 2021 +0200
+
+    graficos hechos y fincionan botones
+
+[33mcommit 3fb0ccf8d44edd732a46e98cfbf7e418fbb33432[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 12:37:54 2021 +0200
+
+    si hacer crar graficas-> grafico de fase, ya funciona crear las foss graficas
+
+[33mcommit f4f6718e68fd6ea717c487326e897166a4017015[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 12:32:29 2021 +0200
+
+    hace los dos fraficos falta hacer bien que no tengas que clicar primero a crear luegop escoger luego volver  a escoger
+
+[33mcommit ab7b4a9a96e46baef81cc5ee412540d1418f041d[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 11:54:16 2021 +0200
+
+    voy a hacer que al clicra en crear graficos se abra el graficos Page y alli con dos botoes escogeras que graficos quieres ver
+
+[33mcommit 4fd26a3f390592185aea664d05d2e7b64d6f6ac6[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 11:44:58 2021 +0200
+
+    estoy haciendo grafico de TEMPERATURA
+
+[33mcommit 0f094e9de067fd3f06fe1b53885924176f7b6bf7[m[33m ([m[1;31morigin/VersionOlga[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 11:17:34 2021 +0200
+
+    Boton retroceder funciona simulacion automatica tambien
+
+[33mcommit 2aa9ecfb86d946a12353ebba246db34ca3fc2ede[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 10:37:31 2021 +0200
+
+    Boton retroceder funcion a medias, falta sim automatica, error quere retoceder de mas.
+
+[33mcommit 21576287b63e44f491275f689b85bb9169deea4c[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Wed Oct 20 09:50:55 2021 +0200
+
+    tocado sim paso a paso y estoy con boton retroceeder
+
+[33mcommit 6f126dbe1a8df577bacf07568668495404ed4dfa[m
+Merge: 82349e5 4fa3129
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Tue Oct 19 23:33:50 2021 +0200
+
+    Merge pull request #17 from drenhaus/ArreglosColores
+    
+    Arreglos colores
+
+[33mcommit 4fa3129f11d92a89dcc8034416a6b322472014d8[m[33m ([m[1;31morigin/ArreglosColores[m[33m)[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Tue Oct 19 23:04:45 2021 +0200
+
+    He añadido isEnable a botones para que sea mas intuitivo el orden a seguir
+
+[33mcommit 8f37577850368875ffb562d5083a4d892648a90e[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Tue Oct 19 22:45:54 2021 +0200
+
+    Slider funciona
+
+[33mcommit bcd86ef1347309114f8200a43469a173fa227391[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Tue Oct 19 22:09:42 2021 +0200
+
+    ja va :)
+
+[33mcommit 935a708e0889baef2081a5d87297eed91a304f3c[m[33m ([m[1;31morigin/ErrorHIST[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Oct 19 21:24:31 2021 +0200
+
+    ya no sobreeescribe el historial pero falla en calcular la siguiente iteracion xq no coge la que debe problema LAST
+
+[33mcommit 119d201986f6d2f3c7f7997111ee4fce2e0bda7e[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Oct 19 20:39:30 2021 +0200
+
+    nueva clase que te hace una malla con la info problemas con hacer clon
+
+[33mcommit cb13bde1af614da457adec7b5bf943b34b21eb28[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Oct 19 13:24:25 2021 +0200
+
+    he intentado crear una nueva funcion para guardar en funcion de i,j para luego hacer un bucle de esta funcion para rellenar la classe
+
+[33mcommit 43db0f9bbb556be15593cec772d9c9d2ccee713b[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Mon Oct 18 19:58:01 2021 +0200
+
+    He añadido un slider para canviar la velocidad de simulacion, hay que acabar de arreglarlo
+
+[33mcommit 04b356bdbed8439dcb013229f508e91860a9590d[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Mon Oct 18 19:26:10 2021 +0200
+
+    He quitado las cosas del juego de la vida
+
+[33mcommit 4cd60a55f51cd3ac6f766059dc12c6af741edb90[m[33m ([m[1;31morigin/plotFASEyTEMP[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 15 18:58:23 2021 +0200
+
+    tenemos un error a la hora de crear el historial, la grafica en teoria ya funciona. El error es que no guarda bien la fase en cada malla del historial
+
+[33mcommit 9ad84261ba835c69352535e20e580d90e758c3fb[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 15 12:00:25 2021 +0200
+
+    encallado en como hago me llevo la lista creada en el main a otra classe
+
+[33mcommit 82349e5725a6def19bf65d1bd339127948e47f42[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Fri Oct 15 10:54:30 2021 +0200
+
+    Update README.txt
+
+[33mcommit 494ec30645a3b3d497ee8ab4efe76de35a8978a7[m
+Merge: 5d8f616 dc4b48b
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Fri Oct 15 10:29:15 2021 +0200
+
+    Merge branch 'RamaMarcJuntarPLOT' into plotFASEyTEMP
+
+[33mcommit dc4b48b0be88d9afed05662a9e37627b68c25830[m[33m ([m[1;31morigin/RamaMarcJuntarPLOT[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 15 10:26:30 2021 +0200
+
+    nada
+
+[33mcommit 5d8f61640dc5c3f27bbe94126731e42f301fbdd8[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 15 10:22:54 2021 +0200
+
+    hace el plot, hay que hacer el plot con la iformacion que coja de las liostas de mallas
+
+[33mcommit f428d3f3192b3c1f3ac03664d0e75fee6084854f[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 15 08:53:07 2021 +0200
+
+    classe puntos, i pagina de grafico hecha, en teoria
+
+[33mcommit e9523e56ca55235cfc2e5daa5812751ee9973f4e[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 14 23:03:57 2021 +0200
+
+    He añadido algunos scrollbars
+
+[33mcommit 8e8e2183edc98bb2c899f45ed6d98fb386a54a51[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 14 22:28:41 2021 +0200
+
+    He modificado los colores de cuando pinta los cuadrados
+
+[33mcommit 64f98410386158f6d2967b74902447248ff07d29[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Oct 14 17:03:09 2021 +0200
+
+    tengo que crear class puntos
+
+[33mcommit 4a374e63aa926ce1a0cdbafbf6ceb101efdfa3c1[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Oct 14 15:18:27 2021 +0200
+
+    he anadido la libreria
+
+[33mcommit 2780a9a3375c95bfc4ad1608a8b02e5bfc2d9694[m
+Merge: fa3a95f f315f5f
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Thu Oct 14 11:46:59 2021 +0200
+
+    Merge pull request #15 from drenhaus/FasesYTemperatura
+    
+    Fases y temperatura
+
+[33mcommit f315f5fe378f18f28e53c5a5c6552eb6d71a881d[m[33m ([m[1;31morigin/FasesYTemperatura[m[33m)[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 14 11:37:53 2021 +0200
+
+    He añadido el boton para poder ver los datos en cada momento, falta ponerlo bonito
+
+[33mcommit eb400b18f19d8e034067211e149b1a4620bd5f46[m[33m ([m[1;32mFasesYTemperatura[m[33m)[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 14 10:03:19 2021 +0200
+
+    Arreglos de fases y temperatura
+
+[33mcommit 17750158a1478e1de31d3da202b2ab8ba8df39df[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 13 22:12:00 2021 +0200
+
+    He añadido la de temperatura
+
+[33mcommit 5d3e1a7ed9b765986756a1fdc288b81386fb313d[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 13 21:47:59 2021 +0200
+
+    Faltava modificar la simulacion automatica, ya esta :)
+
+[33mcommit 3927e535d2dd22dd23ec218be5c6f2e5183b972c[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 13 21:43:43 2021 +0200
+
+    La fase en principio ya va, falta acabar de ajustar el color
+
+[33mcommit 040de4c0d5807a81176cf1cab53a1d6f1919c31a[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 13 13:42:01 2021 +0200
+
+    prova 1
+
+[33mcommit fa3a95f5ea30eef496342cd0312d89eef4b6311c[m
+Merge: 3b55237 36be3c0
+Author: AlvaroHerLop <90976228+AlvaroHerLop@users.noreply.github.com>
+Date:   Mon Oct 11 20:07:00 2021 +0200
+
+    Merge pull request #13 from drenhaus/revision
+    
+    Revision
+
+[33mcommit 36be3c0d3f7a3cc165319c9994cc6a7f402c3205[m[33m ([m[1;31morigin/revision[m[33m, [m[1;32mrevision[m[33m)[m
+Author: Alvaro <alvaro.herlop13@gmail.com>
+Date:   Mon Oct 11 20:03:04 2021 +0200
+
+    Arreglo dimensiones malla
+
+[33mcommit 3b55237b8c7c9cb42f63fb3cfa38e03730a0f836[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Sat Oct 9 10:33:12 2021 +0200
+
+    readme update
+
+[33mcommit 4c1914b706d065c01e4a756bb8847fb6166409a1[m
+Merge: 73cfdf0 a39ce1b
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Sat Oct 9 10:13:52 2021 +0200
+
+    Merge pull request #12 from drenhaus/Equacions
+    
+    Equacions
+
+[33mcommit a39ce1b6053f338ffd7d58afb609bbac281546ea[m[33m ([m[1;31morigin/Equacions[m[33m)[m
+Merge: 3fdbd7e f8913a8
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Sat Oct 9 10:12:35 2021 +0200
+
+    Merge pull request #11 from drenhaus/ArreglarCosesDelREADME
+    
+    Arreglar coses del readme
+
+[33mcommit f8913a8d37c99f8a0fe1e2f4c7c627bc902b2527[m[33m ([m[1;31morigin/ArreglarCosesDelREADME[m[33m)[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Sat Oct 9 01:56:19 2021 +0200
+
+    He afegit les dues condicions de contorn i el poder-les seleccionar des de el main
+
+[33mcommit 35e52e7fe2d425be6b3c271aaf3dcc242b11a6bb[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Sat Oct 9 01:25:24 2021 +0200
+
+    He posat les equacions a la classe Celda
+
+[33mcommit dbf4baa1a608a4767179fe20d2e1f32453e558e1[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Sat Oct 9 01:00:19 2021 +0200
+
+    Podem introduir els parametres des del Windows Form o seleccionar opcio de parametres A i B (Atenea)
+
+[33mcommit 3fdbd7eabdc9213b6a6b95d332acb819ad36e4a5[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Fri Oct 8 23:56:42 2021 +0200
+
+    Update README.txt
+
+[33mcommit 8f55aa7d90bad12f205e68186c3d6345d39a3c0f[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 23:42:57 2021 +0200
+
+    en las equaciones ya hay tanto lod dT como dfi, falta integrarlas, los get/set tambien estan hechas
+
+[33mcommit 02d402dcdfbf5ab84a5efce8d3ebe089b15aa607[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 23:16:39 2021 +0200
+
+    delete matlab olga
+
+[33mcommit 9aab55ead3713893b71d80eae1c4dae94fe44c96[m
+Merge: 88cfe31 c629514
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Fri Oct 8 23:13:14 2021 +0200
+
+    Merge pull request #10 from drenhaus/EQ_Marc
+    
+    Eq marc
+
+[33mcommit c629514789801707784228d56816567062c7ccd2[m[33m ([m[1;31morigin/EQ_Marc[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 23:01:46 2021 +0200
+
+    las equaciones son las correctas, en matlab todo funciona bien menos el comunismo
+
+[33mcommit 2f533e34b76b2a812ee8c699e63ed588c2640992[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 21:26:12 2021 +0200
+
+    edito code de matlab
+
+[33mcommit 1dd7d51b81833e4c7a409f5597ee51e3baabdd22[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 20:49:50 2021 +0200
+
+    nuevo archivo matlab
+
+[33mcommit 9a7b80f2a0d4e0d0485ea8caec8ff0d919ce6103[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 20:01:50 2021 +0200
+
+    En teoria ya puede calcular el estado futuro en referente a la FASE, no lo he provado ni quiero hacerlo, la verdad es que quiero llorar un poco. Ahora la class Celda tiene fase, temperatura i la fase de los vecinos en forma de cruz, tambein esta hecha para calcular la posicion futura en funcion de los vecinois y atmbein para actualixar en la siguiente iteracion mediante la matriz clonar. Ahora me vpy a ir al MATLAB para comprovar las equaciones cosa que deveria haver hecho antes. FATLA HACER LA VARIACION DE TEMPERATURA.
+
+[33mcommit b5675c67e2dd680137659548eba334b085dde0bb[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Fri Oct 8 19:07:19 2021 +0200
+
+    he empezado con las equaciones i classes en c#
+
+[33mcommit 88cfe31474778e27d0a0b77455deafda00c8ccd2[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Fri Oct 8 17:45:21 2021 +0200
+
+    Modificacions pero segueix sense anar
+
+[33mcommit e102337617c353bd615aa7d4dc941fcfa83c1855[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 15:07:54 2021 +0200
+
+    Modificacions 6
+
+[33mcommit 9ef10464f4a0bae20a04cda5ee9335bd5b447aee[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 11:00:35 2021 +0200
+
+    Modificacions 5
+
+[33mcommit a9a75cd38f4aad344293699ea89c2f950997effa[m
+Author: Alvaro <alvaro.herlop13@gmail.com>
+Date:   Thu Oct 7 10:51:51 2021 +0200
+
+    He arreglado el problema de la malla no cuadrada
+
+[33mcommit c98e0f0fd21747c21883e63371107f04b99eec5d[m[33m ([m[1;32mEquacions[m[33m)[m
+Merge: 600dcf3 333b3f4
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 10:15:11 2021 +0200
+
+    Merge branch 'Equacions' of https://github.com/drenhaus/Simulacio-cristall into Equacions
+
+[33mcommit 600dcf3022190cde6025f6a6488fcd512dbac87d[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 10:11:48 2021 +0200
+
+    Modificacions 4
+
+[33mcommit 333b3f4fcaf89a994d316fe8346fb2dc1a2c580f[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Thu Oct 7 09:52:41 2021 +0200
+
+    modificacions 3
+
+[33mcommit 8e9443d1403585498972802652e48bfa9a5ba077[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 09:46:56 2021 +0200
+
+    Modificacions 2
+
+[33mcommit a450928315c20daa98e7951cdad87ce045bb1d4f[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 09:28:47 2021 +0200
+
+    Modificacions
+
+[33mcommit 277eb1e3e151d377111ca11fa517528934ab6811[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Oct 7 08:17:15 2021 +0200
+
+    Arreglos
+
+[33mcommit cf2ada564b63cf07b593dccb212151d324e3896c[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 6 22:13:52 2021 +0200
+
+    He arreglat una cosa de l'equacio de fi que estava malament
+
+[33mcommit 41985e8ad0c669b8a917f430a4a11c22ca966d78[m[33m ([m[1;31morigin/devEQUACION[m[33m)[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Wed Oct 6 13:09:16 2021 +0200
+
+    Update README.txt
+
+[33mcommit abb4221e9f0e348a5b077c02c8224a8e595144d1[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 6 11:43:30 2021 +0200
+
+    He empezado a poner las equaciones pero falta definir lo de -1
+
+[33mcommit b22b788cfec324274c7add084fa0e3545e6bcfe7[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Wed Oct 6 10:41:31 2021 +0200
+
+    Matlab creado
+
+[33mcommit 73cfdf0966d388acfe76ada57c32d8d3352606ea[m
+Merge: 620cf8c 43508b4
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Tue Oct 5 11:05:41 2021 +0200
+
+    Merge pull request #9 from drenhaus/Error3
+    
+    Error 3 arreglat i tambien un error de carga
+
+[33mcommit 43508b4652d0cc1f7fac664a07f63de454a6912c[m[33m ([m[1;31morigin/Error3[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Oct 5 11:04:37 2021 +0200
+
+    Error 3 arreglat i tambien un error de carga
+
+[33mcommit 620cf8ca86b88a44bfd8e1266955ac758fc106f9[m
+Merge: e455230 cf1997d
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Tue Oct 5 10:14:37 2021 +0200
+
+    Merge pull request #8 from drenhaus/ArreglarError5
+    
+    error 5 i 6 solucionados
+
+[33mcommit cf1997d68f77cf93dc52ab109da0abbc75584e1a[m[33m ([m[1;31morigin/ArreglarError5[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Oct 5 10:13:13 2021 +0200
+
+    error 5 i 6 solucionados
+
+[33mcommit e455230eec40fa8a8849b1118d87eefdd60ffa01[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Mon Oct 4 20:57:57 2021 +0200
+
+    Ja funciona la carrega de la simulacio amb contorn
+
+[33mcommit 38bba74c22cbdf4a3c75824d1ecbe067e6e494d6[m[33m ([m[1;31morigin/ErrorCarga[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 19:51:49 2021 +0200
+
+    carga bien pero no permite trabajar con la carga
+
+[33mcommit f095cf6eb119ffef2e727e4b826b555387bc1a1d[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 18:43:37 2021 +0200
+
+    Ahora carga, pero al cargar se ve el borde
+
+[33mcommit 89fd25b6f7ac75cd8d3ae15b2c873b57c2f2e2e1[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 17:22:36 2021 +0200
+
+    readme update
+
+[33mcommit 734b0809d6e88805804335eace294a1480e68420[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 17:15:48 2021 +0200
+
+    He anadido el archivo de simulacion.txt al gitignore e he tocado el readme
+
+[33mcommit a9cb7199f93e5ecf4e78fd30c1548c79665d218b[m
+Merge: bbb2d8d 7204a10
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Mon Oct 4 11:11:15 2021 +0200
+
+    Merge pull request #7 from drenhaus/corregirErrorBordes
+    
+    Corregir error bordes
+
+[33mcommit 7204a107a463fe84dfc088c492eaf951ef3188c5[m[33m ([m[1;31morigin/corregirErrorBordes[m[33m)[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Mon Oct 4 10:57:08 2021 +0200
+
+    Ja va el contorngit status!
+
+[33mcommit 460cd26243c1a116c17d40b5a89bb0dd8a4ebbae[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Mon Oct 4 10:44:34 2021 +0200
+
+    Modificaciones del contorno, pero aun no va
+
+[33mcommit bbb2d8dfb1699dee79c4ee71d53923a13285e297[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Mon Oct 4 10:00:49 2021 +0200
+
+    Update README.txt
+
+[33mcommit 60525ed651f2ea769234a80c60ae0ee817ddeeb8[m
+Merge: 439c6f6 d3c91f4
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Mon Oct 4 09:49:16 2021 +0200
+
+    Merge pull request #6 from drenhaus/CorregirErrorBotonRestart
+    
+    Arreglado problema del boton restart
+
+[33mcommit d3c91f4f367caa15e80cd16118b42abf4c4bf352[m[33m ([m[1;31morigin/CorregirErrorBotonRestart[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 09:45:00 2021 +0200
+
+    Arreglado problema del boton restard
+
+[33mcommit 439c6f63c82e4ca9e331f86fe25453f144c78c1a[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 09:17:25 2021 +0200
+
+    he tocado el txt con mas problemas i cosas a hacer
+
+[33mcommit 32a6cae2d1d678d95b00cb56088cdca5231c7131[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Mon Oct 4 09:14:33 2021 +0200
+
+    Add a readme.txt
+
+[33mcommit 6aa1e84d1215b798676f42d7dc962883a3a136fe[m
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Mon Oct 4 09:10:40 2021 +0200
+
+    Create README.md
+
+[33mcommit d9b620eb1520d085fa1c0823c23f6809fd121e6e[m
+Merge: 281a052 402f117
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Thu Sep 30 10:23:00 2021 +0200
+
+    Merge pull request #5 from drenhaus/creandoFrontera
+    
+    Creando frontera
+
+[33mcommit 402f1178d4a1143b5d4700b1dda8228201be7429[m[33m ([m[1;31morigin/creandoFrontera[m[33m)[m
+Merge: 480dc42 281a052
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Thu Sep 30 10:22:07 2021 +0200
+
+    Merge branch 'main' into creandoFrontera
+
+[33mcommit 480dc42ab71d4c7e3318f6925d1ec55e4803b26a[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Sep 30 10:17:56 2021 +0200
+
+    va el ignore de Olga
+
+[33mcommit 281a0526c507889b7a67c09816b7410314e2ad3d[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Sep 30 10:15:04 2021 +0200
+
+    .gitignore is now working
+
+[33mcommit 5a057fb01da01c0a64fb4d128b6ec464a65e54c6[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Sep 30 10:13:21 2021 +0200
+
+    xx
+
+[33mcommit 2b9d30eef28290d23c2fb8860c4c52e9c718edce[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Sep 30 09:42:02 2021 +0200
+
+    Anado el ignore
+
+[33mcommit 2e681fe8308c4478f658e4c8e3a55a2938e17d5b[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Sep 30 09:41:34 2021 +0200
+
+    aNado el ignore
+
+[33mcommit 10b70a9977f4c3b57984ef69e46a57d7cf322b7c[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Sep 30 09:35:20 2021 +0200
+
+    frontera Creada i ignoreGIT arregladoç
+
+[33mcommit ede2223573a851c21756f096399db1559d892329[m
+Merge: 6828be8 ecb8ab2
+Author: drenhaus <91005532+drenhaus@users.noreply.github.com>
+Date:   Thu Sep 30 09:13:02 2021 +0200
+
+    Merge pull request #1 from drenhaus/arregloTRYCATCH
+    
+    Arreglo trycatch
+
+[33mcommit d06b76d443cd439d183088e371b5dc40e7ebbc72[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Sep 30 09:12:57 2021 +0200
+
+    FronteraCreada
+
+[33mcommit ecb8ab26ba16dde31a23fdaa2a6ced83231dd532[m[33m ([m[1;31morigin/arregloTRYCATCH[m[33m)[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Sep 30 08:52:00 2021 +0200
+
+    he quitado los try cath de classe matriz
+
+[33mcommit 05f1d83393b0ed7ab019098f5d0ac0c52876796a[m
+Author: Olga <olga.ca.ar@gmail.com>
+Date:   Thu Sep 30 08:31:00 2021 +0200
+
+    Prova1
+
+[33mcommit c81e21e54634832c8187d3a3d8dba423cbe5b168[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Thu Sep 30 08:28:41 2021 +0200
+
+    patata
+
+[33mcommit 6828be818e3669371b48596b4233eafe32fe52fb[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Sep 28 21:16:59 2021 +0200
+
+    He quitado el txt de nota importante
+
+[33mcommit 250146ea530fff181d98b881869da6c63c5f0b8a[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Sep 28 21:03:42 2021 +0200
+
+    pueva de ignorar
+
+[33mcommit afac589d34c2e29b0be5b3f83b2873fbee5732c5[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Sep 28 20:54:37 2021 +0200
+
+    un guardado
+
+[33mcommit d0b9fade3135155e472f78457920a381a80bea7f[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Sep 28 20:51:59 2021 +0200
+
+    anado el ignore
+
+[33mcommit 2ed0a9b4d4f46038f4d361dce2f2f2ab265a27ef[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Sep 28 20:50:06 2021 +0200
+
+    first commit
+
+[33mcommit 61961944dd4539fee497e64e704033d455af08a8[m
+Author: Drenhaus <marc.frederic.drenhaus@estudiantat.upc.edu>
+Date:   Tue Sep 28 20:47:35 2021 +0200
+
+    first commit

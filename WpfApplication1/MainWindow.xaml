@@ -5,7 +5,7 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Left"  Width="142" Height="550">
-                <MenuItem Header="Mostrar reglas del juego" Height=" 50" Width="143">
+                <MenuItem Header="Mostrar reglas del juego" Height=" 50" Width="143" Click="MenuItem_Click">
 
                 </MenuItem>
                 <MenuItem Header="Archivo" Height=" 50" Width="143" >
@@ -59,7 +59,7 @@
             <Label Canvas.Left="70" Canvas.Top="268" Content="M" Height="28" Name="label7" />
             <Label Canvas.Left="70" Canvas.Top="297" Content="dt" Height="28" Name="label8" />
             <Button Canvas.Left="86" Canvas.Top="370" Content="Cargar parametros " Height="21" Name="Parametros" Width="133" Click="Parametros_Click" IsEnabled="False" />
-            <ComboBox Canvas.Left="195" Canvas.Top="412" Height="23" Name="comboBox1" Width="113" IsEnabled="False">
+            <ComboBox Canvas.Left="195" Canvas.Top="412" Height="23" Name="comboBox1" Width="113" IsEnabled="False" SelectionChanged="comboBox1_SelectionChanged">
                 <ComboBoxItem Content="Fixed" />
                 <ComboBoxItem Content="Espejo" />
             </ComboBox>
