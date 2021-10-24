@@ -58,7 +58,7 @@
             
             <Button Grid.Column="1" 
                     Grid.Row="0"  
-                    Margin="951.2,16,9.6,51.2"
+                    Margin="955.2,15,5.6,52.2"
                     Style="{DynamicResource closebutton}" 
                     RenderTransformOrigin="0.2,-1.714"
                     x:Name="BtnCerrarGRAF" 
@@ -66,7 +66,7 @@
             
             <Button Grid.Column="1" 
                     Grid.Row="0"  
-                    Margin="909.2,16,51.6,51.2"
+                    Margin="930.2,15,30.6,52.2"
                     Style="{DynamicResource minimizebutton}" 
                     RenderTransformOrigin="0.2,-1.714"
                     x:Name="BtnMIniGRAF" 
