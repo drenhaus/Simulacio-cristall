@@ -16,8 +16,8 @@
             CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="241.6"/>
-                <ColumnDefinition Width="187*"/>
+                <ColumnDefinition Width="251.2"/>
+                <ColumnDefinition/>
 
             </Grid.ColumnDefinitions>
 
@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
 
             <Button Grid.Column="1" 
-                    Margin="726.4,15,16,0"
+                    Margin="716.8,15,16,0"
                     Name="CloseButton" 
                     VerticalAlignment="TOP"
                     FontSize="55"
@@ -36,7 +36,7 @@
             </Button>
 
             <Button Grid.Column="1" 
-                    Margin="702.4,15,40,0"
+                    Margin="692.8,15,40,0"
                     Name="MinimizeButton" 
                     VerticalAlignment="TOP"
                     FontSize="55"
@@ -46,16 +46,16 @@
             </Button>
 
 
-            <TextBlock Text="Simulacion cristal"
+            <TextBlock Text="Simulación cristal"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
-                       FontSize="22"
+                       FontSize="30"
                        FontFamily="/Fonts/#Poppins" 
-                       Height="33" 
-                       Margin="20,21,26.6,21.2" 
-                       Width="195"/>
-            <StackPanel Margin="0,75,1.6,0.4" Grid.RowSpan="2">
+                       Height="60" 
+                       Margin="20,15,681,0.2" 
+                       Width="299" Grid.ColumnSpan="2"/>
+            <StackPanel Margin="0,75,0.2,0.4" Grid.RowSpan="2">
 
 
                 <MenuItem Header="           Explicación" 
@@ -63,10 +63,11 @@
                               FontSize="14"
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins" Click="MenuItem_Click"
-                              HorizontalAlignment="Center" Margin="10,10" Width="220">
+                              HorizontalAlignment="Center" Margin="10,5,15.2,5" Width="226">
                     <MenuItem.Icon>
-                        <Image Source="/icons/EXPL.png" Margin="10,-5,-41,-13"/>
-                    </MenuItem.Icon> >
+                        <Image Source="/icons/EXPL.png" Margin="16,-16,-36,-17"/>
+
+                    </MenuItem.Icon>
 
 
                 </MenuItem>
@@ -78,31 +79,31 @@
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins"
                               x:Name="botonCARGAR" 
-                              Margin="10,10">
+                              Margin="10,5">
 
                     <MenuItem.Icon>
                         <Image Source="/icons/save_white.png" Margin="-21,-13,-75,-13" />
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <MenuItem Header="           Cargar fixero" 
+                <MenuItem Header="           Cargar fichero" 
                               Click="MenuItem_Click_3"
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
-                              FontFamily="/Fonts/#Poppins" Margin="10,10">
+                              FontFamily="/Fonts/#Poppins" Margin="10,5">
                     <MenuItem.Icon>
-                        <Image Source="/icons/load_white.png" Margin="-21,-11,-78,-8" />
+                        <Image Source="/icons/load_white.png" Margin="-21,-11,-78,-12" />
                     </MenuItem.Icon>
                 </MenuItem>
 
 
-                <MenuItem Header="           Crear Graficas" 
+                <MenuItem Header="           Crear Gráficas" 
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White" 
                               Click="MenuItem_Click_20"
-                          FontFamily="/Fonts/#Poppins" Margin="10,10,0,0">
+                          FontFamily="/Fonts/#Poppins" Margin="10,5,0,0">
 
                     <MenuItem.Icon>
                         <Image Source="/icons/graf.png" Margin="-17,-12,-67,-8" />
@@ -112,7 +113,7 @@
             </StackPanel>
 
 
-            <Canvas Margin="230,75,0,0.4" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <Canvas Margin="230,70,0,0.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
                 <TextBox Canvas.Left="142" 
                          Canvas.Top="10" 
                          Height="30" 
@@ -245,6 +246,12 @@
                          x:Name="boxIteration"
                          FontFamily="/Fonts/#Poppins"
                          Style="{StaticResource ModernTextbox}"
+                    />
+                <Button 
+                    
+                        Height="567" 
+                        Width="3"
+                    Background="White"
                     />
 
 
