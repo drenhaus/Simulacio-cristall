@@ -192,8 +192,8 @@ namespace WpfApplication1
                 {
                     // creamos un nuevo rectangulo y definimos sus propiedades
                     Rectangle b = new Rectangle();
-                    b.Width = canvas1.Width / y;
-                    b.Height = canvas1.Height / x;
+                    b.Width = canvas1.Width / x;
+                    b.Height = canvas1.Height / y;
                     b.Fill = new SolidColorBrush(Colors.White);
                     b.StrokeThickness = 0.5;
                     b.Stroke = Brushes.Black;
@@ -201,8 +201,8 @@ namespace WpfApplication1
 
                     // Posición del cuadrado
 
-                    Canvas.SetTop(b, i * canvas1.Height / x);
-                    Canvas.SetLeft(b, j * canvas1.Width / y);
+                    Canvas.SetTop(b, i * canvas1.Height / y);
+                    Canvas.SetLeft(b, j * canvas1.Width / x);
                     b.Tag = new Point(j, i);
 
                     // definimos los eventos que tiene el rectangulo: clicar y pasar por encima
