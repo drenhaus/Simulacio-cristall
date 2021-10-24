@@ -41,9 +41,25 @@ namespace WpfApplication1
 
         }
 
+        // PERMITE MOVER LA VENTANA
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+        // BOTON CERRAR
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        // BOTON MINIMIZAR
+        private void MiniButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
 
 
@@ -594,6 +610,7 @@ namespace WpfApplication1
 
         }
 
+
         // CLICAMOS EN EL MENU DE EXPLICACIÓN
             // cuando cliquemos en explicación se habrirá una nueva ventana 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -602,5 +619,6 @@ namespace WpfApplication1
             lc.ShowDialog();
         }
         
+
     }
 }
