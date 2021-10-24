@@ -46,26 +46,28 @@
                               Grid.Column="1"
                               Grid.Row="1" Margin="1.2,0.8,5.6,2.8" Grid.ColumnSpan="2"/>
             <Button x:Name="BtnCalcularFASE" 
-                    Content="Calcular FASE" 
+                    Content="FASE" 
                     HorizontalAlignment="Left" 
-                    Margin="382.8,35,0,0" 
+                    Margin="517.8,5.8,0,0" 
                     VerticalAlignment="Top" 
-                    Width="69" 
+                    Width="99" 
                     Click="BtnCalcularFASE_Click" 
-                    Height="18" 
+                    Height="38" 
                     Grid.Column="2" 
-                    Grid.Row="0"/>
+                    RenderTransformOrigin="0.608,0.845"
+                    Style="{DynamicResource grafFaseBut}" Grid.Row="1"/>
 
             <Button x:Name="BtnCalcularTEMP" 
-                    Content="Calcular TEMP"
+                    Content="TEMPERATURA"
                     HorizontalAlignment="Left" 
-                    Margin="175.8,35,0,0" 
+                    Margin="409.8,5.8,0,0" 
                     VerticalAlignment="Top" 
-                    Width="83" 
+                    Width="103" 
                     Click="BtnCalcularTEMP_Click" 
-                    Height="18" 
-                    Grid.Row="0" 
-                    Grid.Column="2"/>
+                    Height="38" 
+                    Grid.Column="2"
+                    Style="{DynamicResource grafTempeBut}" Grid.Row="1"/>
+
 
             <Button Grid.Column="2" 
                     Grid.Row="0"  
