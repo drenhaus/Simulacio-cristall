@@ -594,5 +594,10 @@ namespace WpfApplication1
 
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ExplicacionesDelCristal lc = new ExplicacionesDelCristal();
+            lc.ShowDialog();
+        }
     }
 }

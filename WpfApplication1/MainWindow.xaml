@@ -52,7 +52,7 @@
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
-                              FontFamily="/Fonts/#Poppins">
+                              FontFamily="/Fonts/#Poppins" Click="MenuItem_Click">
 
 
                 </MenuItem>
@@ -91,7 +91,7 @@
                           FontFamily="/Fonts/#Poppins"/>
             </StackPanel>
 
-            <Canvas Margin="0,75,0,0.4" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
+            <Canvas x:Name="GridPrincipal" Margin="0,75,0,0.4" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2">
                 <TextBox Canvas.Left="142" 
                          Canvas.Top="10" 
                          Height="30" 
