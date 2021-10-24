@@ -19,10 +19,10 @@
                                      x:Name="SearchBox"/>
 
                             <TextBlock IsHitTestVisible="False"
-                                       Text="    ·    ·    · "
+                                       Text=" ·    ·    · "
                                        VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
-                                       Margin="10,0,0,0"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,0"
                                        FontSize="11"
                                        Foreground="DarkGray"
                                        Grid.Column="1">
