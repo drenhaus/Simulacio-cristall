@@ -49,16 +49,6 @@ namespace WpfApplication1
         public void SetTemperaturaDeCelda(int fila, int columna, double T)
         { matriz_malla[fila, columna].SetTemperatura(T); }
 
-
-        /*        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
-                {
-                    Malla A = new Malla();
-                    A.SetNumeroDeFilasYColumnas(X, Y);
-                    A.SetTemperaturaDeCelda(i, j, T);
-                    A.SetFaseDeCelda(i, j, F);
-                    return A;
-                }*/
-
         //CLONAR PARA LISTA
         //generamos una clon de nuestra matriz para guardar en el historial
         // para ello es importante definir las celdas como nuevas celdas para no sobrescribir 
@@ -134,7 +124,7 @@ namespace WpfApplication1
         //DEFINIMOS LAS CONDICIONES DE CONTRONO
         public void SetCondicionsContornoFaseTemperatura(string condicion)
         {
-            if (condicion == "fixed")
+            if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
             {
                 for (int i = 1; i < y; i++)
                 {
@@ -152,27 +142,27 @@ namespace WpfApplication1
                     this.matriz_malla[j, x - 1].SetTemperatura(-1);
 
                 }
-                if (condicion == "espejo")
+            }
+                if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
                 {
 
                     for (int i = 1; i < y; i++)
                     {
-                        this.matriz_malla[0, i].SetFase(matriz_malla[1, i].GetFase());
-                        this.matriz_malla[0, i].SetTemperatura(matriz_malla[1, i].GetTemperatura());
-                        this.matriz_malla[y - 1, i].SetFase(matriz_malla[y - 2, i].GetFase());
-                        this.matriz_malla[y - 1, i].SetTemperatura(matriz_malla[y - 2, i].GetTemperatura());
+                        this.matriz_malla[0, i].SetFase(matriz_malla_Clone[1, i].GetFase());
+                        this.matriz_malla[0, i].SetTemperatura(matriz_malla_Clone[1, i].GetTemperatura());
+                        this.matriz_malla[y - 1, i].SetFase(matriz_malla_Clone[y - 2, i].GetFase());
+                        this.matriz_malla[y - 1, i].SetTemperatura(matriz_malla_Clone[y - 2, i].GetTemperatura());
                     }
 
                     for (int j = 0; j < x; j++)
                     {
-                        this.matriz_malla[j, 0].SetFase(matriz_malla[j, 1].GetFase());
-                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla[j, 1].GetFase());
-                        this.matriz_malla[j, x - 1].SetFase(matriz_malla[j, x - 2].GetFase());
-                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla[j, x - 2].GetFase());
+                        this.matriz_malla[j, 0].SetFase(matriz_malla_Clone[j, 1].GetFase());
+                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla_Clone[j, 1].GetFase());
+                        this.matriz_malla[j, x - 1].SetFase(matriz_malla_Clone[j, x - 2].GetFase());
+                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla_Clone[j, x - 2].GetFase());
 
                     }
                 }
-            }
         }
 
         // CALCULAMOS EL VALOR MEDIO DE LA FASE
