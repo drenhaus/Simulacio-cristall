@@ -282,7 +282,6 @@ namespace WpfApplication1
         private void button1_Click(object sender, RoutedEventArgs e) // simular paso a paso
         {
             // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
-            //matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
 
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
@@ -305,7 +304,6 @@ namespace WpfApplication1
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
-            //matriz_celdas.SetCondicionsContornoFaseTemperatura(comboBox1.SelectedItem.ToString());
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
@@ -558,45 +556,98 @@ namespace WpfApplication1
 
                     volverApintar(); // repintamos 
 
-                    MessageBox.Show("Fichero cargado con éxito! Por favor modifique los parámetros de simulación y condiciones de contorno o se simulará por defecto con los parámetros A y condiciones de controno fijas");
-
-                    // abilitamos todos los botones y textboxs por si se carga el fichero solo iniciar el programa
-                    button1.IsEnabled = true;
-                    button2.IsEnabled = true;
-                    button4.IsEnabled = true;
-                    button5.IsEnabled = true;
-                    button6.IsEnabled = true;
-                    boton_retroceder.IsEnabled = true;
-                    botonCARGAR.IsEnabled = true;
-                    betta.IsEnabled = true;
-                    dxdy.IsEnabled = true;
-                    epsilon.IsEnabled = true;
-                    delta.IsEnabled = true;
-                    M.IsEnabled = true;
-                    dt.IsEnabled = true;
-                    ParametrosA.IsEnabled = true;
-                    ParametrosB.IsEnabled = true;
-                    Parametros.IsEnabled = true;
-                    button1.IsEnabled = true;
-                    button2.IsEnabled = true;
-                    button4.IsEnabled = true;
-                    button5.IsEnabled = true;
-                    botonCARGAR.IsEnabled = true;
-                    slider1.IsEnabled = true;
-                    boton_retroceder.IsEnabled = true;
-
-
-                    // Si no cambiamos nada definimos por defecto condiciones de controno fijas y parámetros A
-                    matriz_celdas.SetCondicionsContornoFaseTemperatura("System.Windows.Controls.ComboBoxItem: Fixed");
-                    norm.SetDxDy(0.005);
-                    norm.SetEpsilon(0.005);
-                    norm.SetBetta(400);
-                    norm.SetDelta(0.5);
-                    norm.SetM(20);
-                    norm.SetDT(5 * Math.Pow(10, -6));
-                    matriz_celdas.SetNormas(norm);
                     boxIteration.Text = Convert.ToString(historial.Count()); // AL cargar la simulacion que la iteracion se ponga a 0
 
+                    if (MessageBox.Show("Quieres conservar los parámetros y condiciones de contorno de la simulación guardada?", "Cargar parámetros", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        // escribimos el numero de filas y columnas
+                        TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
+                        TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
+
+                        //si conservamos los parámetros, simulamos con lo cargado y escrivimos los parámetros para que se muestren
+
+                        dxdy.Text = Convert.ToString(matriz_celdas.GetNorma().GetDxDy());
+                        epsilon.Text = Convert.ToString(matriz_celdas.GetNorma().GetEpsilon());
+                        betta.Text = Convert.ToString(matriz_celdas.GetNorma().GetBetta());
+                        delta.Text= Convert.ToString(matriz_celdas.GetNorma().GetDelta());
+                        M.Text= Convert.ToString(matriz_celdas.GetNorma().GetM());
+                        dt.Text= Convert.ToString(matriz_celdas.GetNorma().GetDT());
+
+                        // escribimos en el comboBox la condicion de contorno seleccionada
+                        string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
+                        string text= "Fixed";
+
+                        if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
+                        { text = "Fixed"; }
+                        if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
+                        { text = "Espejo"; }
+                                                
+                        comboBox1.IsEditable = true;
+                        comboBox1.Text = text;
+                        comboBox1.IsEditable = false;
+
+
+                        // abilitamos todos los botones y textboxs por si se carga el fichero solo iniciar el programa
+                        button1.IsEnabled = true;
+                        button2.IsEnabled = true;
+                        button4.IsEnabled = true;
+                        button5.IsEnabled = true;
+                        button6.IsEnabled = true;
+                        boton_retroceder.IsEnabled = true;
+                        botonCARGAR.IsEnabled = true;
+                        betta.IsEnabled = true;
+                        dxdy.IsEnabled = true;
+                        epsilon.IsEnabled = true;
+                        delta.IsEnabled = true;
+                        M.IsEnabled = true;
+                        dt.IsEnabled = true;
+                        ParametrosA.IsEnabled = true;
+                        ParametrosB.IsEnabled = true;
+                        Parametros.IsEnabled = true;
+                        slider1.IsEnabled = true;
+                        boton_retroceder.IsEnabled = true;
+                        comboBox1.IsEnabled = true;
+
+                    }
+                    else
+                    {
+                        // no habilitamos todos los botones, únicamente los necesarios para introducir los parámetros
+                        betta.Text = null;
+                        dxdy.Text = null;
+                        epsilon.Text = null;
+                        delta.Text = null;
+                        M.Text = null;
+                        dt.Text = null;
+                        TextBoxX.Text = null;
+                        TextBoxY.Text = null;
+                        ParametrosA.IsChecked = false;
+                        ParametrosB.IsChecked = false;
+
+                        betta.IsEnabled = true;
+                        dxdy.IsEnabled = true;
+                        epsilon.IsEnabled = true;
+                        delta.IsEnabled = true;
+                        M.IsEnabled = true;
+                        dt.IsEnabled = true;
+                        ParametrosA.IsEnabled = true;
+                        ParametrosB.IsEnabled = true;
+                        Parametros.IsEnabled = true;
+                        boton_retroceder.IsEnabled = true; // permite retroceder al estar clicando
+                        button5.IsEnabled = true;
+
+
+                        button1.IsEnabled = false;
+                        button2.IsEnabled = false;
+                        button4.IsEnabled = false;
+                        button5.IsEnabled = false;
+                        button6.IsEnabled = false;
+                        boton_retroceder.IsEnabled = false;
+                        botonCARGAR.IsEnabled = false;
+                        slider1.IsEnabled = false;
+                        boton_retroceder.IsEnabled = false;
+                        comboBox1.IsEnabled = false;
+
+                    }
                 }
                 else
                 { MessageBox.Show("No ha sido posible cargar la simulación"); }
