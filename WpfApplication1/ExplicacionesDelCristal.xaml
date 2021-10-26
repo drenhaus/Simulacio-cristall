@@ -56,7 +56,7 @@
                 </Border.Background>
 
             </Border>
-            <Label Content="Simulación del crecimiento de un cristal - equaciones" Canvas.Left="60" Canvas.Top="121" 
+            <Label Content="Simulación del crecimiento de un cristal - ecuaciones" Canvas.Left="60" Canvas.Top="121" 
                    Foreground="White"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
