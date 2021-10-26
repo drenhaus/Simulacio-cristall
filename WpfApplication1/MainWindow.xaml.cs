@@ -189,7 +189,7 @@ namespace WpfApplication1
 
             if (this.lc.IsLoaded) //Si le das a crear nueva matriz que te actualice el gráfico sin necesidad de abrir y cerrar la ventanagráficos
             {
-
+                lc.Close();
                 listaFasexIteracion.Clear();
                 listaTEMPxIteracion.Clear();
 
@@ -207,7 +207,15 @@ namespace WpfApplication1
                 lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
                 lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
 
-                ActualizarParametrosGraficos();
+                try { lc.Show(); } //No hacemos show dialog para poder editar las dos ventanas
+                catch
+                {
+                    lc = new graficosPage();
+                    lc.Show();
+                    ActualizarParametrosGraficos();
+                }
+
+
             }
 
         }
