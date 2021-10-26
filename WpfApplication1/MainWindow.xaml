@@ -81,7 +81,7 @@
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins"
                               x:Name="botonCARGAR" 
-                              Margin="10,5,21.2,5">
+                              Margin="10,5,21.2,5" IsEnabled="False">
 
                     <MenuItem.Icon>
                         <Image Source="/icons/save_white.png" Margin="-21,-13,-75,-13" />
@@ -118,13 +118,16 @@
             </StackPanel>
 
 
-            <Canvas Margin="230,70,0,0.4" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                <TextBox Canvas.Left="142" 
-                         Canvas.Top="10" 
+            <Canvas Margin="229,72,1,-1.6" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <TextBox Canvas.Left="143" 
+                         Canvas.Top="13" 
                          Height="30" 
                          Name="TextBoxY" 
                          Width="37"
-                         >
+                         Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center" Margin="0">
 
                 </TextBox>
 
@@ -132,8 +135,11 @@
 
                 <Label FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="61" Canvas.Top="16" Content="Nº filas" Height="28" Name="label1" RenderTransformOrigin="0.766,0.738" />
-                <TextBox 
-                    Canvas.Left="143" Canvas.Top="47" Height="30" Name="TextBoxX" Width="37" />
+                <TextBox Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                    Canvas.Left="143" Canvas.Top="48" Height="30" Name="TextBoxX" Width="37" Margin="0" />
                 <Label FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="50" Canvas.Top="48" Content="Nº columnas" Height="28" Name="label2" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
@@ -157,30 +163,48 @@
                 <CheckBox Style="{StaticResource CheckBox_RadioButtonStyle}"
                     FontFamily="/Fonts/#Poppins"
                     Foreground="White" Canvas.Left="156" Canvas.Top="376" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" IsEnabled="False" />
-                <TextBox Style="{StaticResource ModernTextbox2}"
-                    Canvas.Left="107" Canvas.Top="219" Height="30" Name="betta" Width="73" IsEnabled="False"  />
-                <TextBox Style="{StaticResource ModernTextbox2}"
-                    Canvas.Left="107" Canvas.Top="184" Height="30" Name="epsilon" Width="73" IsEnabled="False" />
-                <TextBox Style="{StaticResource ModernTextbox2}"
-                    Canvas.Left="107" Canvas.Top="148" Height="30" Name="dxdy" Width="73" IsEnabled="False"  />
-                <TextBox Style="{StaticResource ModernTextbox2}"
-                    Canvas.Left="107" Canvas.Top="253" Height="30" Name="delta" Width="73" IsEnabled="False"  />
-                <TextBox Style="{StaticResource ModernTextbox2}"
-                    Canvas.Left="107" Canvas.Top="289" Height="30" Name="M" Width="73" IsEnabled="False"  />
-                <TextBox Style="{StaticResource ModernTextbox2}"
-                    Canvas.Left="107" Canvas.Top="323" Height="30" Name="dt" Width="73" IsEnabled="False" />
+                <TextBox                          Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                        Canvas.Left="113" Canvas.Top="222" Height="30" Name="betta" Width="73" IsEnabled="False" Margin="0"  />
+                <TextBox                          Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                    Canvas.Left="113" Canvas.Top="187" Height="30" Name="epsilon" Width="73" IsEnabled="False" Margin="0" />
+                <TextBox                          Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                    Canvas.Left="113" Canvas.Top="152" Height="30" Name="dxdy" Width="73" IsEnabled="False" Margin="0"  />
+                <TextBox                          Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                    Canvas.Left="113" Canvas.Top="257" Height="30" Name="delta" Width="73" IsEnabled="False" Margin="0"  />
+                <TextBox                          Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                    Canvas.Left="113" Canvas.Top="292" Height="30" Name="M" Width="73" IsEnabled="False" Margin="0"  />
+                <TextBox                          Style="{StaticResource TextboxINPUT2}"
+                         FontFamily="/Fonts/#Poppins"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                    Canvas.Left="113" Canvas.Top="327" Height="30" Name="dt" Width="73" IsEnabled="False" Margin="0" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="50" Canvas.Top="149" Content="dx,dy" Height="28" Name="label3" />
+                    Foreground="White" Canvas.Left="52" Canvas.Top="153" Content="dx,dy" Height="30" Name="label3" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="46" Canvas.Top="184" Content="Epsilon" Height="28" Name="label4" />
+                    Foreground="White" Canvas.Left="46" Canvas.Top="188" Content="Epsilon" Height="30" Name="label4" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="50" Canvas.Top="219" Content="Betta" Height="28" Name="label5" />
+                    Foreground="White" Canvas.Left="52" Canvas.Top="224" Content="Betta" Height="30" Name="label5" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="50" Canvas.Top="255" Content="Delta" Height="28" Name="label6" />
+                    Foreground="White" Canvas.Left="51" Canvas.Top="258" Content="Delta" Height="30" Name="label6" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="62" Canvas.Top="286" Content="M" Height="28" Name="label7" />
+                    Foreground="White" Canvas.Left="66" Canvas.Top="293" Content="M" Height="30" Name="label7" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="61" Canvas.Top="322" Content="dt" Height="28" Name="label8" RenderTransformOrigin="0.107,0.552" />
+                    Foreground="White" Canvas.Left="65" Canvas.Top="328" Content="dt" Height="30" Name="label8" RenderTransformOrigin="0.107,0.552" />
                 <Button  Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
                     Canvas.Left="71" Canvas.Top="404" Content="Cargar parametros " Height="36" Name="Parametros" Width="143" Click="Parametros_Click" IsEnabled="False" />
@@ -248,8 +272,8 @@
                          IsEnabled="False"
                          x:Name="boxIteration"
                          FontFamily="/Fonts/#Poppins"
-                         Style="{StaticResource ModernTextbox}"
-                    />
+                         Style="{StaticResource ModernTextbox}" />
+
                 <Button 
                     
                         Height="567" 

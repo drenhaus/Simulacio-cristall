@@ -3,7 +3,6 @@
 
 # PROBLEMAS DETECTADOS  (poner al lado si esta arreglado (yes,no), no borrar)
 
-7. Se puede cagar los datos sin haver datos
 8. Se puede cagar las condiciones de contorno sin haver selecionado nada
 
 
@@ -23,3 +22,5 @@
 4. Error a en la carga ficheros  // YES
 5. Deja guaradar sin haver malla // YES
 6. Le das a cargar archivo, no cargas nada, se activan igualmente los botones // YES
+7. Se puede cagar los datos sin haver datos // YES
+8. Se puede cagar las condiciones de contorno sin haver selecionado nada // YES
