@@ -187,7 +187,10 @@ namespace WpfApplication1
             this.casillas2 = generarMalla1(casillas2, canvas2);// introducimos como parámetros la matriz casillas2 y canvas2 (corresponden a la temperatura)
             CeldaCentralPintada();
 
-            if (this.lc.IsLoaded) //Si le das a crear nueva matriz que te actualice el gráfico sin necesidad de abrir y cerrar la ventanagráficos
+
+            //solo si hay abierta la ventana de Grafh, que la reabra al cambiar tamaño de matriz
+
+            if (this.lc.IsLoaded) 
             {
                 lc.Close();
                 listaFasexIteracion.Clear();
