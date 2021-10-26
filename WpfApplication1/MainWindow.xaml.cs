@@ -117,7 +117,11 @@ namespace WpfApplication1
 
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
-            lc = new graficosPage(); //creamos un tipo page para poder trabajar
+            if (this.lc == null)
+            { 
+                lc = new graficosPage();
+            }
+             //creamos un tipo page para poder trabajar
 
 
             // Habilitamos  los textboxs y botones correspondientes a los valores que se deben introducir a continuación
@@ -182,6 +186,30 @@ namespace WpfApplication1
             this.casillas = generarMalla1(casillas, canvas1); // introducimos como parámetros la matriz casillas y canvas1 (corresponden a la fase)
             this.casillas2 = generarMalla1(casillas2, canvas2);// introducimos como parámetros la matriz casillas2 y canvas2 (corresponden a la temperatura)
             CeldaCentralPintada();
+
+            if (this.lc.IsLoaded) //Si le das a crear nueva matriz que te actualice el gráfico sin necesidad de abrir y cerrar la ventanagráficos
+            {
+
+                listaFasexIteracion.Clear();
+                listaTEMPxIteracion.Clear();
+
+                int contadorHISTORIAL = historial.Count;
+
+                for (int k = 0; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
+                {
+                    listaFasexIteracion.Add(historial[k].GetcantidadFase());
+                    listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
+                }
+                // Abrimos una nueva ventana para mostrar los gráficos
+
+
+                lc.SetcontadorHIST(contadorHISTORIAL); // le damos el número  de iteraciones
+                lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
+                lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
+
+                ActualizarParametrosGraficos();
+            }
+
         }
 
         // GENERAMOS LOS RECTÁNGULOS  DE LA MATRIX
