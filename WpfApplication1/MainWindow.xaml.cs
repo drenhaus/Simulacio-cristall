@@ -115,6 +115,8 @@ namespace WpfApplication1
 
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
+            lc = new graficosPage(); //creamos un tipo page para poder trabajar
+
 
             // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
             // para poder realizar la simulación
@@ -134,7 +136,7 @@ namespace WpfApplication1
             boxIteration.Text = Convert.ToString(historial.Count());
             dispatcherTimer.Stop();
 
-            lc = new graficosPage(); //creamos un tipo page para poder trabajar con el
+
 
             try
             {
@@ -324,7 +326,6 @@ namespace WpfApplication1
             dispatcherTimer.Stop();
             ActualizarParametrosGraficos();
 
-
         }
 
         // TICK DE RELOJ
@@ -371,8 +372,9 @@ namespace WpfApplication1
         {
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
-            boxIteration.Text = Convert.ToString(historial.Count());
-            dispatcherTimer = new DispatcherTimer();
+            boxIteration.Text = Convert.ToString(historial.Count()); //actualizamos contador
+            dispatcherTimer = new DispatcherTimer(); // nuevo timer
+            
 
             // volvemos a crear la matriz y establecemos que todas las fases son 1 y temperaturas -1
             for (int i = 0; i < y; i++)
@@ -531,7 +533,12 @@ namespace WpfApplication1
             lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
             lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
             lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
-            lc.Show(); //No hacemos show dialog pa poder editar las dos ventanas
+
+            try { lc.Show();} //No hacemos show dialog pa poder editar las dos ventanas
+            catch { lc = new graficosPage();
+                lc.Show();
+                ActualizarParametrosGraficos();}
+                     
 
         }
 
