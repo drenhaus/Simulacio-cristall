@@ -185,7 +185,7 @@
                     Style="{DynamicResource RoundCorner}"
                     Canvas.Left="71" Canvas.Top="404" Content="Cargar parametros " Height="36" Name="Parametros" Width="143" Click="Parametros_Click" IsEnabled="False" />
                 <ComboBox Style="{DynamicResource theComboBox}" ItemContainerStyle="{DynamicResource theComboBoxItem}"
-                    Canvas.Left="195" Canvas.Top="470" Height="23" Name="comboBox1" Width="75" IsEnabled="False">
+                    Canvas.Left="195" Canvas.Top="470" Height="23" Name="comboBox1" Width="78" IsEnabled="False">
                     <ComboBoxItem Content="Fixed" 
                                   FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
