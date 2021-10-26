@@ -33,14 +33,14 @@ namespace WpfApplication1
         List<double> listaTEMPxIteracion = new List<double>();
         bool estamosFASE = false;
         bool estamosTEMP = false;
-        DispatcherTimer Time = new DispatcherTimer(); //Timer para la actualizar graficos
+        DispatcherTimer Time = new DispatcherTimer(); //Timer para actualizar gráficos
 
 
 
         public graficosPage()
         {
             InitializeComponent();
-            BtnCalcularFASE.Click += BtnCalcularFASE_Click; //creamos los eventos click
+            BtnCalcularFASE.Click += BtnCalcularFASE_Click; //creamos los eventos clic
             BtnCalcularTEMP.Click += BtnCalcularTEMP_Click;
             generador = new Generadora(); // generamos una clase Generadora cuando inicializamos
             Time.Stop();
@@ -49,7 +49,7 @@ namespace WpfApplication1
             Time.Start();
 
         }
-        //TIMER actualizar la grafica con los datos que se le van proporcionando
+        //TIMER actualizar la gráfica con los datos que se le van proporcionando
         private void Time_click(object sender, EventArgs e)
         {
             if (estamosFASE == true)    
@@ -137,7 +137,7 @@ namespace WpfApplication1
             estamosFASE = true;
             estamosTEMP = false;
 
-            //Oculamos la label instrucciones
+            //Ocultamos las labels
             labelmedio.Visibility = Visibility.Hidden;
             labelmedio2.Visibility = Visibility.Hidden;
             // introducimos las listas al generador
@@ -148,12 +148,12 @@ namespace WpfApplication1
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = contadorHISTORIAL;  //numero de iteraciones
+            ejeX.Maximum = contadorHISTORIAL;  //número de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = 0;//generador.Puntos.Min(p => p.Y);
-            ejeY.Maximum = 1;//generador.Puntos.Max(p => p.Y);
+            ejeY.Minimum = 0;
+            ejeY.Maximum = 1;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);
@@ -176,8 +176,9 @@ namespace WpfApplication1
         {
             estamosFASE = false;
             estamosTEMP = true;
-            //Oculamos la label
+            //Ocultamos las labels
             labelmedio.Visibility = Visibility.Hidden;
+            labelmedio2.Visibility = Visibility.Hidden;
             //definimos las listas
             generador.SetListaTEMPxIteracion(listaTEMPxIteracion);
             generador.GenerarDatosTEMP(Convert.ToDouble(contadorHISTORIAL));
@@ -186,12 +187,12 @@ namespace WpfApplication1
 
             LinearAxis ejeX = new LinearAxis(); //generamos los ejes
             ejeX.Minimum = 0;
-            ejeX.Maximum = contadorHISTORIAL;  //numero de iteraciones
+            ejeX.Maximum = contadorHISTORIAL;  //número  de iteraciones
             ejeX.Position = AxisPosition.Bottom;
 
             LinearAxis ejeY = new LinearAxis();
-            ejeY.Minimum = -1;//generador.Puntos.Min(p => p.Y);
-            ejeY.Maximum = 0;//generador.Puntos.Max(p => p.Y);
+            ejeY.Minimum = -1;
+            ejeY.Maximum = 0;
             ejeY.Position = AxisPosition.Left;
 
             model.Axes.Add(ejeY);

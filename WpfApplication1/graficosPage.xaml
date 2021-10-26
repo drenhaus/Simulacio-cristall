@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <TextBlock Text="Crear Graficas"
+            <TextBlock Text="Crear Gráficas"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
@@ -89,7 +89,7 @@
                     x:Name="BtnMIniGRAF" 
                     Click="BtnMiniGRAF_Click" />
 
-            <Label Content="· Haz click en Temperatura o  en Fase ·" 
+            <Label Content="· Haz clic en Temperatura o  en Fase ·" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
                    Height="64" 
@@ -103,7 +103,7 @@
                    Grid.ColumnSpan="2"
                    Opacity="0.5"
                    x:Name="labelmedio"/>
-            <Label Content="· Permite visalizar a tiempo real ·" 
+            <Label Content="· Permite visualizar a tiempo real ·" 
                    Grid.Column="1" 
                    HorizontalAlignment="Left" 
                    Height="64" 

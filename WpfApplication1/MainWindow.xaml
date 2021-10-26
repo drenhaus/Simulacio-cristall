@@ -159,10 +159,10 @@
                     Canvas.Left="313" Canvas.Top="173" Content="Clear" Height="27" IsEnabled="False" Name="button5" Visibility="Visible" Width="72" Click="button5_Click" />
                 <CheckBox Style="{StaticResource CheckBox_RadioButtonStyle}"
                     FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="36" Canvas.Top="373" Content="Parametros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" IsEnabled="False"  />
+                    Foreground="White" Canvas.Left="36" Canvas.Top="373" Content="Parámetros A" Height="16" Name="ParametrosA" Checked="ParametrosA_Checked" IsEnabled="False"  />
                 <CheckBox Style="{StaticResource CheckBox_RadioButtonStyle}"
                     FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="156" Canvas.Top="376" Content="Parametros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" IsEnabled="False" />
+                    Foreground="White" Canvas.Left="156" Canvas.Top="376" Content="Parámetros B" Height="16" Name="ParametrosB" Checked="ParametrosB_Checked" IsEnabled="False" />
                 <TextBox                          Style="{StaticResource TextboxINPUT2}"
                          FontFamily="/Fonts/#Poppins"
                          VerticalContentAlignment="Center"
@@ -207,10 +207,10 @@
                     Foreground="White" Canvas.Left="65" Canvas.Top="328" Content="dt" Height="30" Name="label8" RenderTransformOrigin="0.107,0.552" />
                 <Button  Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
-                    Canvas.Left="71" Canvas.Top="404" Content="Cargar parametros " Height="36" Name="Parametros" Width="143" Click="Parametros_Click" IsEnabled="False" />
+                    Canvas.Left="71" Canvas.Top="404" Content="Cargar parámetros" Height="36" Name="Parametros" Width="143" Click="Parametros_Click" IsEnabled="False" />
                 <ComboBox Style="{DynamicResource theComboBox}" ItemContainerStyle="{DynamicResource theComboBoxItem}"
                     Canvas.Left="195" Canvas.Top="470" Height="23" Name="comboBox1" Width="78" IsEnabled="False">
-                    <ComboBoxItem Content="Fixed" 
+                    <ComboBoxItem Content="Fijas" 
                                   FontFamily="/Fonts/#Poppins"
                                   Background="AliceBlue"
                                   HorizontalAlignment="Center"
@@ -250,9 +250,9 @@
                 <TextBox Style="{StaticResource verTemperaturatextbox}"
                     Canvas.Left="586" Canvas.Top="300" Height="30" x:Name="labelTemperatura" Width="132" IsEnabled="False"  />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="404" Canvas.Top="269" Content="Valor fase selecionada" Height="28" x:Name="label3_Copy" Width="152" />
+                    Foreground="White" Canvas.Left="402" Canvas.Top="269" Content="Valor fase seleccionada" Height="28" x:Name="label3_Copy" Width="155" />
                 <Label FontFamily="/Fonts/#Poppins"
-                    Foreground="White" Canvas.Left="376" Canvas.Top="302" Content="Valor temperatura selecionada" Height="28" x:Name="label3_Copy1" Width="198" />
+                    Foreground="White" Canvas.Left="370" Canvas.Top="302" Content="Valor temperatura seleccionada" Height="28" x:Name="label3_Copy1" Width="211" />
                 <Button Foreground="White" FontFamily="/Fonts/#Poppins"
                     Style="{DynamicResource RoundCorner}"
                     x:Name="boton_retroceder" Content="Retroceder" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Click="boton_retroceder_Click" IsEnabled="False" Canvas.Left="271" Canvas.Top="205" Height="29"/>
@@ -261,7 +261,7 @@
                        Canvas.Left="254" 
                        Canvas.Top="249" 
                        HorizontalAlignment="Center"
-                       Content="Iteracion actual" 
+                       Content="Iteración actual" 
                        Height="28" 
                        x:Name="laberIteracion" 
                        Width="118" RenderTransformOrigin="-0.037,-0.036"

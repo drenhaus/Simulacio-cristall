@@ -22,7 +22,7 @@ namespace WpfApplication1
         //GENERAMOS EL GRÁFICO DE LA TEMPERATURA
         public List<Punto> GenerarDatosTEMP(double limiteSuperior)
         {
-            double limiteInferior = 0; //limite inferior
+            double limiteInferior = 0; //límite inferior
             double incremento = 1; // incremento
 
             Puntos = new List<Punto>();
@@ -37,7 +37,7 @@ namespace WpfApplication1
         //GENERAMOS EL GRÁFICO DE LA FASE
         public List<Punto> GenerarDatosFASE(double limiteSuperior)
         {
-            double limiteInferior = 0; //limite inferior
+            double limiteInferior = 0; //límite inferior
             double incremento = 1; // incremento
 
             Puntos = new List<Punto>();
@@ -58,7 +58,7 @@ namespace WpfApplication1
         // dada una iteración, nos devuelve el valor de la fase media en esa iteración
         private double EvaluarFASE(double x)
         {
-            return listaFasexIteracion[Convert.ToInt32(x)];// hace la busqueda en la lista
+            return listaFasexIteracion[Convert.ToInt32(x)];// hace la búsqueda en la lista
         }
     }
 }
