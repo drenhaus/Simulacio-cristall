@@ -271,6 +271,7 @@
                          Width="39"
                          IsEnabled="False"
                          x:Name="boxIteration"
+                         HorizontalAlignment="Center"
                          FontFamily="/Fonts/#Poppins"
                          Style="{StaticResource ModernTextbox}" />
 

@@ -284,6 +284,10 @@ namespace WpfApplication1
 
             casillas[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // Para fase 0 definimos color rojo completamente opaco
             casillas2[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
+
+            historial.Add(matriz_celdas.ClonarParaLISTA());
+            boxIteration.Text = Convert.ToString(historial.Count());
+
         }
 
         // ACTUALIZA LISTAS DE GRAFICOS Y SE LOS ENVIA
@@ -564,11 +568,21 @@ namespace WpfApplication1
             dispatcherTimer.Stop();
             lc.Close();
 
-            try
+            int a = historial.Count();
+            
+            try 
             {
+                if (historial.Count() - 1 == 0)
+                {
+                    MessageBox.Show("No es posible retroceder mas");
+                }
+                else
+                { 
                 historial.RemoveAt(historial.Count() - 1); // eliminamos
                 matriz_celdas.SetMatriz(historial.Last().ClonarParaLISTA().GetMatriz()); // actualizamos
                 volverApintar(); // volvemos a pintar
+                }
+
             }
 
             catch // cuando llegamos al principio de la simulación y no podemos retroceder más nos salta un error
