@@ -750,8 +750,8 @@ namespace WpfApplication1
         }
 
 
-        // CLICAMOS EN EL MENU DE EXPLICACIÓN
-            // cuando cliquemos en explicación se habrirá una nueva ventana 
+        // CLICAMOS EN EL MENÚ  DE EXPLICACIÓN
+        // cuando cliquemos en explicación se abra una nueva ventana 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             ExplicacionesDelCristal lc = new ExplicacionesDelCristal();
