@@ -25,18 +25,18 @@ namespace WpfApplication1
     {
         // ATRIBUTOS
         Normas norm = new Normas(); // Clase donde hay guardados todos los parámetros de la simulación
-        Rectangle[,] casillas; // Matriz donde guardaremos todos los rectangulos para poder recorrerlos referidos a la fase
-        Rectangle[,] casillas2; // Matriz donde guardaremos todos los rectangulos para poder recorrerlos referidos a la temperatura
+        Rectangle[,] casillas; // Matriz donde guardaremos todos los rectángulos para poder recorrerlos referidos a la fase
+        Rectangle[,] casillas2; // Matriz donde guardaremos todos los rectángulos para poder recorrerlos referidos a la temperatura
         int x;  //columnas de la malla a generar (valor introducido en el formulario)
         int y;  //filas de la malla a generar (valor introducido en el formulario)
 
-        Malla matriz_celdas = new Malla(); // Matriz con la que estaremos trabajando en la interación presente
+        Malla matriz_celdas = new Malla(); // Matriz con la que estaremos trabajando en la iteración presente
         List<Malla> historial = new List<Malla>(); // Historial donde se van guardando los pasos de las simulaciones anteriores
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); //Timer para la simulación automática
-        graficosPage lc ;   //pagina de graficos
+        graficosPage lc;   //página de gráficos
 
-        List<double> listaFasexIteracion = new List<double>(); // lista de Fases para poder passar a tiempo real listas a graficos
-        List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas para poder passar a tiempo real listas a graficos
+        List<double> listaFasexIteracion = new List<double>(); // lista de Fases para poder pasar  a tiempo real listas a graficos
+        List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas para poder pasar  a tiempo real listas a gráficos
 
 
         public MainWindow()
@@ -54,13 +54,13 @@ namespace WpfApplication1
             }
         }
 
-        // BOTON CERRAR
+        // BOTÓN  CERRAR
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        // BOTON MINIMIZAR
+        // BOTÓN  MINIMIZAR
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -83,30 +83,30 @@ namespace WpfApplication1
             matriz_celdas.SetFaseDeCelda(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1, 0); // definimos que en ese punto hay fase 0
 
             casillas[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // Para fase 0 definimos color rojo completamente opaco
-            casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
+            casillas2[Convert.ToInt32(p.Y), Convert.ToInt32(p.X)].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elegimos color verde completamente opaco
 
-            historial.Add(matriz_celdas.ClonarParaLISTA()); // Cada nuevo clic es añadido al historial por si quisieramos retroceder a algún estado anterior donde no se ha clicado una casilla 
+            historial.Add(matriz_celdas.ClonarParaLISTA()); // Cada nuevo clic es añadido al historial por si quisiéramos  retroceder a algún estado anterior donde no se ha clicado una casilla 
             boxIteration.Text = Convert.ToString(historial.Count());
             ActualizarParametrosGraficos();
         }
 
         // CUANDO PASAMOS EL RATÓN POR ENCIMA DE UNA CASILLA
-        // para esta función se han generado dos labels en los que se iran mostrando las fases y la temperatura de la celda en la que 
-        //tengamos el raton encima
+        // para esta función se han generado dos labels en los que se irán  mostrando las fases y la temperatura de la celda en la que 
+        //tengamos el ratón encima
         private void rectangle_MouseEnter(object sender, EventArgs e)
         {
             Rectangle a = (Rectangle)sender;
-            Point p = (Point)a.Tag; // obtenemos el punto donde esta el ratón
+            Point p = (Point)a.Tag; // obtenemos el punto donde está  el ratón
 
-            // escribimos en las labels el valor de la fase y de la temperatura, teniendo en cuenta que en la matriz seran los puntos x+1,y+1
+            // escribimos en las labels el valor de la fase y de la temperatura, teniendo en cuenta que en la matriz serán  los puntos x+1,y+1
 
             labelFase.Text = Convert.ToString(matriz_celdas.DameFASEde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de fase
             labelTemperatura.Text = Convert.ToString(matriz_celdas.DameTEMPERATURAde(Convert.ToInt32(p.Y) + 1, Convert.ToInt32(p.X) + 1)); // valor de temperatura
         }
 
 
-        // CREAMOS LA MATRIZ/REJILLA AL CLICAR AL BOTON DE CREAR
-        //Una vez hemos definido las columnas y filas manualmente, clicamos al boton de crear y generamos el grid de rectangulos
+        // CREAMOS LA MATRIZ/REJILLA AL CLICAR AL BOTÓN DE CREAR
+        //Una vez hemos definido las columnas y filas manualmente, clicamos al botón  de crear y generamos el grid de rectángulo
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             // Nos aseguramos antes de generar la matriz que no haya otra matriz ya establecida. Para ello eliminamos lo que tengamos
@@ -120,7 +120,7 @@ namespace WpfApplication1
             lc = new graficosPage(); //creamos un tipo page para poder trabajar
 
 
-            // Abilitamos los textboxs y botones correspondientes a los valores que se deben introducir a continuación
+            // Habilitamos  los textboxs y botones correspondientes a los valores que se deben introducir a continuación
             // para poder realizar la simulación
             betta.IsEnabled = true;
             dxdy.IsEnabled = true;
@@ -142,11 +142,11 @@ namespace WpfApplication1
 
             try
             {
-                x = Convert.ToInt32(TextBoxX.Text); // Guardamos el numero de columnas introducidas en la variable x
-                y = Convert.ToInt32(TextBoxY.Text); // Guardamos el numero de filas introducidas en la variable y
+                x = Convert.ToInt32(TextBoxX.Text); // Guardamos el número  de columnas introducidas en la variable x
+                y = Convert.ToInt32(TextBoxY.Text); // Guardamos el número  de filas introducidas en la variable y
                 matriz_celdas.SetNumeroDeFilasYColumnas(y, x);  // definimos la matriz llamando la función de la clase Malla
 
-                // Generamos la excepción de que cuando se haya introducido un numero menor o igual a 0 el programa de el aviso
+                // Generamos la excepción de que cuando se haya introducido un número  menor o igual a 0 el programa del aviso
                 // pero igualmente nos genere una matriz 'defecto' de 10x10 para poder simular si el usuario no lo cambia
                 if ((x <= 0) || (y <= 0))
                 {
@@ -158,13 +158,13 @@ namespace WpfApplication1
                     TextBoxX.Text = Convert.ToString(10);
 
                     MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
-                        "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
+                        "a introducir los parámetros o realice la simulación con la matriz creada por defecto de 10x10");
                 }
                 
             }
             catch
             {
-                // Generamos excepción con datos incorrectos, como seria una letra. Generamos igualmente la matriz defecto 
+                // Generamos excepción con datos incorrectos, como sería una letra. Generamos igualmente la matriz defecto 
                 // y avisamos del problema
                 x = 10;
                 y = 10;
@@ -174,18 +174,18 @@ namespace WpfApplication1
                 TextBoxX.Text = Convert.ToString(10);
 
                 MessageBox.Show("Error en la introducción de los valores. Por favor, vuelva " +
-                        "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
+                        "a introducir los parámetros o realice la simulación con la matriz creada por defecto de 10x10");
                
             }
 
-            // Llamamos a la funcion que nos crea los rectángulos de las matrizes
-            this.casillas = generarMalla1(casillas, canvas1); // introducimos como parametros la matriz casillas y canvas1 (corresponden a la fase)
-            this.casillas2 = generarMalla1(casillas2, canvas2);// introducimos como parametros la matriz casillas2 y canvas2 (corresponden a la temperatura)
+            // Llamamos a la función  que nos crea los rectángulos de las matrices
+            this.casillas = generarMalla1(casillas, canvas1); // introducimos como parámetros la matriz casillas y canvas1 (corresponden a la fase)
+            this.casillas2 = generarMalla1(casillas2, canvas2);// introducimos como parámetros la matriz casillas2 y canvas2 (corresponden a la temperatura)
             CeldaCentralPintada();
         }
 
         // GENERAMOS LOS RECTANGULOS DE LA MATRIX
-        // le introducimos como parametros si se trata de los rectangulos de fase o temperatura (casillas o casillas2) y en que canvas 
+        // le introducimos como parametros si se trata de los rectángulos de fase o temperatura (casillas o casillas2) y en que canvas 
         // vamos a trabajar. Nos retorna la matriz de las casillas para que podemos definirla posteriormente como el atributo
         private Rectangle[,] generarMalla1(Rectangle[,] c, Canvas ca)
         {
@@ -199,14 +199,14 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < x; j++)
                 {
-                    // creamos un nuevo rectangulo y definimos sus propiedades
+                    // creamos un nuevo rectángulo y definimos sus propiedades
                     Rectangle b = new Rectangle();
                     b.Width = canvas1.Width / x;
                     b.Height = canvas1.Height / y;
                     b.Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
                     b.StrokeThickness = 0.5;
                     b.Stroke = Brushes.Black;
-                    ca.Children.Add(b);// añadimos el rectangulo al canvas
+                    ca.Children.Add(b);// añadimos el rectángulo F al canvas
 
                     // Posición del cuadrado
 
@@ -214,11 +214,11 @@ namespace WpfApplication1
                     Canvas.SetLeft(b, j * canvas1.Width / x);
                     b.Tag = new Point(j, i);
 
-                    // definimos los eventos que tiene el rectangulo: clicar y pasar por encima
+                    // definimos los eventos que tiene el rectángulo : clicar y pasar por encima
                     b.MouseDown += new MouseButtonEventHandler(rectangle_MouseDown);
                     b.MouseEnter += new System.Windows.Input.MouseEventHandler(rectangle_MouseEnter);
 
-                    c[i, j] = b; // guardamos el rectangulo en su posición i,j de la matriz de casillas
+                    c[i, j] = b; // guardamos el rectángulo  en su posición i,j de la matriz de casillas
                 }
             }
             return c;
@@ -226,11 +226,11 @@ namespace WpfApplication1
         }
 
         //FUNCION QUE PINTA LA MATRIZ ACTUAL
-        // esta funcion recorre todos los rectangulos de casillas y casillas2 y actualiza el color que tienen
+        // esta funcion recorre todos los rectángulos de casillas y casillas2 y actualiza el color que tienen
         private void volverApintar()
         {
             boxIteration.Text = Convert.ToString(historial.Count());
-            // volvemos a pintar los rectangulos de la matriz CASILLAS
+            // volvemos a pintar los rectángulos de la matriz CASILLAS
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
