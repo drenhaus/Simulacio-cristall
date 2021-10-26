@@ -634,18 +634,17 @@ namespace WpfApplication1
 
                         // escribimos en el comboBox la condición de contorno seleccionada
                         string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
-                        string text= "Fixed";
+                        string text= "Fijas";
 
-                        if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
-                        { text = "Fixed"; }
+                        if (condicion == "System.Windows.Controls.ComboBoxItem: Fijas")
+                        { text = "Fijas"; }
                         if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
                         { text = "Espejo"; }
                                                 
                         comboBox1.IsEditable = true;
                         comboBox1.Text = text;
-                        comboBox1.IsEditable = false;
 
-
+                        
                         // habilitamos  todos los botones y textboxs por si se carga el fichero solo iniciar el programa
                         button1.IsEnabled = true;
                         button2.IsEnabled = true;
@@ -671,6 +670,10 @@ namespace WpfApplication1
                     }
                     else
                     {
+                        // escribimos el numero de filas y columnas
+                        TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
+                        TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
+
                         // no habilitamos todos los botones, únicamente los necesarios para introducir los parámetros
                         betta.Text = null;
                         dxdy.Text = null;
@@ -678,8 +681,6 @@ namespace WpfApplication1
                         delta.Text = null;
                         M.Text = null;
                         dt.Text = null;
-                        TextBoxX.Text = null;
-                        TextBoxY.Text = null;
                         ParametrosA.IsChecked = false;
                         ParametrosB.IsChecked = false;
 
@@ -705,10 +706,13 @@ namespace WpfApplication1
                         botonCARGAR.IsEnabled = false;
                         slider1.IsEnabled = false;
                         boton_retroceder.IsEnabled = false;
+                        comboBox1.Text = null;
                         comboBox1.IsEnabled = false;
 
 
                     }
+
+                    boxIteration.Text = Convert.ToString(1); // Ponemos a 1 las iteraciones
                 }
                 else
                 { MessageBox.Show("No ha sido posible cargar la simulación"); }
