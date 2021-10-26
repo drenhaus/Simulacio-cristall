@@ -33,8 +33,12 @@ namespace WpfApplication1
         Malla matriz_celdas = new Malla(); // Matriz con la que estaremos trabajando en la interación presente
         List<Malla> historial = new List<Malla>(); // Historial donde se van guardando los pasos de las simulaciones anteriores
         DispatcherTimer dispatcherTimer = new DispatcherTimer(); //Timer para la simulación automática
-        graficosPage lc ;
+        graficosPage lc ;   //pagina de graficos
         bool ventanaGraf = false; // sabemos si esta abierta la ventana de garficos para que el programa sea mas eficiente.
+
+        List<double> listaFasexIteracion = new List<double>(); // lista de Fases
+        List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
+
 
         public MainWindow()
         {
@@ -317,11 +321,11 @@ namespace WpfApplication1
 
             if (ventanaGraf == true)
             {
-                int contadorHISTORIAL = historial.Count;
-                List<double> listaFasexIteracion = new List<double>(); // lista de Fases
-                List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
+                int contadorHISTORIAL = historial.Count;        //nos da la iteracion en la que nos encontramso tick del timer
 
-                for (int k = 0; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
+                int iteracionYaenLista = listaTEMPxIteracion.Count;  //nos da hasta cuando ya se ha anadido en la lista
+
+                for (int k = iteracionYaenLista; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
                 {
                     listaFasexIteracion.Add(historial[k].GetcantidadFase());
                     listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
@@ -509,9 +513,10 @@ namespace WpfApplication1
         {
             ventanaGraf = true;
 
+            listaFasexIteracion.Clear();
+            listaTEMPxIteracion.Clear();
+
             int contadorHISTORIAL = historial.Count;
-            List<double> listaFasexIteracion = new List<double>(); // lista de Fases
-            List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
 
             for (int k = 0; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
             {
@@ -524,7 +529,7 @@ namespace WpfApplication1
             lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
             lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
             lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
-            lc.ShowDialog();
+            lc.Show(); //No hacemos show dialog pa poder editar las dos ventanas
 
         }
 
