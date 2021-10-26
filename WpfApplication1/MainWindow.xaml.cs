@@ -87,6 +87,7 @@ namespace WpfApplication1
 
             historial.Add(matriz_celdas.ClonarParaLISTA()); // Cada nuevo clic es añadido al historial por si quisieramos retroceder a algún estado anterior donde no se ha clicado una casilla 
             boxIteration.Text = Convert.ToString(historial.Count());
+            ActualizarParametrosGraficos();
         }
 
         // CUANDO PASAMOS EL RATÓN POR ENCIMA DE UNA CASILLA
@@ -374,7 +375,7 @@ namespace WpfApplication1
             historial = reset_historial; // vaciamos el historial
             boxIteration.Text = Convert.ToString(historial.Count()); //actualizamos contador
             dispatcherTimer = new DispatcherTimer(); // nuevo timer
-            
+            ActualizarParametrosGraficos();
 
             // volvemos a crear la matriz y establecemos que todas las fases son 1 y temperaturas -1
             for (int i = 0; i < y; i++)
@@ -556,6 +557,7 @@ namespace WpfApplication1
         private void boton_retroceder_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
+            lc.Close();
 
             try
             {
