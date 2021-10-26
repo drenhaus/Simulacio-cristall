@@ -10,8 +10,8 @@ namespace WpfApplication1
     class Malla
     {
         //ATRIBUTOS
-        int x = 0; //numero de colummnas 
-        int y = 0; //numero de filas
+        int x = 0; //número de columnas 
+        int y = 0; //número de filas
 
         double cantidadDeFASE; // es la media de la fase en una matriz
         double cantidadDeTEMP; // es la media de la temperatura en una matriz
@@ -56,7 +56,7 @@ namespace WpfApplication1
         { matriz_malla[fila, columna].SetTemperatura(T); }
 
         //CLONAR PARA LISTA
-        //generamos una clon de nuestra matriz para guardar en el historial
+        //generamos un clon de nuestra matriz para guardar en el historial
         // para ello es importante definir las celdas como nuevas celdas para no sobrescribir 
         //valores en el historial
         public Malla ClonarParaLISTA()
@@ -75,16 +75,16 @@ namespace WpfApplication1
                 }
             Malla malla_para_guardar = new Malla(); // generamos la nueva malla
 
-            malla_para_guardar.SetNumeroDeFilasYColumnas(getY() - 2, getX() - 2); // definimos el numero de filas y columnas
-            // restamos 2 ya que en Malla x e y es el numero de celdas + contorno
+            malla_para_guardar.SetNumeroDeFilasYColumnas(getY() - 2, getX() - 2); // definimos el número  de filas y columnas
+            // restamos 2 ya que en Malla x e y es el número  de celdas + contorno
             malla_para_guardar.SetNormas(norma1); // definimos las normas
             malla_para_guardar.SetMatriz(matriz_malla_Clone_LISTA); // definimos la nueva matriz
             return malla_para_guardar;
         }
 
         //CLONAMOS LA MATRIZ
-        //esta funcion nos será útil para calcular el estado futuro, al ir actualizando las celdas
-        // estas irán variando sus valores, asi que cogeremos de referencia los valores del clon que no 
+        //esta función  nos será útil para calcular el estado futuro, al ir actualizando las celdas
+        // estas irán variando sus valores, así  que cogeremos de referencia los valores del clon que no 
         // variaran
         public void ClonarMatrix()
         {
@@ -102,8 +102,8 @@ namespace WpfApplication1
                 }
         }
 
-        // SET NUMERO DE FILAS Y COLUMNAS
-        //dados el numero de filas y columnas se generan las dimensiones de la matriz_malla y la clon, considerando
+        // SET NÚMERO  DE FILAS Y COLUMNAS
+        //dados el número de filas y columnas se generan las dimensiones de la matriz_malla y el clon, considerando
         // un contorno
 
         public void SetNumeroDeFilasYColumnas(int fila, int columna)
@@ -140,9 +140,9 @@ namespace WpfApplication1
 
 
         // CALCULAMOS EL VALOR MEDIO DE LA FASE
-        //será util para hacer las graficas
+        //será útil  para hacer las gráficas
         // hacemos un recorrido por toda la matriz y vamos sumando la fase. Finalmente dividimos este
-        // valor por el numero de celdas recorridas
+        // valor por el número de celdas recorridas
         public double GetcantidadFase()
         {
             cantidadDeFASE = 0;
@@ -155,14 +155,14 @@ namespace WpfApplication1
                     celdasrecorridas++;
                 }
             }
-            cantidadDeFASE = cantidadDeFASE / celdasrecorridas; // asi normalizamos la cantidad de celdas
+            cantidadDeFASE = cantidadDeFASE / celdasrecorridas; // Así normalizamos la cantidad de celdas
             return cantidadDeFASE;
         }
 
         // CALCULAMOS EL VALOR MEDIO DE LA TEMPERATURA
-        //será util para hacer las graficas
+        //será útil  para hacer las gráficas
         // hacemos un recorrido por toda la matriz y vamos sumando la temperatura. Finalmente dividimos este 
-        // valor por el numero de celdas recorridas
+        // valor por el número de celdas recorridas
         public double GetcantidadTEMP()
         {
             cantidadDeTEMP = 0;
@@ -175,7 +175,7 @@ namespace WpfApplication1
                     celdasrecorridas++;
                 }
             }
-            cantidadDeTEMP = cantidadDeTEMP / celdasrecorridas; // asi normalizamos la cantidad de celdas
+            cantidadDeTEMP = cantidadDeTEMP / celdasrecorridas; // Así normalizamos la cantidad de celdas
             return cantidadDeTEMP;
         }
 
@@ -288,7 +288,7 @@ namespace WpfApplication1
 
             StreamReader sr = new StreamReader(name);
             string linea = sr.ReadLine();
-            string[] trozos = linea.Split(' '); // la primera linea nos indica el numero de filas y columnas
+            string[] trozos = linea.Split(' '); // la primera línea  nos indica el número  de filas y columnas
             matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0]) - 2, Convert.ToInt32(trozos[1]) - 2);
 
             // Leemos los parámetros y condiciones de contorno
