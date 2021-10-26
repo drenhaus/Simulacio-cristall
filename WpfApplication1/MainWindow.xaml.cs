@@ -106,7 +106,7 @@ namespace WpfApplication1
 
 
         // CREAMOS LA MATRIZ/REJILLA AL CLICAR AL BOTÓN DE CREAR
-        //Una vez hemos definido las columnas y filas manualmente, clicamos al botón  de crear y generamos el grid de rectángulo
+        //Una vez hemos definido las columnas y filas manualmente, clicamos al botón  de crear y generamos el grid de rectángulos
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             // Nos aseguramos antes de generar la matriz que no haya otra matriz ya establecida. Para ello eliminamos lo que tengamos
@@ -184,8 +184,8 @@ namespace WpfApplication1
             CeldaCentralPintada();
         }
 
-        // GENERAMOS LOS RECTANGULOS DE LA MATRIX
-        // le introducimos como parametros si se trata de los rectángulos de fase o temperatura (casillas o casillas2) y en que canvas 
+        // GENERAMOS LOS RECTÁNGULOS  DE LA MATRIX
+        // le introducimos como parámetros  si se trata de los rectángulos de fase o temperatura (casillas o casillas2) y en que canvas 
         // vamos a trabajar. Nos retorna la matriz de las casillas para que podemos definirla posteriormente como el atributo
         private Rectangle[,] generarMalla1(Rectangle[,] c, Canvas ca)
         {
@@ -194,7 +194,7 @@ namespace WpfApplication1
             ca.Height = canvas1.Height;
             ca.Width = canvas1.Width;
 
-            // Bucle para crear los rectangulos
+            // Bucle para crear los rectángulos
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
@@ -225,8 +225,8 @@ namespace WpfApplication1
 
         }
 
-        //FUNCION QUE PINTA LA MATRIZ ACTUAL
-        // esta funcion recorre todos los rectángulos de casillas y casillas2 y actualiza el color que tienen
+        //FUNCIÓN  QUE PINTA LA MATRIZ ACTUAL
+        // esta función  recorre todos los rectángulos de casillas y casillas2 y actualiza el color que tienen
         private void volverApintar()
         {
             boxIteration.Text = Convert.ToString(historial.Count());
@@ -246,7 +246,7 @@ namespace WpfApplication1
 
                     // para los otros valores multiplicamos por diez la fase y luego por 23 (de esta manera obtenemos un valor escalado dentro
                     // del margen de 0-255) 
-                    // Este valor lo redondeamos y se lo restamos a 255 y asi obtenemos la opacidad de dicha fase, situando fase 0 a 255 y fase 1 a 0
+                    // Este valor lo redondeamos y se lo restamos a 255 y así  obtenemos la opacidad de dicha fase, situando fase 0 a 255 y fase 1 a 0
 
                     if ((fase != 0) && (fase != 1))
                     {
@@ -272,8 +272,8 @@ namespace WpfApplication1
         }
 
         //FUNCIÓN QUE NOS ESTABLECE LA CELDA DEL MEDIO YA POR DEFECTO A 0
-            //definimos la x e y media (redondeando por si no fuera una matriz simetrica)
-            // y establecemos que en este punto hay fase y temperatura 0
+        //definimos la x e y media (redondeando por si no fuera una matriz simétrica)
+        // y establecemos que en este punto hay fase y temperatura 0
         private void CeldaCentralPintada()
         {
             int x_medio = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(x) / 2));
@@ -283,46 +283,44 @@ namespace WpfApplication1
             matriz_celdas.SetFaseDeCelda(y_medio, x_medio, 0); // definimos que en ese punto hay fase 0
 
             casillas[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); // Para fase 0 definimos color rojo completamente opaco
-            casillas2[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
+            casillas2[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elegimos color verde completamente opaco
 
             historial.Add(matriz_celdas.ClonarParaLISTA());
             boxIteration.Text = Convert.ToString(historial.Count());
 
         }
 
-        // ACTUALIZA LISTAS DE GRAFICOS Y SE LOS ENVIA
+        // ACTUALIZA LISTAS DE GRÁFICOS Y SE LOS ENVÍA
         // Al usar esta funcion anadimos(SOLO si venta agarfos activa) los datos que no hay en la lista de fase e Temperatura y se los manda
-        // a garfico. SOLO funciona si se ha avierto la page de grafcios
+        // a gráfico page. SOLO funciona si se ha abierto  la page de gráficos
         private void ActualizarParametrosGraficos()
         {
 
             if (this.lc.IsLoaded)
             {
-                int contadorHISTORIAL = historial.Count;        //nos da la iteracion en la que nos encontramso tick del timer
-                int iteracionYaenLista = listaTEMPxIteracion.Count;  //nos da hasta cuando ya se ha anadido en la lista
+                int contadorHISTORIAL = historial.Count;        //nos da la iteración en la que nos encontramos tick del timer
+                int iteracionYaenLista = listaTEMPxIteracion.Count;  //nos da hasta cuando ya se ha añadido  en la lista
 
                 for (int k = iteracionYaenLista; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
                 {
                     listaFasexIteracion.Add(historial[k].GetcantidadFase());
                     listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
                 }
-                // Abrimos una nueva ventana para mostrar los graficos
+                // Abrimos una nueva ventana para mostrar los gráficos
 
 
-                lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
+                lc.SetcontadorHIST(contadorHISTORIAL); // le damos el número  de iteraciones
                 lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
                 lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
-            }//Actualiza las listas de fase y temperatura por iteracion para graficos y se los manda
+            }//Actualiza las listas de fase y temperatura por iteración  para gráficos  y se los manda
         }
 
         // SIMULACIÓN PASO A PASO
-        // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
+        // cada vez que clicamos al botón de simulación paso a paso calcula la matriz futura y actualiza los colores
         // de los rectángulos
         private void button1_Click(object sender, RoutedEventArgs e) 
         {
-            // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
-
-            // si el historial está vacio añadimos la matriz actual al historial y la pintamos
+            // si el historial está vacío  añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
                 historial.Add(matriz_celdas.ClonarParaLISTA());
@@ -342,8 +340,7 @@ namespace WpfApplication1
         // cada tick de reloj se actualizará la malla y se volverá a pintar
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
-            // si el historial está vacio añadimos la matriz actual al historial y la pintamos
+            // si el historial está vacío añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
                 historial.Add(matriz_celdas.ClonarParaLISTA());
@@ -359,7 +356,7 @@ namespace WpfApplication1
         }
 
         // SIMULACIÓN AUTOMÁTICA
-        // cuando se preme el boton de simulacion automática se inicializa el timer
+        // cuando se clique el botón  de simulación automática se inicializa el timer
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
@@ -376,7 +373,7 @@ namespace WpfApplication1
             MessageBox.Show("Se ha detenido la simulación");
         }
 
-        // BOTON RESTART
+        // BOTÓN  RESTART
         //reseteamos la simulación y vaciamos el historial
         private void button5_Click(object sender, RoutedEventArgs e)
         {
@@ -403,9 +400,9 @@ namespace WpfApplication1
         }
 
         // CARGAR PARÁMETROS
-        // Cuando clicamos el boton de cargar parametros definimos los distintos 
+        // Cuando clicamos el botón  de cargar parámetros  definimos los distintos 
         // valores de la clase norma.
-        // Definimos que se pueda elejir también entre dos conjuntos de parámetros: A y B
+        // Definimos que se pueda elegir  también entre dos conjuntos de parámetros: A y B
         private void Parametros_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -439,7 +436,7 @@ namespace WpfApplication1
 
                 }
 
-                // Abilitamos los botones para poder seguir con la simulación
+                // Habilitamos  los botones para poder seguir con la simulación
                 comboBox1.IsEnabled = true;
                 button6.IsEnabled = true;
 
@@ -447,14 +444,14 @@ namespace WpfApplication1
             }
 
             // si hay error en los parámetros 
-            catch { MessageBox.Show("Error en los parametros"); }
+            catch { MessageBox.Show("Error en los parámetros"); }
         }
 
-        // SELECIONAMOS LOS PARÁMETROS B
-        //cuando tenemos selecionados los parametros B escribimos en los textbox los valores de 
+        // SELECCIONAMOS  LOS PARÁMETROS B
+        //cuando tenemos seleccionados  los parámetros  B escribimos en los textbox los valores de 
         // estos para poder consultarlos
-        // Ponemos también una condición que nos permita solo selecionar A o B, es decir, que al 
-        // selecionar B se deselecione A
+        // Ponemos también una condición que nos permita solo seleccionar  A o B, es decir, que al 
+        // seleccionar  B se deseleccione A
         private void ParametrosB_Checked(object sender, RoutedEventArgs e)
         {
             if (ParametrosB.IsChecked == true)
@@ -473,17 +470,17 @@ namespace WpfApplication1
         }
 
         // SELECIONAMOS LOS PARÁMETROS A
-        //cuando tenemos selecionados los parametros A escribimos en los textbox los valores de 
+        //cuando tenemos seleccionados  los parámetros A escribimos en los textbox los valores de 
         // estos para poder consultarlos
-        // Ponemos también una condición que nos permita solo selecionar A o B, es decir, que al 
-        // selecionar A se deselecione B
+        // Ponemos también una condición que nos permita solo seleccionar A o B, es decir, que al 
+        // seleccionar  A se deseleccione B
         private void ParametrosA_Checked(object sender, RoutedEventArgs e)
         {
             if (ParametrosA.IsChecked == true)
             {
-                ParametrosB.IsChecked = false; // deselecionamos B
+                ParametrosB.IsChecked = false; // deseleccionamos B
 
-                //escribimos los parametros para poder verlos
+                //escribimos los parámetros  para poder verlos
                 dxdy.Text = Convert.ToString(0.005);
                 epsilon.Text = Convert.ToString(0.005);
                 betta.Text = Convert.ToString(400);
@@ -499,9 +496,9 @@ namespace WpfApplication1
         //creamos un comboBox que nos deje elegir entre dos opciones de condiciones de contorno
         private void button6_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBox1.SelectedItem == null) // si no se ha selecionado nada nos salta un mensaje de error
+            if (comboBox1.SelectedItem == null) // si no se ha seleccionado  nada nos salta un mensaje de error
             {
-                MessageBox.Show("Porfavor, seleciona una de las opciones del desplegable");
+                MessageBox.Show("Por favor, selecciona  una de las opciones del desplegable");
             }
             else
             {
@@ -521,9 +518,9 @@ namespace WpfApplication1
             }
         }
 
-        // CLICAMOS EN EL MENÚ DE CREAR GRAFICO
+        // CLICAMOS EN EL MENÚ DE CREAR GRÁFICO
         //generamos una lista con los valores de fase y temperatura que hemos guardado en el historial
-        // y esta lista la entregamos a la clase de graficos
+        // y esta lista la entregamos a la clase de gráficos
         private void MenuItem_Click_20(object sender, RoutedEventArgs e)
         {
 
@@ -537,14 +534,14 @@ namespace WpfApplication1
                 listaFasexIteracion.Add(historial[k].GetcantidadFase());
                 listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
             }
-            // Abrimos una nueva ventana para mostrar los graficos
+            // Abrimos una nueva ventana para mostrar los gráficos
 
-            
-            lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
+
+            lc.SetcontadorHIST(contadorHISTORIAL); // le damos el número  de iteraciones
             lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
             lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
 
-            try { lc.Show();} //No hacemos show dialog pa poder editar las dos ventanas
+            try { lc.Show();} //No hacemos show dialog para poder editar las dos ventanas
             catch { lc = new graficosPage();
                 lc.Show();
                 ActualizarParametrosGraficos();}
@@ -560,8 +557,8 @@ namespace WpfApplication1
 
         }
 
-        // BOTON RETROCEDER
-        //cada vez que le damos al boton retroceder eliminamos un elemento del historial, actualizamos
+        // BOTÓN  RETROCEDER
+        //cada vez que le damos al botón  retroceder eliminamos un elemento del historial, actualizamos
         // la matriz con la que estamos trabajando y la volvemos a pintar
         private void boton_retroceder_Click(object sender, RoutedEventArgs e)
         {
@@ -574,7 +571,7 @@ namespace WpfApplication1
             {
                 if (historial.Count() - 1 == 0)
                 {
-                    MessageBox.Show("No es posible retroceder mas");
+                    MessageBox.Show("No es posible retroceder más");
                 }
                 else
                 { 
@@ -586,7 +583,7 @@ namespace WpfApplication1
             }
 
             catch // cuando llegamos al principio de la simulación y no podemos retroceder más nos salta un error
-            { MessageBox.Show("No es posible retroceder mas"); }
+            { MessageBox.Show("No es posible retroceder más"); }
         }
 
         //CARGAR FICHERO
@@ -618,7 +615,7 @@ namespace WpfApplication1
 
                     volverApintar(); // repintamos 
 
-                    boxIteration.Text = Convert.ToString(historial.Count()); // AL cargar la simulacion que la iteracion se ponga a 0
+                    boxIteration.Text = Convert.ToString(historial.Count()); // AL cargar la simulación que la iteración  se ponga a 0
 
                     if (MessageBox.Show("Quieres conservar los parámetros y condiciones de contorno de la simulación guardada?", "Cargar parámetros", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
@@ -626,7 +623,7 @@ namespace WpfApplication1
                         TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
                         TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
 
-                        //si conservamos los parámetros, simulamos con lo cargado y escrivimos los parámetros para que se muestren
+                        //si conservamos los parámetros, simulamos con lo cargado y escribimos  los parámetros para que se muestren
 
                         dxdy.Text = Convert.ToString(matriz_celdas.GetNorma().GetDxDy());
                         epsilon.Text = Convert.ToString(matriz_celdas.GetNorma().GetEpsilon());
@@ -635,7 +632,7 @@ namespace WpfApplication1
                         M.Text= Convert.ToString(matriz_celdas.GetNorma().GetM());
                         dt.Text= Convert.ToString(matriz_celdas.GetNorma().GetDT());
 
-                        // escribimos en el comboBox la condicion de contorno seleccionada
+                        // escribimos en el comboBox la condición de contorno seleccionada
                         string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
                         string text= "Fixed";
 
@@ -649,7 +646,7 @@ namespace WpfApplication1
                         comboBox1.IsEditable = false;
 
 
-                        // abilitamos todos los botones y textboxs por si se carga el fichero solo iniciar el programa
+                        // habilitamos  todos los botones y textboxs por si se carga el fichero solo iniciar el programa
                         button1.IsEnabled = true;
                         button2.IsEnabled = true;
                         button4.IsEnabled = true;
