@@ -124,7 +124,7 @@
                          Height="30" 
                          Name="TextBoxY" 
                          Width="37"
-                         >
+                         Style="{StaticResource TextboxINPUT2}">
 
                 </TextBox>
 

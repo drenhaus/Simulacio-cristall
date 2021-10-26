@@ -6,6 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/textboxINPUTtheme.xaml"/>
                 <ResourceDictionary Source="Theme/grafTEMPButtTheme.xaml"/>
                 <ResourceDictionary Source="Theme/grafFaseButtTheme.xaml"/>
                 <ResourceDictionary Source="Theme/verTemperaturatTheme.xaml"/>
