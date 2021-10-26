@@ -36,8 +36,8 @@ namespace WpfApplication1
         graficosPage lc ;   //pagina de graficos
         bool ventanaGraf = false; // sabemos si esta abierta la ventana de garficos para que el programa sea mas eficiente.
 
-        List<double> listaFasexIteracion = new List<double>(); // lista de Fases
-        List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas
+        List<double> listaFasexIteracion = new List<double>(); // lista de Fases para poder passar a tiempo real listas a graficos
+        List<double> listaTEMPxIteracion = new List<double>(); // lista de Temperaturas para poder passar a tiempo real listas a graficos
 
 
         public MainWindow()
@@ -279,6 +279,29 @@ namespace WpfApplication1
             casillas2[y_medio-1, x_medio-1].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); // Para temperatura verde elejimos color verde completamente opaco
         }
 
+        // ACTUALIZA LISTAS DE GRAFICOS Y SE LOS ENVIA
+        // Al usar esta funcion anadimos los datos que no hay en la lista de fase e Temperatura y se los manda
+        // a garfico. SOLO funciona si se ha avierto la page de grafcios
+        private void ActualizarParametrosGraficos()
+        {
+            if (ventanaGraf == true)
+            {
+                int contadorHISTORIAL = historial.Count;        //nos da la iteracion en la que nos encontramso tick del timer
+                int iteracionYaenLista = listaTEMPxIteracion.Count;  //nos da hasta cuando ya se ha anadido en la lista
+
+                for (int k = iteracionYaenLista; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
+                {
+                    listaFasexIteracion.Add(historial[k].GetcantidadFase());
+                    listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
+                }
+                // Abrimos una nueva ventana para mostrar los graficos
+
+
+                lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
+                lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
+                lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
+            }//Actualiza las listas de fase y temperatura por iteracion para graficos y se los manda
+        }
 
         // SIMULACIÓN PASO A PASO
         // cada vez que clicamos al boton de simulación paso a paso calcula la matriz futura y actualiza los colores
@@ -297,7 +320,9 @@ namespace WpfApplication1
 
             volverApintar(); // pintamos la nueva matriz
             dispatcherTimer.Stop();
-            ventanaGraf = false;
+            ActualizarParametrosGraficos();
+
+
         }
 
         // TICK DE RELOJ
@@ -316,27 +341,7 @@ namespace WpfApplication1
 
             volverApintar(); // pintamos la nueva matriz
 
-
-            
-
-            if (ventanaGraf == true)
-            {
-                int contadorHISTORIAL = historial.Count;        //nos da la iteracion en la que nos encontramso tick del timer
-
-                int iteracionYaenLista = listaTEMPxIteracion.Count;  //nos da hasta cuando ya se ha anadido en la lista
-
-                for (int k = iteracionYaenLista; k < contadorHISTORIAL; k++) // vamos calculando los valores medios de fase y temperatura
-                {
-                    listaFasexIteracion.Add(historial[k].GetcantidadFase());
-                    listaTEMPxIteracion.Add(historial[k].GetcantidadTEMP());
-                }
-                // Abrimos una nueva ventana para mostrar los graficos
-
-
-                lc.SetcontadorHIST(contadorHISTORIAL); // le damos el numero de iteraciones
-                lc.SetListaFASExIteracion(listaFasexIteracion); // introducimos las fases
-                lc.SetListaTEMPxIteracion(listaTEMPxIteracion); // introducimos las temperaturas
-            }
+            ActualizarParametrosGraficos();
 
 
         }

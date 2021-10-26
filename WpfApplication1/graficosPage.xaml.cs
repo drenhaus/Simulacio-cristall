@@ -52,7 +52,7 @@ namespace WpfApplication1
 
         private void Time_click(object sender, EventArgs e)
         {
-            if (estamosFASE == true)
+            if (estamosFASE == true)    
             {
                 // introducimos las listas al generador
                 generador.SetListaFASExIteracion(listaFasexIteracion);
@@ -82,7 +82,7 @@ namespace WpfApplication1
                 linea.Title = "Valores generados";
                 model.Series.Add(linea);
                 Grafica.Model = model;
-            }
+            }//actualizar fase grafico
 
             if (estamosTEMP == true)
             {
@@ -113,7 +113,7 @@ namespace WpfApplication1
                 linea.Title = "Valores generados";
                 model.Series.Add(linea);
                 Grafica.Model = model;
-            }
+            }//actualizar temperatura grafico
         }
 
         //Permite mover ventana
