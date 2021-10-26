@@ -596,6 +596,7 @@ namespace WpfApplication1
                     matriz_celdas = matriz;
                     x = matriz_celdas.getX() - 2;
                     y = matriz_celdas.getY() - 2;
+                    lc = new graficosPage();
 
                     // Generamos las Mallas
                     this.casillas = generarMalla1(casillas, canvas1);
@@ -654,6 +655,7 @@ namespace WpfApplication1
                         slider1.IsEnabled = true;
                         boton_retroceder.IsEnabled = true;
                         comboBox1.IsEnabled = true;
+                        botongraficos.IsEnabled = true;
 
                     }
                     else
@@ -681,7 +683,7 @@ namespace WpfApplication1
                         Parametros.IsEnabled = true;
                         boton_retroceder.IsEnabled = true; // permite retroceder al estar clicando
                         button5.IsEnabled = true;
-
+                        botongraficos.IsEnabled = true;
 
                         button1.IsEnabled = false;
                         button2.IsEnabled = false;
@@ -693,6 +695,7 @@ namespace WpfApplication1
                         slider1.IsEnabled = false;
                         boton_retroceder.IsEnabled = false;
                         comboBox1.IsEnabled = false;
+
 
                     }
                 }

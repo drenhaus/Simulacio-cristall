@@ -81,7 +81,7 @@
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins"
                               x:Name="botonCARGAR" 
-                              Margin="10,5,21.2,5">
+                              Margin="10,5,21.2,5" IsEnabled="False">
 
                     <MenuItem.Icon>
                         <Image Source="/icons/save_white.png" Margin="-21,-13,-75,-13" />

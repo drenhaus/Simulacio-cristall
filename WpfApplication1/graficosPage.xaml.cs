@@ -49,7 +49,7 @@ namespace WpfApplication1
             Time.Start();
 
         }
-
+        //TIMER actualizar la grafica con los datos que se le van proporcionando
         private void Time_click(object sender, EventArgs e)
         {
             if (estamosFASE == true)    
@@ -116,14 +116,6 @@ namespace WpfApplication1
             }//actualizar temperatura grafico
         }
 
-        //Permite mover ventana
-        private void Window_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                this.DragMove();
-            }
-        }
 
         // SET de los atributos
         public void SetListaFASExIteracion(List<double> A)
@@ -227,6 +219,15 @@ namespace WpfApplication1
         private void BtnMiniGRAF_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        //Permite mover ventana
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
         }
     }
 
