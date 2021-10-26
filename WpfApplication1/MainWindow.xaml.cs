@@ -113,6 +113,7 @@ namespace WpfApplication1
             // en los canvas 1 y 2 para evitar problemas de generar mallas encima de otras mallas
             canvas1.Children.Clear();
             canvas2.Children.Clear();
+           
 
             List<Malla> reset_historial = new List<Malla>();
             historial = reset_historial; // vaciamos el historial
@@ -159,6 +160,7 @@ namespace WpfApplication1
                     MessageBox.Show("Error. Los valores han de ser positivos/ distintos a 0. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
                 }
+                
             }
             catch
             {
@@ -173,6 +175,7 @@ namespace WpfApplication1
 
                 MessageBox.Show("Error en la introducción de los valores. Por favor, vuelva " +
                         "a introducir los parámetros o realize la simulación con la matriz creada por defecto de 10x10");
+               
             }
 
             // Llamamos a la funcion que nos crea los rectángulos de las matrizes
@@ -200,7 +203,7 @@ namespace WpfApplication1
                     Rectangle b = new Rectangle();
                     b.Width = canvas1.Width / x;
                     b.Height = canvas1.Height / y;
-                    b.Fill = new SolidColorBrush(Colors.White);
+                    b.Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
                     b.StrokeThickness = 0.5;
                     b.Stroke = Brushes.Black;
                     ca.Children.Add(b);// añadimos el rectangulo al canvas
@@ -237,7 +240,7 @@ namespace WpfApplication1
 
                     // si la fase es 1 se establece como color el blanco y si la fase es 0 se establece el color rojo opaco
                     if (fase == 1)
-                    { casillas[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    { casillas[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230)); }
                     if (fase == 0)
                     { casillas[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0)); }
 
@@ -254,7 +257,7 @@ namespace WpfApplication1
 
                     // si la temperatura es -1 se establece como color el blanco, y si es 0 se establece el color verde opaco
                     if (temperatura == -1)
-                    { casillas2[i, j].Fill = new SolidColorBrush(Colors.White); }
+                    { casillas2[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230)); }
                     if (temperatura == 0)
                     { casillas2[i, j].Fill = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0)); }
 
@@ -313,6 +316,8 @@ namespace WpfApplication1
         // de los rectángulos
         private void button1_Click(object sender, RoutedEventArgs e) 
         {
+            // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
+
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
@@ -333,6 +338,7 @@ namespace WpfApplication1
         // cada tick de reloj se actualizará la malla y se volverá a pintar
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            // actualizamos las condiciones de contorno por si fueran espejo, que caldria modificarlo
             // si el historial está vacio añadimos la matriz actual al historial y la pintamos
             if (historial.Count < 1)
             {
@@ -345,7 +351,6 @@ namespace WpfApplication1
 
             volverApintar(); // pintamos la nueva matriz
             ActualizarParametrosGraficos();
-
 
         }
 
@@ -385,8 +390,8 @@ namespace WpfApplication1
                     matriz_celdas.SetNumeroDeFilasYColumnas(y, x);
                     matriz_celdas.SetFaseDeCelda(i, j, 1);
                     matriz_celdas.SetTemperaturaDeCelda(i, j, -1);
-                    casillas[i, j].Fill = new SolidColorBrush(Colors.White);
-                    casillas2[i, j].Fill = new SolidColorBrush(Colors.White);
+                    casillas[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
+                    casillas2[i, j].Fill = new SolidColorBrush(Color.FromRgb(230,230,230));
                 }
             }
             CeldaCentralPintada();
@@ -598,45 +603,98 @@ namespace WpfApplication1
 
                     volverApintar(); // repintamos 
 
-                    MessageBox.Show("Fichero cargado con éxito! Por favor modifique los parámetros de simulación y condiciones de contorno o se simulará por defecto con los parámetros A y condiciones de controno fijas");
-
-                    // abilitamos todos los botones y textboxs por si se carga el fichero solo iniciar el programa
-                    button1.IsEnabled = true;
-                    button2.IsEnabled = true;
-                    button4.IsEnabled = true;
-                    button5.IsEnabled = true;
-                    button6.IsEnabled = true;
-                    boton_retroceder.IsEnabled = true;
-                    botonCARGAR.IsEnabled = true;
-                    betta.IsEnabled = true;
-                    dxdy.IsEnabled = true;
-                    epsilon.IsEnabled = true;
-                    delta.IsEnabled = true;
-                    M.IsEnabled = true;
-                    dt.IsEnabled = true;
-                    ParametrosA.IsEnabled = true;
-                    ParametrosB.IsEnabled = true;
-                    Parametros.IsEnabled = true;
-                    button1.IsEnabled = true;
-                    button2.IsEnabled = true;
-                    button4.IsEnabled = true;
-                    button5.IsEnabled = true;
-                    botonCARGAR.IsEnabled = true;
-                    slider1.IsEnabled = true;
-                    boton_retroceder.IsEnabled = true;
-
-
-                    // Si no cambiamos nada definimos por defecto condiciones de controno fijas y parámetros A
-                    matriz_celdas.SetCondicionsContornoFaseTemperatura("fixed");
-                    norm.SetDxDy(0.005);
-                    norm.SetEpsilon(0.005);
-                    norm.SetBetta(400);
-                    norm.SetDelta(0.5);
-                    norm.SetM(20);
-                    norm.SetDT(5 * Math.Pow(10, -6));
-                    matriz_celdas.SetNormas(norm);
                     boxIteration.Text = Convert.ToString(historial.Count()); // AL cargar la simulacion que la iteracion se ponga a 0
 
+                    if (MessageBox.Show("Quieres conservar los parámetros y condiciones de contorno de la simulación guardada?", "Cargar parámetros", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        // escribimos el numero de filas y columnas
+                        TextBoxX.Text = Convert.ToString(matriz_celdas.getX() - 2);
+                        TextBoxY.Text = Convert.ToString(matriz_celdas.getY() - 2);
+
+                        //si conservamos los parámetros, simulamos con lo cargado y escrivimos los parámetros para que se muestren
+
+                        dxdy.Text = Convert.ToString(matriz_celdas.GetNorma().GetDxDy());
+                        epsilon.Text = Convert.ToString(matriz_celdas.GetNorma().GetEpsilon());
+                        betta.Text = Convert.ToString(matriz_celdas.GetNorma().GetBetta());
+                        delta.Text= Convert.ToString(matriz_celdas.GetNorma().GetDelta());
+                        M.Text= Convert.ToString(matriz_celdas.GetNorma().GetM());
+                        dt.Text= Convert.ToString(matriz_celdas.GetNorma().GetDT());
+
+                        // escribimos en el comboBox la condicion de contorno seleccionada
+                        string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
+                        string text= "Fixed";
+
+                        if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
+                        { text = "Fixed"; }
+                        if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
+                        { text = "Espejo"; }
+                                                
+                        comboBox1.IsEditable = true;
+                        comboBox1.Text = text;
+                        comboBox1.IsEditable = false;
+
+
+                        // abilitamos todos los botones y textboxs por si se carga el fichero solo iniciar el programa
+                        button1.IsEnabled = true;
+                        button2.IsEnabled = true;
+                        button4.IsEnabled = true;
+                        button5.IsEnabled = true;
+                        button6.IsEnabled = true;
+                        boton_retroceder.IsEnabled = true;
+                        botonCARGAR.IsEnabled = true;
+                        betta.IsEnabled = true;
+                        dxdy.IsEnabled = true;
+                        epsilon.IsEnabled = true;
+                        delta.IsEnabled = true;
+                        M.IsEnabled = true;
+                        dt.IsEnabled = true;
+                        ParametrosA.IsEnabled = true;
+                        ParametrosB.IsEnabled = true;
+                        Parametros.IsEnabled = true;
+                        slider1.IsEnabled = true;
+                        boton_retroceder.IsEnabled = true;
+                        comboBox1.IsEnabled = true;
+
+                    }
+                    else
+                    {
+                        // no habilitamos todos los botones, únicamente los necesarios para introducir los parámetros
+                        betta.Text = null;
+                        dxdy.Text = null;
+                        epsilon.Text = null;
+                        delta.Text = null;
+                        M.Text = null;
+                        dt.Text = null;
+                        TextBoxX.Text = null;
+                        TextBoxY.Text = null;
+                        ParametrosA.IsChecked = false;
+                        ParametrosB.IsChecked = false;
+
+                        betta.IsEnabled = true;
+                        dxdy.IsEnabled = true;
+                        epsilon.IsEnabled = true;
+                        delta.IsEnabled = true;
+                        M.IsEnabled = true;
+                        dt.IsEnabled = true;
+                        ParametrosA.IsEnabled = true;
+                        ParametrosB.IsEnabled = true;
+                        Parametros.IsEnabled = true;
+                        boton_retroceder.IsEnabled = true; // permite retroceder al estar clicando
+                        button5.IsEnabled = true;
+
+
+                        button1.IsEnabled = false;
+                        button2.IsEnabled = false;
+                        button4.IsEnabled = false;
+                        button5.IsEnabled = false;
+                        button6.IsEnabled = false;
+                        boton_retroceder.IsEnabled = false;
+                        botonCARGAR.IsEnabled = false;
+                        slider1.IsEnabled = false;
+                        boton_retroceder.IsEnabled = false;
+                        comboBox1.IsEnabled = false;
+
+                    }
                 }
                 else
                 { MessageBox.Show("No ha sido posible cargar la simulación"); }

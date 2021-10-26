@@ -20,6 +20,10 @@ namespace WpfApplication1
         Celda[,] matriz_malla_Clone; //matriz espejo
 
         Normas norma1;
+        string condicion;
+
+
+
 
         // GET 
         public Celda[,] GetMatriz()
@@ -38,6 +42,8 @@ namespace WpfApplication1
         { return (this.matriz_malla[posFILAS, posCOLUMNAS].GetTemperatura()); }
         public double DameTEMPERATURAdeClon(int posFILAS, int posCOLUMNAS)
         { return (this.matriz_malla_Clone[posFILAS, posCOLUMNAS].GetTemperatura()); }
+        public Normas GetNorma()
+        { return norma1; }
 
         // SET
         public void SetNormas(Normas n)
@@ -48,16 +54,6 @@ namespace WpfApplication1
         { matriz_malla[fila, columna].SetFase(fase); }
         public void SetTemperaturaDeCelda(int fila, int columna, double T)
         { matriz_malla[fila, columna].SetTemperatura(T); }
-
-
-        /*        public Malla MallaGuardar(int X, int Y, double F, double T, int i, int j)
-                {
-                    Malla A = new Malla();
-                    A.SetNumeroDeFilasYColumnas(X, Y);
-                    A.SetTemperaturaDeCelda(i, j, T);
-                    A.SetFaseDeCelda(i, j, F);
-                    return A;
-                }*/
 
         //CLONAR PARA LISTA
         //generamos una clon de nuestra matriz para guardar en el historial
@@ -131,49 +127,17 @@ namespace WpfApplication1
                 }
         }
 
-        //DEFINIMOS LAS CONDICIONES DE CONTRONO
         public void SetCondicionsContornoFaseTemperatura(string condicion)
         {
-            if (condicion == "fixed")
-            {
-                for (int i = 1; i < y; i++)
-                {
-                    this.matriz_malla[0, i].SetFase(1);
-                    this.matriz_malla[0, i].SetTemperatura(-1);
-                    this.matriz_malla[y - 1, i].SetFase(1);
-                    this.matriz_malla[y - 1, i].SetTemperatura(-1);
-                }
-
-                for (int j = 0; j < x; j++)
-                {
-                    this.matriz_malla[j, 0].SetFase(1);
-                    this.matriz_malla[j, 0].SetTemperatura(-1);
-                    this.matriz_malla[j, x - 1].SetFase(1);
-                    this.matriz_malla[j, x - 1].SetTemperatura(-1);
-
-                }
-                if (condicion == "espejo")
-                {
-
-                    for (int i = 1; i < y; i++)
-                    {
-                        this.matriz_malla[0, i].SetFase(matriz_malla[1, i].GetFase());
-                        this.matriz_malla[0, i].SetTemperatura(matriz_malla[1, i].GetTemperatura());
-                        this.matriz_malla[y - 1, i].SetFase(matriz_malla[y - 2, i].GetFase());
-                        this.matriz_malla[y - 1, i].SetTemperatura(matriz_malla[y - 2, i].GetTemperatura());
-                    }
-
-                    for (int j = 0; j < x; j++)
-                    {
-                        this.matriz_malla[j, 0].SetFase(matriz_malla[j, 1].GetFase());
-                        this.matriz_malla[j, 0].SetTemperatura(matriz_malla[j, 1].GetFase());
-                        this.matriz_malla[j, x - 1].SetFase(matriz_malla[j, x - 2].GetFase());
-                        this.matriz_malla[j, x - 1].SetTemperatura(matriz_malla[j, x - 2].GetFase());
-
-                    }
-                }
-            }
+            this.condicion = condicion;
         }
+
+        public string GetCondicionsContornoFaseTemperatura()
+        {
+            return this.condicion;
+        }
+
+
 
         // CALCULAMOS EL VALOR MEDIO DE LA FASE
         //será util para hacer las graficas
@@ -241,6 +205,49 @@ namespace WpfApplication1
                 }
             }
 
+            if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
+            {
+                for (int i = 0; i < y; i++)
+                {
+                    matriz_malla[0, i].SetFase(1);
+                    matriz_malla[0, i].SetTemperatura(-1);
+                    matriz_malla[y - 1, i].SetFase(1);
+                    matriz_malla[y - 1, i].SetTemperatura(-1);
+                }
+
+                for (int j = 0; j < x; j++)
+                {
+                    matriz_malla[j, 0].SetFase(1);
+                    matriz_malla[j, 0].SetTemperatura(-1);
+                    matriz_malla[j, x - 1].SetFase(1);
+                    matriz_malla[j, x - 1].SetTemperatura(-1);
+
+                }
+
+            }
+
+            if(condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
+                {
+
+                for (int i = 1; i < x; i++)  // filas - y     columnas - x
+                {
+                    matriz_malla[0, i].SetFase(DameFASEde(1, i));
+                    matriz_malla[0, i].SetTemperatura(DameTEMPERATURAde(1, i));
+                    matriz_malla[y - 1, i].SetFase(DameFASEde(y - 2, i));
+                    matriz_malla[y - 1, i].SetTemperatura(DameTEMPERATURAde(y - 2, i));
+                }
+
+                for (int j = 1; j < y; j++)
+                {
+                    matriz_malla[j, 0].SetFase(DameFASEde(j, 1));
+                    matriz_malla[j, 0].SetTemperatura(DameTEMPERATURAde(j, 1));
+                    matriz_malla[j, x - 1].SetFase(DameFASEde(j, x - 2));
+                    matriz_malla[j, x - 1].SetTemperatura(DameTEMPERATURAde(j, x - 2));
+
+                }
+            }
+
+
         }
 
         // GUARDAR SIMULACIÓN
@@ -251,6 +258,8 @@ namespace WpfApplication1
                 StreamWriter w = new StreamWriter(nombre);
 
                 w.Write(this.y + " " + this.x); // guardamos los valores x e y separados en la primera fila
+                w.Write('\n');
+                w.Write(this.norma1.GetDxDy() + " " + this.norma1.GetEpsilon() + " " + this.norma1.GetBetta() + " " + this.norma1.GetDelta() + " " + this.norma1.GetM() + " " + this.norma1.GetDT() + " " + GetCondicionsContornoFaseTemperatura());
                 w.Write('\n');
 
                 for (int j = 0; j < y; j++) // guardamos la matriz
@@ -275,10 +284,24 @@ namespace WpfApplication1
         public Malla CargarSimulacion(string name)
         {
             Malla matriz_celdas = new Malla(); // creamos una nueva malla
+            Normas norma = new Normas();
+
             StreamReader sr = new StreamReader(name);
             string linea = sr.ReadLine();
             string[] trozos = linea.Split(' '); // la primera linea nos indica el numero de filas y columnas
             matriz_celdas.SetNumeroDeFilasYColumnas(Convert.ToInt32(trozos[0]) - 2, Convert.ToInt32(trozos[1]) - 2);
+
+            // Leemos los parámetros y condiciones de contorno
+            string lineaParam = sr.ReadLine();
+            string[] trozosParam = lineaParam.Split(' ');
+            norma.SetDxDy(Convert.ToDouble(trozosParam[0]));
+            norma.SetEpsilon(Convert.ToDouble(trozosParam[1]));
+            norma.SetBetta(Convert.ToDouble(trozosParam[2]));
+            norma.SetDelta(Convert.ToDouble(trozosParam[3]));
+            norma.SetM(Convert.ToDouble(trozosParam[4]));
+            norma.SetDT(Convert.ToDouble(trozosParam[5]));
+            matriz_celdas.SetNormas(norma);
+            matriz_celdas.SetCondicionsContornoFaseTemperatura(trozosParam[6] +" "+ trozosParam[7]);
 
             string line = sr.ReadLine();
             int i = 0;

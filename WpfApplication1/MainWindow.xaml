@@ -105,8 +105,10 @@
                               FontSize="14"
                               Foreground="White" 
                               Click="MenuItem_Click_20"
+
                           FontFamily="/Fonts/#Poppins" Margin="10,5,21.2,0"
                           Name ="botongraficos" IsEnabled="False">
+
 
                     <MenuItem.Icon>
                         <Image Source="/icons/graf.png" Margin="-17,-12,-67,-8" />
