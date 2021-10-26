@@ -65,7 +65,7 @@
                               FontSize="14"
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins" Click="MenuItem_Click"
-                              HorizontalAlignment="Center" Margin="10,5,21.2,5" Width="220">
+                              HorizontalAlignment="Center" Margin="0,5,21.2,5" Width="230">
                     <MenuItem.Icon>
                         <Image Source="/icons/EXPL.png" Margin="16,-16,-36,-17"/>
 
@@ -81,7 +81,7 @@
                               Foreground="White"
                               FontFamily="/Fonts/#Poppins"
                               x:Name="botonCARGAR" 
-                              Margin="10,5,21.2,5" IsEnabled="False">
+                              Margin="0,5,21.2,5" IsEnabled="False">
 
                     <MenuItem.Icon>
                         <Image Source="/icons/save_white.png" Margin="-21,-13,-75,-13" />
@@ -93,7 +93,7 @@
                               Height=" 50" 
                               FontSize="14"
                               Foreground="White"
-                              FontFamily="/Fonts/#Poppins" Margin="10,5,21.2,5">
+                              FontFamily="/Fonts/#Poppins" Margin="0,5,21.2,5">
                     <MenuItem.Icon>
                         <Image Source="/icons/load_white.png" Margin="-21,-11,-78,-12" />
                     </MenuItem.Icon>
@@ -106,7 +106,7 @@
                               Foreground="White" 
                               Click="MenuItem_Click_20"
 
-                          FontFamily="/Fonts/#Poppins" Margin="10,5,21.2,0"
+                          FontFamily="/Fonts/#Poppins" Margin="0,5,21.2,0"
                           Name ="botongraficos" IsEnabled="False">
 
 

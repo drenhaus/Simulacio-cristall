@@ -139,6 +139,7 @@ namespace WpfApplication1
 
             //Oculamos la label instrucciones
             labelmedio.Visibility = Visibility.Hidden;
+            labelmedio2.Visibility = Visibility.Hidden;
             // introducimos las listas al generador
             generador.SetListaFASExIteracion(listaFasexIteracion);
             generador.GenerarDatosFASE(Convert.ToDouble(contadorHISTORIAL));
