@@ -634,16 +634,16 @@ namespace WpfApplication1
 
                         // escribimos en el comboBox la condición de contorno seleccionada
                         string condicion = matriz_celdas.GetCondicionsContornoFaseTemperatura();
-                        string text= "Fixed";
+                        string text= "Fijas";
 
-                        if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
-                        { text = "Fixed"; }
+                        if (condicion == "System.Windows.Controls.ComboBoxItem: Fijas")
+                        { text = "Fijas"; }
                         if (condicion == "System.Windows.Controls.ComboBoxItem: Espejo")
                         { text = "Espejo"; }
                                                 
                         comboBox1.IsEditable = true;
                         comboBox1.Text = text;
-                        comboBox1.IsEditable = false;
+                        
 
 
                         // habilitamos  todos los botones y textboxs por si se carga el fichero solo iniciar el programa

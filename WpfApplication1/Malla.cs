@@ -205,7 +205,7 @@ namespace WpfApplication1
                 }
             }
 
-            if (condicion == "System.Windows.Controls.ComboBoxItem: Fixed")
+            if (condicion == "System.Windows.Controls.ComboBoxItem: Fijas")
             {
                 for (int i = 0; i < y; i++)
                 {
